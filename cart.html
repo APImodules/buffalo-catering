@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина - Buffalo Catering</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Базовые стили, остальные будут в css/style.css */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="https://buffalo.qr-cafe.ru/assets/themes/qrmenu/dist/img/logo_app.svg" alt="Buffalo Logo">
+                    </a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html#sets">Сеты</a></li>
+                        <li><a href="index.html#about">О нас</a></li>
+                        <li><a href="index.html#contacts">Контакты</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Страница корзины -->
+    <section class="cart-page">
+        <div class="container">
+            <h1 class="cart-title">Корзина</h1>
+            
+            <div class="cart-items">
+                <!-- Сюда будут добавлены товары из корзины через JavaScript -->
+            </div>
+            
+            <div class="cart-summary">
+                <h2 class="cart-summary-title">Итого</h2>
+                <div class="cart-total-row">
+                    <span>Сумма заказа:</span>
+                    <span class="cart-total">0 ₽</span>
+                </div>
+                
+                <form id="order-form" class="checkout-form" action="https://formsubmit.co/andylondonmusic@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="Новый заказ Buffalo Catering">
+                    <input type="hidden" name="_next" value="https://apimodules.github.io/buffalo-catering/index.html">
+                    
+                    <div class="form-group">
+                        <label for="customer-name" class="form-label">Ваше имя</label>
+                        <input type="text" id="customer-name" name="name" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customer-phone" class="form-label">Телефон</label>
+                        <input type="tel" id="customer-phone" name="phone" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customer-address" class="form-label">Адрес доставки</label>
+                        <input type="text" id="customer-address" name="address" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <span class="form-label">Способ оплаты</span>
+                        <div class="payment-options">
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="cash" checked>
+                                Наличными при получении
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="card">
+                                Картой при получении
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="online">
+                                Онлайн-оплата
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="order-comment" class="form-label">Комментарий к заказу</label>
+                        <textarea id="order-comment" name="comment" class="form-input" rows="3"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="checkout-button">Оформить заказ</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="copyright">
+                    <p>© 2025 Buffalo Catering. Все права защищены.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>
