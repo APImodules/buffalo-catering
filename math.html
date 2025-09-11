@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Открытие колониальной клетки</title>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
+    * {margin:0;padding:0;box-sizing:border-box;}
     body {
       font-family: "Georgia", serif;
       color: #fff;
@@ -15,77 +15,112 @@
     section {
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
+      align-items: center;
       justify-content: center;
       padding: 5% 10%;
       position: relative;
-      z-index: 1;
     }
     section::before {
       content: "";
       position: absolute;
       inset: 0;
       background-size: cover;
+      background-position: center;
       background-attachment: fixed;
-      opacity: 0.35;
+      filter: brightness(0.4);
       z-index: -1;
     }
-    h1, h2 {
+    .content {
+      background: rgba(0,0,0,0.6);
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 800px;
+    }
+    h1,h2 {
       margin-bottom: 1rem;
+      font-size: 2rem;
+      color: #f9fafb;
     }
     p {
       font-size: 1.1rem;
       line-height: 1.6;
       margin-bottom: 1rem;
+      color: #e5e7eb;
     }
-    /* разные фоны для параллакса */
-    #intro::before { background-image: url('https://picsum.photos/id/1025/1600/900'); }
-    #history::before { background-image: url('https://picsum.photos/id/1069/1600/900'); }
-    #definition::before { background-image: url('https://picsum.photos/id/1011/1600/900'); }
-    #morphology::before { background-image: url('https://picsum.photos/id/1043/1600/900'); }
-    #molecular::before { background-image: url('https://picsum.photos/id/1059/1600/900'); }
-    #research::before { background-image: url('https://picsum.photos/id/1003/1600/900'); }
-    #evolution::before { background-image: url('https://picsum.photos/id/1036/1600/900'); }
-    #ecology::before { background-image: url('https://picsum.photos/id/1024/1600/900'); }
-    #conclusion::before { background-image: url('https://picsum.photos/id/1005/1600/900'); }
+    /* фоновые картинки по темам */
+    #intro::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Volvox_-_kolonie.jpg/800px-Volvox_-_kolonie.jpg'); }
+    #history::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Antonie_van_Leeuwenhoek_%281632-1723%29.jpg/640px-Antonie_van_Leeuwenhoek_%281632-1723%29.jpg'); }
+    #definition::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Porifera_sponges.jpg/800px-Porifera_sponges.jpg'); }
+    #morphology::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Siphonophore.jpg/800px-Siphonophore.jpg'); }
+    #molecular::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Protein_molecule.jpg/800px-Protein_molecule.jpg'); }
+    #research::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Transmission_electron_microscope.jpg/800px-Transmission_electron_microscope.jpg'); }
+    #evolution::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Evolution_diagram.png/800px-Evolution_diagram.png'); }
+    #ecology::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Coral_reef.jpg/800px-Coral_reef.jpg'); }
+    #conclusion::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Blue_ocean.jpg/800px-Blue_ocean.jpg'); }
   </style>
 </head>
 <body>
   <section id="intro">
-    <h1>Введение</h1>
-    <p>Что такое колониальная клетка и зачем важно её изучение.</p>
+    <div class="content">
+      <h1>Введение</h1>
+      <p>Что такое колониальная клетка и зачем важно её изучение.</p>
+    </div>
   </section>
+
   <section id="history">
-    <h2>Исторический контекст</h2>
-    <p>Открытия Малпиги, Левенгука, Гука и первых наблюдений колоний.</p>
+    <div class="content">
+      <h2>Исторический контекст</h2>
+      <p>Открытия Малпиги, Левенгука, Гука и первых наблюдений колоний.</p>
+    </div>
   </section>
+
   <section id="definition">
-    <h2>Определение</h2>
-    <p>Колониальная клетка в животных организмах, примеры: губки, гидроиды, сифонофоры.</p>
+    <div class="content">
+      <h2>Определение</h2>
+      <p>Колониальная клетка в животных организмах, примеры: губки, гидроиды, сифонофоры.</p>
+    </div>
   </section>
+
   <section id="morphology">
-    <h2>Морфология и функции</h2>
-    <p>Форма, контакты, специализация — питание, размножение, защита.</p>
+    <div class="content">
+      <h2>Морфология и функции</h2>
+      <p>Форма, контакты, специализация — питание, размножение, защита.</p>
+    </div>
   </section>
+
   <section id="molecular">
-    <h2>Молекулярные механизмы</h2>
-    <p>Адгезия, сигнальные пути, генетическая регуляция.</p>
+    <div class="content">
+      <h2>Молекулярные механизмы</h2>
+      <p>Адгезия, сигнальные пути, генетическая регуляция.</p>
+    </div>
   </section>
+
   <section id="research">
-    <h2>Исследования</h2>
-    <p>Методы: микроскопия, маркировка, секвенирование.</p>
+    <div class="content">
+      <h2>Исследования</h2>
+      <p>Методы: микроскопия, маркировка, секвенирование.</p>
+    </div>
   </section>
+
   <section id="evolution">
-    <h2>Эволюционное значение</h2>
-    <p>Переход от одноклеточных к многоклеточным, преимущества колониальности.</p>
+    <div class="content">
+      <h2>Эволюционное значение</h2>
+      <p>Переход от одноклеточных к многоклеточным, преимущества колониальности.</p>
+    </div>
   </section>
+
   <section id="ecology">
-    <h2>Экологическая значимость</h2>
-    <p>Роль в экосистемах, биотехнологии и охрана биоразнообразия.</p>
+    <div class="content">
+      <h2>Экологическая значимость</h2>
+      <p>Роль в экосистемах, биотехнологии и охрана биоразнообразия.</p>
+    </div>
   </section>
+
   <section id="conclusion">
-    <h2>Заключение</h2>
-    <p>Подытожьте значимость изучения колониальных клеток и перспективы.</p>
+    <div class="content">
+      <h2>Заключение</h2>
+      <p>Подытожьте значимость изучения колониальных клеток и перспективы.</p>
+    </div>
   </section>
 </body>
 </html>
