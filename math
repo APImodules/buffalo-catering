@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Карточки с примерами — проверь себя</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#10b981;--muted:#94a3b8}
+    *{box-sizing:border-box;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif}
+    body{margin:0;min-height:100vh;background:linear-gradient(180deg,#071025 0%,#071728 100%);color:#e6eef6;display:flex;align-items:center;justify-content:center;padding:28px}
+    .wrap{width:100%;max-width:980px}
+    h1{margin:0 0 12px;font-size:20px;text-align:center}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);padding:16px;border-radius:12px;transition:transform .18s,box-shadow .18s}
+    .card.correct{border-color:rgba(16,185,129,0.9);box-shadow:0 8px 30px rgba(16,185,129,0.06);transform:translateY(-4px)}
+    .eq{font-weight:600;font-size:18px;margin-bottom:10px}
+    .meta{font-size:13px;color:var(--muted);margin-bottom:10px}
+    .controls{display:flex;gap:8px}
+    input[type="text"]{flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit;outline:none}
+    button{padding:10px 12px;border-radius:8px;border:0;background:rgba(255,255,255,0.04);color:inherit;cursor:pointer}
+    button.check{background:linear-gradient(90deg,#0ea5a4,#10b981);color:#022; font-weight:600}
+    .hint{margin-top:10px;font-size:13px;color:var(--muted)}
+    /* modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.6);z-index:60}
+    .modal.show{display:flex}
+    .modal-card{background:linear-gradient(180deg,#052233,#023047);padding:26px;border-radius:14px;text-align:center;box-shadow:0 12px 40px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.04)}
+    .modal-card h2{margin:0 0 8px;font-size:22px}
+    .modal-card p{margin:0 0 12px;color:var(--muted)}
+    .btn-next{padding:10px 18px;border-radius:10px;background:var(--accent);border:0;color:#00201a;font-weight:700;cursor:pointer}
+    .confetti{position:absolute;inset:0;pointer-events:none}
+    footer{margin-top:16px;text-align:center;color:var(--muted);font-size:13px}
+    @media (max-width:480px){.wrap{padding:0 8px} .card{padding:12px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Практика: реши уравнение и проверь ответ ✅</h1>
+    <div class="grid" id="cards"></div>
+    <footer>Вводи только числовой ответ. Если дробь — через точку (например 2.5).</footer>
+  </div>
+
+  <!-- модалка -->
+  <div id="modal" class="modal" role="dialog" aria-hidden="true">
+    <div class="modal-card">
+      <h2 id="modal-title">Супер — NEXT!</h2>
+      <p id="modal-sub">Правильно — молодец! Хочешь перейти к следующей карточке?</p>
+      <div style="display:flex;gap:10px;justify-content:center">
+        <button class="btn-next" id="modal-next">Следующая</button>
+        <button id="modal-close" style="padding:10px 14px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:inherit;cursor:pointer">Закрыть</button>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="confetti" class="confetti"></canvas>
+
+  <script>
+    // Примеры, взятые из вашего сообщения
+    const problems = [
+      {id:1, expr: '2x = 2 - 4', solution: -1},
+      {id:2, expr: '3x + 1 = 1 * (10)', solution: 3},
+      {id:3, expr: '7x - 11x = 5 - 25', solution: 5},
+      {id:4, expr: 'X / 5 = 5 + 5 + 5', solution: 75}
+    ];
+
+    const cardsRoot = document.getElementById('cards');
+
+    problems.forEach((p, idx) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="eq">${p.expr}</div>
+        <div class="meta">Введите значение <strong>x</strong></div>
+        <div class="controls">
+          <input inputmode="numeric" pattern="[-+0-9.,]*" placeholder="Ваш ответ" />
+          <button class="check">Проверить</button>
+        </div>
+        <div class="hint" aria-live="polite"></div>
+      `;
+
+      const input = card.querySelector('input');
+      const btn = card.querySelector('button.check');
+      const hint = card.querySelector('.hint');
+
+      btn.addEventListener('click', () => {
+        const raw = input.value.trim().replace(',', '.');
+        if (!raw) { hint.textContent = 'Введите число, пожалуйста.'; return; }
+        const num = Number(raw);
+        if (Number.isNaN(num)) { hint.textContent = 'Неправильный формат числа.'; return; }
+        if (Math.abs(num - p.solution) < 1e-9) {
+          hint.textContent = 'Правильно!';
+          card.classList.add('correct');
+          input.disabled = true;
+          btn.disabled = true;
+          showModal(idx);
+        } else {
+          hint.textContent = 'Почти — попробуй ещё раз.';
+          // небольшая вибрация для tactile (если поддерживается)
+          if (navigator.vibrate) navigator.vibrate(80);
+        }
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') btn.click();
+      });
+
+      cardsRoot.appendChild(card);
+    });
+
+    // Модалка и навигация
+    const modal = document.getElementById('modal');
+    const modalNext = document.getElementById('modal-next');
+    const modalClose = document.getElementById('modal-close');
+    let lastCorrectIndex = null;
+
+    function showModal(correctIdx){
+      lastCorrectIndex = correctIdx;
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden','false');
+      launchConfetti();
+    }
+    function closeModal(){
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden','true');
+    }
+    modalClose.addEventListener('click', closeModal);
+
+    modalNext.addEventListener('click', ()=>{
+      closeModal();
+      // перейти к следующей карточке, если есть
+      const cards = Array.from(document.querySelectorAll('.card'));
+      const next = cards[lastCorrectIndex+1] || cards[0];
+      next.scrollIntoView({behavior:'smooth',block:'center'});
+      const nextInput = next.querySelector('input');
+      nextInput.focus();
+    });
+
+    // небольшой конфетти-эффект (canvas)
+    function launchConfetti(){
+      const canvas = document.getElementById('confetti');
+      const ctx = canvas.getContext('2d');
+      let W = canvas.width = window.innerWidth;
+      let H = canvas.height = window.innerHeight;
+      const pieces = [];
+      for(let i=0;i<120;i++){
+        pieces.push({x:Math.random()*W,y:Math.random()*H- H*0.5, r:Math.random()*6+4, d:Math.random()*Math.PI*2, s:Math.random()*3+2, vx:(Math.random()-0.5)*3, vy:Math.random()*2+2})
+      }
+      let t=0;
+      function frame(){
+        ctx.clearRect(0,0,W,H);
+        pieces.forEach(p=>{
+          p.x += p.vx;
+          p.y += p.vy;
+          p.d += 0.05;
+          ctx.save();
+          ctx.translate(p.x,p.y);
+          ctx.rotate(p.d);
+          ctx.fillStyle = 'rgba(255,255,255,0.85)';
+          ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r);
+          ctx.restore();
+        });
+        t+=1;
+        if (t<180) requestAnimationFrame(frame);
+        else ctx.clearRect(0,0,W,H);
+      }
+      frame();
+      window.addEventListener('resize', ()=>{W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight});
+    }
+
+    // Удобство: фокус на первом поле
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const first = document.querySelector('.card input');
+      if (first) first.focus();
+    });
+  </script>
+</body>
+</html>
