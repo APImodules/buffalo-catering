@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Квиз по уравнениям с эмоджи</title>
+<title>Квиз по уравнениям с эмоджи и стрелками</title>
 <style>
 body {
   font-family: "Verdana", sans-serif;
@@ -33,9 +33,9 @@ h1 {color:#1a3a5a;}
 </head>
 <body>
 
-<h1>Квиз по уравнениям с эмоджи</h1>
+<h1>Квиз по уравнениям с эмоджи и стрелками</h1>
 
-<!-- Примеры карточек -->
+<!-- Пример карточки -->
 
 <div class="card">
 <h2>1. Простое уравнение: 2x + 3 = 7</h2>
@@ -46,7 +46,7 @@ h1 {color:#1a3a5a;}
 <div class="result" id="result1"></div>
 <div class="solution" id="sol1">
 🔹 2x + 3 = 7<br>
-✂️ Переносим 3: 2x = 7 - 3<br>
+➡️ Переносим +3: 2x = 7 - 3<br>
 ➗ Делим на 2: x = 4 / 2<br>
 ✅ x = 2
 </div>
@@ -61,7 +61,7 @@ h1 {color:#1a3a5a;}
 <div class="result" id="result2"></div>
 <div class="solution" id="sol2">
 🔹 5x - 10 = 15<br>
-✂️ Переносим -10: 5x = 15 + 10<br>
+➡️ Переносим -10: 5x = 15 + 10<br>
 ➗ Делим на 5: x = 25 / 5<br>
 ✅ x = 5
 </div>
@@ -76,7 +76,7 @@ h1 {color:#1a3a5a;}
 <div class="result" id="result3"></div>
 <div class="solution" id="sol3">
 🔹 x/3 + 1 = 4<br>
-✂️ Переносим +1: x/3 = 4 - 1<br>
+➡️ Переносим +1: x/3 = 4 - 1<br>
 ✖️ Умножаем на 3: x = 3 × 3<br>
 ✅ x = 9
 </div>
@@ -91,40 +91,10 @@ h1 {color:#1a3a5a;}
 <div class="result" id="result4"></div>
 <div class="solution" id="sol4">
 🔹 (2x)/5 - 3 = 1<br>
-✂️ Переносим -3: (2x)/5 = 1 + 3<br>
+➡️ Переносим -3: (2x)/5 = 1 + 3<br>
 ✖️ Умножаем на 5: 2x = 4 × 5<br>
 ➗ Делим на 2: x = 20 / 2<br>
 ✅ x = 10
-</div>
-</div>
-
-<div class="card">
-<h2>5. Простое уравнение: 3x + 7 = 16</h2>
-<label>Введите ответ:</label>
-<input type="text" id="input5">
-<button onclick="check(5,'3')">Проверить</button>
-<button onclick="showSolution(5)">Показать решение</button>
-<div class="result" id="result5"></div>
-<div class="solution" id="sol5">
-🔹 3x + 7 = 16<br>
-✂️ Переносим 7: 3x = 16 - 7<br>
-➗ Делим на 3: x = 9 / 3<br>
-✅ x = 3
-</div>
-</div>
-
-<div class="card">
-<h2>6. Простое уравнение: 4x - 5 = 11</h2>
-<label>Введите ответ:</label>
-<input type="text" id="input6">
-<button onclick="check(6,'4')">Проверить</button>
-<button onclick="showSolution(6)">Показать решение</button>
-<div class="result" id="result6"></div>
-<div class="solution" id="sol6">
-🔹 4x - 5 = 11<br>
-✂️ Переносим -5: 4x = 11 + 5<br>
-➗ Делим на 4: x = 16 / 4<br>
-✅ x = 4
 </div>
 </div>
 
