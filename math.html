@@ -8,8 +8,9 @@
     * {margin:0;padding:0;box-sizing:border-box;}
     body {
       font-family: "Georgia", serif;
-      color: #fff;
-      overflow-x: hidden;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      min-height: 100vh;
+      color: #222;
       scroll-behavior: smooth;
     }
     section {
@@ -18,45 +19,28 @@
       align-items: center;
       justify-content: center;
       padding: 5% 10%;
-      position: relative;
-    }
-    section::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      filter: brightness(0.4);
-      z-index: -1;
     }
     .content {
-      background: rgba(0,0,0,0.6);
+      background: #fff;
       padding: 2rem;
-      border-radius: 12px;
+      border-radius: 24px;
       max-width: 800px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
     }
-    h1,h2 {
+    h1, h2 {
       margin-bottom: 1rem;
       font-size: 2rem;
-      color: #f9fafb;
+      color: #111;
     }
     p {
       font-size: 1.1rem;
       line-height: 1.6;
       margin-bottom: 1rem;
-      color: #e5e7eb;
+      color: #333;
     }
-    /* фоновые картинки по темам */
-    #intro::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Volvox_-_kolonie.jpg/800px-Volvox_-_kolonie.jpg'); }
-    #history::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Antonie_van_Leeuwenhoek_%281632-1723%29.jpg/640px-Antonie_van_Leeuwenhoek_%281632-1723%29.jpg'); }
-    #definition::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Porifera_sponges.jpg/800px-Porifera_sponges.jpg'); }
-    #morphology::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Siphonophore.jpg/800px-Siphonophore.jpg'); }
-    #molecular::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Protein_molecule.jpg/800px-Protein_molecule.jpg'); }
-    #research::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Transmission_electron_microscope.jpg/800px-Transmission_electron_microscope.jpg'); }
-    #evolution::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Evolution_diagram.png/800px-Evolution_diagram.png'); }
-    #ecology::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Coral_reef.jpg/800px-Coral_reef.jpg'); }
-    #conclusion::before { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Blue_ocean.jpg/800px-Blue_ocean.jpg'); }
+    section:nth-child(even) .content {
+      background: #f9fafb; /* чередование оттенков карточек */
+    }
   </style>
 </head>
 <body>
