@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fraction Cards</title>
+<title>Карточки действий с дробями</title>
 <style>
 body {
   font-family: "Verdana", sans-serif;
@@ -19,8 +19,14 @@ body {
   border-radius: 16px;
   padding: 1.5rem 2rem;
   box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-  max-width: 450px;
+  max-width: 500px;
   width: 100%;
+}
+.hint-card {
+  background: linear-gradient(135deg, #fff5e6, #ffe0b3);
+  color: #1a3a5a;
+  font-weight: bold;
+  text-align: center;
 }
 h2 { color: #1a3a5a; margin-bottom: 1rem; font-size: 1.4rem; border-bottom:1px solid #1a3a5a33; padding-bottom:0.3rem;}
 label {display:block; margin-bottom:0.5rem; font-weight:bold;}
@@ -32,86 +38,127 @@ button {padding:0.5rem 1rem; border-radius:8px; border:none; background-color:#1
 </head>
 <body>
 
-<h1>Fraction Cards with Step-by-Step Solution</h1>
+<h1>Карточки действий с дробями</h1>
+
+<!-- Подсказка -->
+<div class="card hint-card">
+<h2>Подсказка по действиям с дробями</h2>
+<ul style="text-align:left;">
+<li><b>Сложение:</b> a/b + c/d = (a×d + b×c) / (b×d)</li>
+<li><b>Вычитание:</b> a/b - c/d = (a×d - b×c) / (b×d)</li>
+<li><b>Умножение:</b> a/b × c/d = (a×c)/(b×d)</li>
+<li><b>Деление:</b> a/b ÷ c/d = (a×d)/(b×c)</li>
+</ul>
+</div>
+
+<!-- Примеры карточек -->
 
 <div class="card">
-<h2>1. 31/8 → Mixed Number</h2>
-<label>Enter your answer:</label>
+<h2>1. 1/2 + 3/4</h2>
+<label>Введите ответ:</label>
 <input type="text" id="input1">
-<button onclick="check(1,'3 7/8')">Check</button>
-<button onclick="showSolution(1)">Show Solution</button>
+<button onclick="check(1,'5/4')">Проверить</button>
+<button onclick="showSolution(1)">Показать решение</button>
 <div class="result" id="result1"></div>
-<div class="solution" id="sol1">31/8 = 24/8 + 7/8 = 3 + 7/8 = 3 7/8</div>
+<div class="solution" id="sol1">
+1/2 + 3/4 → общий знаменатель 4:<br>
+1/2 = 2/4<br>
+2/4 + 3/4 = 5/4
+</div>
 </div>
 
 <div class="card">
-<h2>2. 17/5 → Mixed Number</h2>
-<label>Enter your answer:</label>
+<h2>2. 5/6 - 1/3</h2>
+<label>Введите ответ:</label>
 <input type="text" id="input2">
-<button onclick="check(2,'3 2/5')">Check</button>
-<button onclick="showSolution(2)">Show Solution</button>
+<button onclick="check(2,'1/2')">Проверить</button>
+<button onclick="showSolution(2)">Показать решение</button>
 <div class="result" id="result2"></div>
-<div class="solution" id="sol2">17/5 = 15/5 + 2/5 = 3 + 2/5 = 3 2/5</div>
+<div class="solution" id="sol2">
+5/6 - 1/3 → общий знаменатель 6:<br>
+1/3 = 2/6<br>
+5/6 - 2/6 = 3/6 = 1/2
+</div>
 </div>
 
 <div class="card">
-<h2>3. 22/7 → Mixed Number</h2>
-<label>Enter your answer:</label>
+<h2>3. 2/3 × 3/5</h2>
+<label>Введите ответ:</label>
 <input type="text" id="input3">
-<button onclick="check(3,'3 1/7')">Check</button>
-<button onclick="showSolution(3)">Show Solution</button>
+<button onclick="check(3,'2/5')">Проверить</button>
+<button onclick="showSolution(3)">Показать решение</button>
 <div class="result" id="result3"></div>
-<div class="solution" id="sol3">22/7 = 21/7 + 1/7 = 3 + 1/7 = 3 1/7</div>
+<div class="solution" id="sol3">
+2/3 × 3/5 → числители × числители, знаменатели × знаменатели:<br>
+2×3 = 6, 3×5 = 15 → 6/15 = 2/5
+</div>
 </div>
 
 <div class="card">
-<h2>4. 45/6 → Mixed Number</h2>
-<label>Enter your answer:</label>
+<h2>4. 7/8 ÷ 1/4</h2>
+<label>Введите ответ:</label>
 <input type="text" id="input4">
-<button onclick="check(4,'7 3/6')">Check</button>
-<button onclick="showSolution(4)">Show Solution</button>
+<button onclick="check(4,'7/2')">Проверить</button>
+<button onclick="showSolution(4)">Показать решение</button>
 <div class="result" id="result4"></div>
-<div class="solution" id="sol4">45/6 = 42/6 + 3/6 = 7 + 3/6 = 7 3/6</div>
+<div class="solution" id="sol4">
+7/8 ÷ 1/4 → умножаем на обратную дробь:<br>
+7/8 × 4/1 = 28/8 = 7/2
+</div>
 </div>
 
 <div class="card">
-<h2>5. 3 7/8 → Improper Fraction</h2>
-<label>Enter your answer:</label>
+<h2>5. 3/5 + 2/7</h2>
+<label>Введите ответ:</label>
 <input type="text" id="input5">
-<button onclick="check(5,'31/8')">Check</button>
-<button onclick="showSolution(5)">Show Solution</button>
+<button onclick="check(5,'31/35')">Проверить</button>
+<button onclick="showSolution(5)">Показать решение</button>
 <div class="result" id="result5"></div>
-<div class="solution" id="sol5">3 7/8 = 24/8 + 7/8 = 31/8</div>
+<div class="solution" id="sol5">
+3/5 + 2/7 → общий знаменатель 35:<br>
+3/5 = 21/35, 2/7 = 10/35<br>
+21/35 + 10/35 = 31/35
+</div>
 </div>
 
 <div class="card">
-<h2>6. 3 2/5 → Improper Fraction</h2>
-<label>Enter your answer:</label>
+<h2>6. 4/9 × 3/8</h2>
+<label>Введите ответ:</label>
 <input type="text" id="input6">
-<button onclick="check(6,'17/5')">Check</button>
-<button onclick="showSolution(6)">Show Solution</button>
+<button onclick="check(6,'1/6')">Проверить</button>
+<button onclick="showSolution(6)">Показать решение</button>
 <div class="result" id="result6"></div>
-<div class="solution" id="sol6">3 2/5 = 15/5 + 2/5 = 17/5</div>
+<div class="solution" id="sol6">
+4/9 × 3/8 → числители × числители, знаменатели × знаменатели:<br>
+4×3 = 12, 9×8 = 72 → 12/72 = 1/6
+</div>
 </div>
 
 <div class="card">
-<h2>7. 3 1/7 → Improper Fraction</h2>
-<label>Enter your answer:</label>
+<h2>7. 5/6 ÷ 2/3</h2>
+<label>Введите ответ:</label>
 <input type="text" id="input7">
-<button onclick="check(7,'22/7')">Check</button>
-<button onclick="showSolution(7)">Show Solution</button>
+<button onclick="check(7,'5/4')">Проверить</button>
+<button onclick="showSolution(7)">Показать решение</button>
 <div class="result" id="result7"></div>
-<div class="solution" id="sol7">3 1/7 = 21/7 + 1/7 = 22/7</div>
+<div class="solution" id="sol7">
+5/6 ÷ 2/3 → умножаем на обратную дробь:<br>
+5/6 × 3/2 = 15/12 = 5/4
+</div>
 </div>
 
 <div class="card">
-<h2>8. 7 3/6 → Improper Fraction</h2>
-<label>Enter your answer:</label>
+<h2>8. 7/10 - 3/5</h2>
+<label>Введите ответ:</label>
 <input type="text" id="input8">
-<button onclick="check(8,'45/6')">Check</button>
-<button onclick="showSolution(8)">Show Solution</button>
+<button onclick="check(8,'1/10')">Проверить</button>
+<button onclick="showSolution(8)">Показать решение</button>
 <div class="result" id="result8"></div>
-<div class="solution" id="sol8">7 3/6 = 42/6 + 3/6 = 45/6</div>
+<div class="solution" id="sol8">
+7/10 - 3/5 → общий знаменатель 10:<br>
+3/5 = 6/10<br>
+7/10 - 6/10 = 1/10
+</div>
 </div>
 
 <script>
@@ -119,10 +166,10 @@ function check(num, correct){
   const answer = document.getElementById('input'+num).value.trim();
   const result = document.getElementById('result'+num);
   if(answer===correct){
-    result.textContent="✅ Correct!";
+    result.textContent="✅ Верно!";
     result.style.color="green";
   } else {
-    result.textContent="❌ Wrong, try again.";
+    result.textContent="❌ Неверно, попробуй ещё раз.";
     result.style.color="red";
   }
 }
