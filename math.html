@@ -3,87 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Короткое эссе: Колониальная клетка</title>
+  <title>Карточки по дробям</title>
   <style>
     body {
       font-family: "Georgia", serif;
       background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
-      color: #111;
       padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
     }
-    h1 {
-      text-align: center;
-      color: #1a3a5a;
-      margin-bottom: 2rem;
-    }
-    .block {
+    .card {
       background: #fff;
-      padding: 1.5rem 2rem;
       border-radius: 16px;
-      margin-bottom: 1.5rem;
+      padding: 1.5rem 2rem;
       box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
     }
     h2 {
-      margin-bottom: 0.5rem;
       color: #1a3a5a;
-      font-size: 1.5rem;
-      border-bottom: 1px solid #1a3a5a33;
-      padding-bottom: 0.2rem;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
     }
-    p {
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 1rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: none;
+      background-color: #1a3a5a;
+      color: #fff;
       font-size: 1rem;
-      line-height: 1.5;
-      color: #222;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 0.5rem;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <h1>Колониальная клетка</h1>
 
-  <div class="block">
-    <h2>Введение</h2>
-    <p>Колониальная клетка формирует колонии многоклеточных организмов или тканевые колонии. Она выполняет функции питания, защиты и размножения. Цель: понять её роль и значимость в биологии.</p>
+  <!-- Карточка 1: Неправильная дробь → смешанная -->
+  <div class="card">
+    <h2>Неправильная дробь → смешанная</h2>
+    <label>Введите смешанную дробь для 31/8:</label>
+    <input type="text" id="input1" placeholder="например, 3 7/8">
+    <button onclick="check1()">Проверить</button>
+    <div class="result" id="result1"></div>
   </div>
 
-  <div class="block">
-    <h2>Исторический контекст</h2>
-    <p>Малпиги, Левенгук и Гук наблюдали клетки под микроскопом. Первые колониальные клетки у животных описаны у губок, гидроидов и сифонофор.</p>
+  <!-- Карточка 2: Смешанная дробь → неправильная -->
+  <div class="card">
+    <h2>Смешанная дробь → неправильная</h2>
+    <label>Введите неправильную дробь для 3 7/8:</label>
+    <input type="text" id="input2" placeholder="например, 31/8">
+    <button onclick="check2()">Проверить</button>
+    <div class="result" id="result2"></div>
   </div>
 
-  <div class="block">
-    <h2>Определение</h2>
-    <p>Колониальная клетка участвует в формировании колонии. Примеры: археоциты и хоаноциты у губок, зооиды у гидроидов и сифонофор.</p>
-  </div>
+<script>
+  function check1() {
+    const answer = document.getElementById('input1').value.trim();
+    const result = document.getElementById('result1');
+    if (answer === "3 7/8") {
+      result.textContent = "✅ Верно!";
+      result.style.color = "green";
+    } else {
+      result.textContent = "❌ Неверно. Попробуй ещё раз.";
+      result.style.color = "red";
+    }
+  }
 
-  <div class="block">
-    <h2>Морфология и функции</h2>
-    <p>Клетки соединяются через межклеточные контакты и специализируются: питание, защита, размножение. Они поддерживают целостность колонии.</p>
-  </div>
-
-  <div class="block">
-    <h2>Молекулярные механизмы</h2>
-    <p>Связь и сигналы обеспечиваются кадгеринами, интегринами и межклеточной сигнализацией. Стволоподобные клетки поддерживают регенерацию колонии.</p>
-  </div>
-
-  <div class="block">
-    <h2>Процесс открытия</h2>
-    <p>Методы: микроскопия, маркировка клеток, секвенирование. Эксперименты с развитием колонии показали функции колониальных клеток.</p>
-  </div>
-
-  <div class="block">
-    <h2>Эволюционное значение</h2>
-    <p>Колониальные клетки демонстрируют переход к многоклеточности, обеспечивая разделение труда и устойчивость. Колониальность возникала независимо в разных группах животных.</p>
-  </div>
-
-  <div class="block">
-    <h2>Экологическая значимость</h2>
-    <p>Колонии формируют рифы, фильтруют воду и служат биомоделями. Их изучение важно для сохранения биоразнообразия и биотехнологий.</p>
-  </div>
-
-  <div class="block">
-    <h2>Заключение</h2>
-    <p>Изучение колониальных клеток помогает понять развитие, эволюцию и экологические функции. Дальнейшие исследования откроют новые биотехнологические возможности.</p>
-  </div>
+  function check2() {
+    const answer = document.getElementById('input2').value.trim();
+    const result = document.getElementById('result2');
+    if (answer === "31/8") {
+      result.textContent = "✅ Верно!";
+      result.style.color = "green";
+    } else {
+      result.textContent = "❌ Неверно. Попробуй ещё раз.";
+      result.style.color = "red";
+    }
+  }
+</script>
 
 </body>
 </html>
