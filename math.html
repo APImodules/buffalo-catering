@@ -1,5 +1,129 @@
 <!DOCTYPE html>
+<html lang="ru"><!DOCTYPE html>
 <html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Канбан-презентация: Колониальная клетка</title>
+  <style>
+    * {margin:0;padding:0;box-sizing:border-box;}
+    body {
+      font-family: "Georgia", serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      min-height: 100vh;
+      color: #222;
+      scroll-behavior: smooth;
+    }
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 5% 5%;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 24px;
+      max-width: 400px;
+      flex: 1;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    h1, h2 {
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      color: #111;
+    }
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    /* Канбан */
+    .kanban {
+      display: flex;
+      gap: 1rem;
+      flex: 2;
+      overflow-x: auto;
+    }
+    .column {
+      background: #f9fafb;
+      border-radius: 16px;
+      padding: 1rem;
+      min-width: 200px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      flex: 1;
+    }
+    .column h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #222;
+    }
+    .task {
+      background: #fff;
+      padding: 0.5rem 0.8rem;
+      border-radius: 12px;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Введение -->
+  <section id="intro">
+    <div class="content">
+      <h1>Введение</h1>
+      <p>Что такое колониальная клетка и зачем важно её изучение.</p>
+    </div>
+    <div class="kanban">
+      <div class="column">
+        <h3>To Learn</h3>
+        <div class="task">Определение «колониальная клетка»</div>
+        <div class="task">Примеры организмов</div>
+      </div>
+      <div class="column">
+        <h3>In Progress</h3>
+        <div class="task">Читаю вводный материал</div>
+      </div>
+      <div class="column">
+        <h3>Learned</h3>
+        <div class="task">Понимаю базовое значение</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- История -->
+  <section id="history">
+    <div class="content">
+      <h2>Исторический контекст</h2>
+      <p>Открытия Малпиги, Левенгука, Гука и первых наблюдений колоний.</p>
+    </div>
+    <div class="kanban">
+      <div class="column">
+        <h3>To Learn</h3>
+        <div class="task">Кто такой Левенгук?</div>
+        <div class="task">Какие клетки описывал Гук?</div>
+      </div>
+      <div class="column">
+        <h3>In Progress</h3>
+        <div class="task">Читаю про микроскопические исследования</div>
+      </div>
+      <div class="column">
+        <h3>Learned</h3>
+        <div class="task">Истоки клеточной теории</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- можно продолжать по остальным блокам -->
+</body>
+</html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
