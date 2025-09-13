@@ -3,8 +3,13 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
-# Папка для сохранения картинок
+# Создаём папку images, если её нет
 os.makedirs("images", exist_ok=True)
+
+# Заглушка, чтобы папка была видна в GitHub даже если пустая
+keep_file = os.path.join("images", ".gitkeep")
+with open(keep_file, "w") as f:
+    f.write("")
 
 # Главная страница архива
 base_url = "https://web.archive.org/web/20240419144035/http://oboandhobos.pro/"
@@ -13,7 +18,8 @@ def download_image(img_url, filename):
     try:
         r = requests.get(img_url)
         r.raise_for_status()
-        with open(os.path.join("images", filename), "wb") as f:
+        path = os.path.join("images", filename)
+        with open(path, "wb") as f:
             f.write(r.content)
         print(f"Скачано: {filename}")
     except Exception as e:
@@ -23,7 +29,7 @@ def sanitize_name(name):
     return name.strip().replace(" ", "_").replace("/", "_").replace("\\", "_")
 
 def process_page(url, prefix):
-    """Скачивает все картинки со страницы и сохраняет с префиксом"""
+    """Скачиваем все картинки со страницы с префиксом"""
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
     images = soup.find_all("img")
@@ -38,7 +44,7 @@ def process_page(url, prefix):
         filename = f"{prefix}_{sanitize_name(alt_text)}.jpg"
         download_image(img_url, filename)
 
-# 1️⃣ Главная страница: ищем ссылки на альбомы и артистов
+# Главная страница: ищем ссылки на альбомы и артистов
 response = requests.get(base_url)
 soup = BeautifulSoup(response.text, "html.parser")
 links = soup.find_all("a")
@@ -57,4 +63,3 @@ for link in links:
         process_page(full_url, "album")
     elif "artist" in href.lower() or "artist" in text.lower():
         process_page(full_url, f"artist_{text.upper()}")
-
