@@ -1,0 +1,31 @@
+name: Download Images
+
+on:
+  workflow_dispatch:  # можно запускать вручную
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4
+
+      - name: Run script
+        run: |
+          python download_images.py
+
+      - name: Upload images as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: downloaded-images
+          path: images/
