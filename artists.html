@@ -8,27 +8,48 @@
     function openPopup(imgSrc) {
       const popup = document.getElementById('popup');
       const popupImg = document.getElementById('popupImg');
-      popup.style.display = 'block';
       popupImg.src = imgSrc;
+      popup.style.display = 'block';
+      popup.style.opacity = 0;
+      let op = 0;
+      const timer = setInterval(() => {
+        if (op >= 1) clearInterval(timer);
+        popup.style.opacity = op;
+        op += 0.05;
+      }, 20);
     }
+
     function closePopup() {
-      document.getElementById('popup').style.display = 'none';
+      const popup = document.getElementById('popup');
+      let op = 1;
+      const timer = setInterval(() => {
+        if (op <= 0) {
+          clearInterval(timer);
+          popup.style.display = 'none';
+        }
+        popup.style.opacity = op;
+        op -= 0.05;
+      }, 20);
     }
   </script>
 </head>
-<body bgcolor="white" text="black">
+<body bgcolor="white" text="black" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
   <center>
-    <h2>OBO&HOBOS ∞</h2>
-    <p>
-      <a href="index.html">HOME</a> |
-      <a href="info.html">INFO</a> |
-      <a href="recordings.html">RECORDINGS</a> |
-      <a href="studio.html">STUDIO</a> |
-      <a href="artists.html">ARTISTS</a> |
-      <a href="events.html">EVENTS</a>
+    <!-- Логотип -->
+    <img src="images/logo.jpg" alt="OBO&HOBOS Logo" width="200">
+
+    <!-- Меню -->
+    <p style="color:gray;">
+      <a href="index.html" style="color:gray;text-decoration:none;">HOME</a> |
+      <a href="info.html" style="color:gray;text-decoration:none;">INFO</a> |
+      <a href="recordings.html" style="color:gray;text-decoration:none;">RECORDINGS</a> |
+      <a href="studio.html" style="color:gray;text-decoration:none;">STUDIO</a> |
+      <a href="artists.html" style="color:gray;text-decoration:none;">ARTISTS</a> |
+      <a href="events.html" style="color:gray;text-decoration:none;">EVENTS</a>
     </p>
     <hr>
 
+    <!-- Артисты -->
     <h3>ARTISTS</h3>
     <table border="0" cellspacing="30" cellpadding="10" align="center">
       <tr>
@@ -52,7 +73,7 @@
   </center>
 
   <!-- Попап -->
-  <div id="popup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.7);text-align:center;">
+  <div id="popup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.7);text-align:center;transition:opacity 0.3s;">
     <span style="color:white;font-size:40px;cursor:pointer;position:absolute;top:10px;right:20px;" onclick="closePopup()">×</span>
     <img id="popupImg" src="" style="max-width:90%;max-height:90%;margin-top:5%;">
   </div>
