@@ -1,214 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OBO&HOBOS — Recordings</title>
-<meta name="description" content="Explore OBO&HOBOS' premium electronic music recordings. Discover deep house, techno, and experimental releases by talented Moscow-based artists." />
-<meta name="keywords" content="electronic music recordings, deep house, techno, Moscow music label, OBO&HOBOS releases, music albums" />
-<meta name="robots" content="index, follow" />
 <style>
-  /* Reset */
-  * {
-    box-sizing: border-box;
-  }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background: #fff;
-    color: #444;
+    color: #555;
     margin: 0;
     padding: 0;
-    text-align: center;
-    line-height: 1.5;
   }
   header {
     background: #fff;
-    padding: 14px 0;
-    border-bottom: 1px solid #ddd;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
   }
-  .logo-container img {
-    height: 64px;
-    object-fit: contain;
-    user-select: none;
-  }
-  nav.main-nav {
-    margin-top: 12px;
-  }
-  nav a {
-    color: #666;
-    text-decoration: none;
-    margin: 0 14px;
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 0.03em;
-    transition: color 0.3s ease;
-  }
-  nav a:hover,
-  nav a:focus {
-    color: #222;
-  }
-  h1 {
-    margin: 36px 0 20px;
-    color: #222;
-    font-weight: 700;
-    font-size: 28px;
-    letter-spacing: 0.04em;
-  }
+  header img { height: 60px; }
+  nav a { color:#888; text-decoration:none; margin:0 10px; font-weight:500; }
+  nav a:hover { color:#555; }
+
   .grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 24px;
-    padding: 20px 16px 60px;
-    max-width: 1260px;
-    margin: 0 auto;
+    gap: 20px;
+    padding: 20px;
   }
-  .release {
-    background: #fafafa;
-    border-radius: 14px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.07);
-    width: 220px;
-    padding: 16px 12px 20px;
-    text-align: center;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    cursor: default;
+
+  .release-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 180px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: transform 0.2s;
   }
-  .release:hover,
-  .release:focus-within {
-    transform: translateY(-6px);
-    box-shadow: 0 14px 38px rgba(0,0,0,0.12);
-  }
-  .release img {
+  .release-container:hover { transform: scale(1.05); }
+
+  .release-container img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-    margin-bottom: 14px;
-    user-select: none;
-  }
-  .release-name {
-    font-weight: 700;
-    font-size: 15px;
-    color: #333;
     margin-bottom: 8px;
-    min-height: 40px;
   }
-  .release-desc {
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 16px;
-    min-height: 42px;
-  }
-  .listen-btn {
-    display: inline-block;
-    padding: 8px 22px;
-    background: #222;
+
+  .release-name { font-weight: 700; font-size: 14px; margin-bottom: 4px; text-align:center; }
+  .release-desc { font-size: 12px; color:#888; text-align:center; margin-bottom:6px; }
+  .read-more-btn {
+    font-size: 12px;
+    padding: 4px 10px;
+    background: #ccc;
     color: #fff;
-    border-radius: 24px;
-    font-weight: 600;
-    font-size: 13px;
-    user-select: none;
-    cursor: default;
-    transition: background-color 0.3s ease;
+    border-radius: 20px;
+    text-decoration: none;
   }
-  .listen-btn:hover,
-  .listen-btn:focus {
-    background: #555;
+
+  /* Попап */
+  .popup {
+    display:none;
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.5);
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
   }
-  @media (max-width: 900px) {
-    .release {
-      width: 48%;
-    }
-    h1 {
-      font-size: 24px;
-      margin: 32px 0 16px;
-    }
+  .popup-content {
+    background:#fff;
+    padding:20px;
+    border-radius:8px;
+    max-width:400px;
+    text-align:center;
+    position:relative;
   }
-  @media (max-width: 600px) {
-    .release {
-      width: 100%;
-    }
-    nav a {
-      margin: 0 10px;
-      font-size: 13px;
-    }
-    h1 {
-      font-size: 22px;
-      margin: 28px 0 14px;
-    }
+  .popup-close {
+    position:absolute;
+    top:10px;
+    right:10px;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:16px;
   }
+  .popup-buttons {
+    margin-top:10px;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+  }
+  .popup-buttons a {
+    padding:5px 12px;
+    border-radius:20px;
+    text-decoration:none;
+    color:#fff;
+    background:#ccc;
+    font-size:12px;
+  }
+
+  /* Кнопка вверх */
+  #scrollTopBtn {
+    display:none;
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    padding:10px 15px;
+    font-size:14px;
+    border-radius:50%;
+    background:#888;
+    color:#fff;
+    cursor:pointer;
+    z-index:1000;
+  }
+
 </style>
 </head>
 <body>
+
 <header>
   <div class="logo-container">
-    <img src="images/logo.jpg" alt="OBO&HOBOS Logo" />
+    <img src="images/logo.jpg" alt="OBO&HOBOS Logo">
   </div>
-  <nav class="main-nav" role="navigation" aria-label="Primary Navigation">
-    <a href="index.html">Home</a>
-    <a href="info.html">Info</a>
-    <a href="recordings.html" aria-current="page">Recordings</a>
-    <a href="studio.html">Studio</a>
-    <a href="artists.html">Artists</a>
-    <a href="events.html">Events</a>
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="info.html">INFO</a>
+    <a href="recordings.html">RECORDINGS</a>
+    <a href="studio.html">STUDIO</a>
+    <a href="artists.html">ARTISTS</a>
+    <a href="events.html">EVENTS</a>
   </nav>
 </header>
 
-<main>
-  <h1>Recordings</h1>
-  <section class="grid" aria-label="Music Releases">
-    <!-- Example release item -->
-    <article class="release" tabindex="0">
-      <img src="images/albums/OBO-021-Ki.Mi_.-Sunday-150x150.jpg" alt="Sunday - Ki.Mi." loading="lazy" width="150" height="150" />
-      <h2 class="release-name">Sunday - Ki.Mi.</h2>
-      <p class="release-desc">A hypnotic deep house journey perfect for sunrise sets.</p>
-      <span class="listen-btn" aria-disabled="true">Listen Soon</span>
-    </article>
+<h2 style="text-align:center; margin-top:20px;">RECORDINGS</h2>
+<div class="grid">
 
-    <article class="release" tabindex="0">
-      <img src="images/albums/OBO001-Vavinchi-Adeptus-150x150.jpg" alt="Adeptus - Vavinchi" loading="lazy" width="150" height="150" />
-      <h2 class="release-name">Adeptus - Vavinchi</h2>
-      <p class="release-desc">Melodic techno with futuristic vibe and deep atmospheric layers.</p>
-      <span class="listen-btn" aria-disabled="true">Listen Soon</span>
-    </article>
+  <!-- Пример одного релиза -->
+  <div class="release-container" data-popup="popup1">
+    <img src="images/albums/OBO-021-Ki.Mi_.-Sunday-150x150.jpg" alt="Sunday - Ki.Mi.">
+    <div class="release-name">Sunday - Ki.Mi.</div>
+    <div class="release-desc">A hypnotic deep house journey perfect for sunrise sets.</div>
+    <a class="read-more-btn">Read More</a>
+  </div>
 
-    <article class="release" tabindex="0">
-      <img src="images/albums/OBO002-In’R’Voice-Steezy-150x150.jpg" alt="Steezy - In’R’Voice" loading="lazy" width="150" height="150" />
-      <h2 class="release-name">Steezy - In’R’Voice</h2>
-      <p class="release-desc">Atmospheric beats blending house and progressive sounds.</p>
-      <span class="listen-btn" aria-disabled="true">Listen Soon</span>
-    </article>
+  <div class="release-container" data-popup="popup2">
+    <img src="images/albums/OBO001-Vavinchi-Adeptus-150x150.jpg" alt="Adeptus - Vavinchi">
+    <div class="release-name">Adeptus - Vavinchi</div>
+    <div class="release-desc">Melodic techno with a futuristic vibe and deep atmospheric layers.</div>
+    <a class="read-more-btn">Read More</a>
+  </div>
 
-    <!-- Continue similarly for other releases up to OBO041 -->
-    <!-- Example snippet for next release -->
-    <article class="release" tabindex="0">
-      <img src="images/albums/OBO003-Boris-The-Spyder-Brainbow-150x150.jpg" alt="Boris The Spyder — Brainbow" loading="lazy" width="150" height="150" />
-      <h2 class="release-name">OBO003 - Boris The Spyder — Brainbow</h2>
-      <p class="release-desc">Psytrance textures with a colorful twist.</p>
-      <span class="listen-btn" aria-disabled="true">Listen Soon</span>
-    </article>
+  <!-- Добавь остальные контейнеры аналогично -->
 
-    <!-- Repeat all releases as <article class="release"> with similar markup -->
+</div>
 
-    <!-- Last shown release -->
-    <article class="release" tabindex="0">
-      <img src="images/albums/OBO041-Kirill-Bagus-Optical-Illusion-1-150x150.jpg" alt="Kirill Bagus — Optical Illusion" loading="lazy" width="150" height="150" />
-      <h2 class="release-name">OBO041 - Kirill Bagus — Optical Illusion</h2>
-      <p class="release-desc">Mind-bending soundscapes with driving beats.</p>
-      <span class="listen-btn" aria-disabled="true">Listen Soon</span>
-    </article>
-  </section>
-</main>
+<!-- Попапы -->
+<div class="popup" id="popup1">
+  <div class="popup-content">
+    <span class="popup-close">&times;</span>
+    <h3>Sunday - Ki.Mi.</h3>
+    <p>Full description text goes here. Add 3–4 sentences about the track, vibe, style, and why it's special.</p>
+    <div class="popup-buttons">
+      <a href="#">Listen Soon</a>
+      <a href="#">Pre-order</a>
+    </div>
+  </div>
+</div>
 
-<footer>
-  © 2025 OBO&HOBOS — Record Label
-</footer>
+<div class="popup" id="popup2">
+  <div class="popup-content">
+    <span class="popup-close">&times;</span>
+    <h3>Adeptus - Vavinchi</h3>
+    <p>Full description text goes here. Include info about atmosphere, style, and special features.</p>
+    <div class="popup-buttons">
+      <a href="#">Listen Soon</a>
+      <a href="#">Pre-order</a>
+    </div>
+  </div>
+</div>
+
+<!-- Кнопка вверх -->
+<button id="scrollTopBtn" onclick="scrollTop()">↑</button>
+
+<script>
+  // Попапы
+  const releases = document.querySelectorAll('.release-container');
+  const popups = document.querySelectorAll('.popup');
+
+  releases.forEach(rel => {
+    rel.addEventListener('click', () => {
+      const popupId = rel.getAttribute('data-popup');
+      document.getElementById(popupId).style.display = 'flex';
+    });
+  });
+
+  const closeBtns = document.querySelectorAll('.popup-close');
+  closeBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.target.closest('.popup').style.display = 'none';
+    });
+  });
+
+  popups.forEach(popup => {
+    popup.addEventListener('click', (e) => {
+      if(e.target === popup) popup.style.display = 'none';
+    });
+  });
+
+  // Кнопка вверх
+  const scrollBtn = document.getElementById('scrollTopBtn');
+  window.onscroll = function() {
+    if(document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      scrollBtn.style.display = "block";
+    } else {
+      scrollBtn.style.display = "none";
+    }
+  }
+  function scrollTop() {
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+</script>
+
 </body>
 </html>
