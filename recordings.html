@@ -1,124 +1,82 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OBO&HOBOS — Recordings</title>
-  <style>
-    body {
-      background-color: white;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      color: #777777;
-    }
-    header {
-      padding: 20px;
-    }
-    header img {
-      max-width: 180px;
-      margin-bottom: 20px;
-    }
-    nav {
-      margin-bottom: 30px;
-    }
-    nav a {
-      color: #777777;
-      text-decoration: none;
-      margin: 0 10px;
-      font-weight: 500;
-    }
-    nav a:hover {
-      color: #555555;
-    }
-    .releases {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto 50px auto;
-      padding: 0 10px;
-    }
-    .release {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 150px;
-    }
-    .release img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      object-fit: cover;
-      margin-bottom: 10px;
-      transition: transform 0.2s;
-    }
-    .release img:hover {
-      transform: scale(1.05);
-    }
-    .release span {
-      font-size: 0.9rem;
-      color: #777777;
-    }
-    footer {
-      margin-top: 50px;
-      padding: 20px;
-      color: #aaaaaa;
-    }
-    @media(max-width: 500px) {
-      .release {
-        width: 120px;
-      }
-      .release img {
-        width: 120px;
-        height: 120px;
-      }
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OBO&HOBOS — Record Label — RECORDINGS</title>
 </head>
-<body>
+<body bgcolor="white" text="black">
 
-<header>
-  <img src="images/logo.jpg" alt="OBO&HOBOS Logo">
-  <nav>
-    <a href="index.html">HOME</a> |
-    <a href="info.html">INFO</a> |
-    <a href="recordings.html">RECORDINGS</a> |
-    <a href="studio.html">STUDIO</a> |
-    <a href="artists.html">ARTISTS</a> |
-    <a href="events.html">EVENTS</a>
-  </nav>
-</header>
+  <!-- Заголовок + логотип -->
+  <header style="text-align:center; padding:20px 0; background:white;">
+    <div class="logo-container" style="margin-bottom:10px;">
+      <img src="images/logo.jpg" alt="OBO&HOBOS Logo" style="max-width:180px;">
+    </div>
+    <nav class="main-nav" style="margin-bottom:10px;">
+      <a href="index.html" style="color:#777777; margin:0 12px; font-weight:500; text-decoration:none;">HOME</a>
+      <a href="info.html" style="color:#777777; margin:0 12px; font-weight:500; text-decoration:none;">INFO</a>
+      <a href="recordings.html" style="color:#555555; margin:0 12px; font-weight:600; text-decoration:none;">RECORDINGS</a>
+      <a href="studio.html" style="color:#777777; margin:0 12px; font-weight:500; text-decoration:none;">STUDIO</a>
+      <a href="artists.html" style="color:#777777; margin:0 12px; font-weight:500; text-decoration:none;">ARTISTS</a>
+      <a href="events.html" style="color:#777777; margin:0 12px; font-weight:500; text-decoration:none;">EVENTS</a>
+    </nav>
+    <hr style="border:1px solid #ccc; width:80%; margin:0 auto;">
+  </header>
 
-<main>
-  <div class="releases">
-    <!-- Пример релизов. Нужно добавить все файлы из папки images/albums -->
-    <div class="release">
-      <img src="images/albums/OBO-001-Vavinchi-Adeptus-150x150.jpg" alt="OBO-001 Vavinchi - Adeptus">
-      <span>OBO-001 — Vavinchi — Adeptus</span>
-    </div>
-    <div class="release">
-      <img src="images/albums/OBO-002-In’R’Voice-Steezy-150x150.jpg" alt="OBO-002 In’R’Voice - Steezy">
-      <span>OBO-002 — In’R’Voice — Steezy</span>
-    </div>
-    <div class="release">
-      <img src="images/albums/OBO-003-Boris-The-Spyder-Brainbow-150x150.jpg" alt="OBO-003 Boris The Spyder - Brainbow">
-      <span>OBO-003 — Boris The Spyder — Brainbow</span>
-    </div>
-    <div class="release">
-      <img src="images/albums/OBO-004-Inner-Square-Storm-Seeker-150x150.jpg" alt="OBO-004 Inner Square - Storm Seeker">
-      <span>OBO-004 — Inner Square — Storm Seeker</span>
-    </div>
-    <!-- Продолжить аналогично для всех релизов -->
-  </div>
-</main>
+  <main style="text-align:center; padding:30px 10px;">
+    <h2 style="color:#777777; margin-bottom:30px;">RECORDINGS</h2>
 
-<footer>
-  © 2025 OBO&HOBOS — Record Label
-</footer>
+    <div class="albums" style="display:flex; flex-wrap:wrap; justify-content:center; gap:30px;">
+
+      <!-- блок альбома -->
+      <div style="width:150px;">
+        <img src="images/albums/OBO001-Vavinchi-Adeptus-150x150.jpg" style="width:150px; height:150px; border-radius:10px; object-fit:cover;">
+        <div style="color:#777777; margin-top:8px; font-size:14px;">OBO001 — Vavinchi · Adeptus</div>
+      </div>
+
+      <div style="width:150px;">
+        <img src="images/albums/OBO002-In’R’Voice-Steezy-150x150.jpg" style="width:150px; height:150px; border-radius:10px; object-fit:cover;">
+        <div style="color:#777777; margin-top:8px; font-size:14px;">OBO002 — In’R’Voice · Steezy</div>
+      </div>
+
+      <div style="width:150px;">
+        <img src="images/albums/OBO003-Boris-The-Spyder-Brainbow-150x150.jpg" style="width:150px; height:150px; border-radius:10px; object-fit:cover;">
+        <div style="color:#777777; margin-top:8px; font-size:14px;">OBO003 — Boris The Spyder · Brainbow</div>
+      </div>
+
+      <div style="width:150px;">
+        <img src="images/albums/OBO004-Inner-Square-Storm-Seeker-150x150.jpg" style="width:150px; height:150px; border-radius:10px; object-fit:cover;">
+        <div style="color:#777777; margin-top:8px; font-size:14px;">OBO004 — Inner Square · Storm Seeker</div>
+      </div>
+
+      <div style="width:150px;">
+        <img src="images/albums/OBO005-DUSnDUS-Can-You-Feel-It-150x150.jpg" style="width:150px; height:150px; border-radius:10px; object-fit:cover;">
+        <div style="color:#777777; margin-top:8px; font-size:14px;">OBO005 — DUSnDUS · Can You Feel It</div>
+      </div>
+
+      <div style="width:150px;">
+        <img src="images/albums/OBO006-Vavinchi-Sample-Two-Ego-150x150.jpg" style="width:150px; height:150px; border-radius:10px; object-fit:cover;">
+        <div style="color:#777777; margin-top:8px; font-size:14px;">OBO006 — Vavinchi · Sample Two Ego</div>
+      </div>
+
+      <div style="width:150px;">
+        <img src="images/albums/OBO008-Spivak-Ocean-Down-150x150.jpg" style="width:150px; height:150px; border-radius:10px; object-fit:cover;">
+        <div style="color:#777777; margin-top:8px; font-size:14px;">OBO008 — Spivak · Ocean Down</div>
+      </div>
+
+      <div style="width:150px;">
+        <img src="images/albums/OBO009-Ki.Mi_.-Red-Friends-150x150.jpg" style="width:150px; height:150px; border-radius:10px; object-fit:cover;">
+        <div style="color:#777777; margin-top:8px; font-size:14px;">OBO009 — Ki.Mi · Red Friends</div>
+      </div>
+
+      <!-- ... и так далее для всех релизов до OBO041 ... -->
+
+    </div>
+  </main>
+
+  <footer style="text-align:center; padding:20px 0; color:#aaa;">
+    © 2025 OBO&HOBOS — Record Label
+  </footer>
 
 </body>
 </html>
