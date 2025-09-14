@@ -1,36 +1,286 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>OBO&HOBOS — Record Label — RECORDINGS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OBO&HOBOS — RECORDINGS</title>
+  <style>
+    body {
+      background-color: white;
+      color: black;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+    }
+    header img {
+      width: 200px;
+    }
+    nav {
+      text-align: center;
+      margin: 10px 0;
+    }
+    nav a {
+      color: gray;
+      text-decoration: none;
+      margin: 0 15px;
+    }
+    .albums-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 20px;
+      justify-items: center;
+    }
+    .album {
+      text-align: center;
+      cursor: pointer;
+    }
+    .album img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    .album img:hover {
+      transform: scale(1.1);
+    }
+    .album-name {
+      margin-top: 10px;
+      font-size: 14px;
+      color: gray;
+    }
+    .scroll-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: rgba(0,0,0,0.2);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      font-size: 24px;
+      color: white;
+      text-align: center;
+      line-height: 50px;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #f1f1f1;
+    }
+    footer p {
+      color: gray;
+      margin: 0;
+    }
+  </style>
 </head>
-<body bgcolor="white" text="black">
-  <center>
-    <h2>OBO&HOBOS ∞</h2>
-    <p>
-      <a href="index.html">HOME</a> |
-      <a href="info.html">INFO</a> |
-      <a href="recordings.html">RECORDINGS</a> |
-      <a href="studio.html">STUDIO</a> |
-      <a href="artists.html">ARTISTS</a> |
-      <a href="events.html">EVENTS</a>
-    </p>
-    <hr>
-  </center>
+<body>
 
-  <h3>Home &gt; RECORDINGS</h3>
+  <header>
+    <img src="images/logo.jpg" alt="OBO&HOBOS Logo">
+  </header>
 
-  <table border="0" cellspacing="20" cellpadding="10" align="center">
-    <tr>
-      <td align="center"><a href="release-obo045.html">[OBO045] Coincidence - Mirage</a></td>
-    </tr>
-    <!-- Добавь остальные релизы аналогично -->
-  </table>
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="info.html">INFO</a>
+    <a href="recordings.html">RECORDINGS</a>
+    <a href="studio.html">STUDIO</a>
+    <a href="artists.html">ARTISTS</a>
+    <a href="events.html">EVENTS</a>
+  </nav>
 
-  <center>
-    <hr>
-    <p>© OBO&HOBOS — Record Label</p>
-  </center>
+  <h3 style="text-align: center;">RECORDINGS</h3>
+
+  <div class="albums-grid">
+    <div class="album" onclick="openPopup('images/albums/OBO-021-Ki.Mi_.-Sunday-150x150.jpg')">
+      <img src="images/albums/OBO-021-Ki.Mi_.-Sunday-150x150.jpg" alt="OBO-021 Ki.Mi. - Sunday">
+      <div class="album-name">OBO-021 — Ki.Mi. - Sunday</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO001-Vavinchi-Adeptus-150x150.jpg')">
+      <img src="images/albums/OBO001-Vavinchi-Adeptus-150x150.jpg" alt="OBO001 Vavinchi - Adeptus">
+      <div class="album-name">OBO001 — Vavinchi - Adeptus</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO002-In’R’Voice-Steezy-150x150.jpg')">
+      <img src="images/albums/OBO002-In’R’Voice-Steezy-150x150.jpg" alt="OBO002 In’R’Voice - Steezy">
+      <div class="album-name">OBO002 — In’R’Voice - Steezy</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO003-Boris-The-Spyder-Brainbow-150x150.jpg')">
+      <img src="images/albums/OBO003-Boris-The-Spyder-Brainbow-150x150.jpg" alt="OBO003 Boris The Spyder - Brainbow">
+      <div class="album-name">OBO003 — Boris The Spyder - Brainbow</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO004-Inner-Square-Storm-Seeker-150x150.jpg')">
+      <img src="images/albums/OBO004-Inner-Square-Storm-Seeker-150x150.jpg" alt="OBO004 Inner Square - Storm Seeker">
+      <div class="album-name">OBO004 — Inner Square - Storm Seeker</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO005-DUSnDUS-Can-You-Feel-It-150x150.jpg')">
+      <img src="images/albums/OBO005-DUSnDUS-Can-You-Feel-It-150x150.jpg" alt="OBO005 DUSnDUS - Can You Feel It">
+      <div class="album-name">OBO005 — DUSnDUS - Can You Feel It</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO006-Vavinchi-Sample-Two-Ego-150x150.jpg')">
+      <img src="images/albums/OBO006-Vavinchi-Sample-Two-Ego-150x150.jpg" alt="OBO006 Vavinchi - Sample Two Ego">
+      <div class="album-name">OBO006 — Vavinchi - Sample Two Ego</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO008-Spivak-Ocean-Down-150x150.jpg')">
+      <img src="images/albums/OBO008-Spivak-Ocean-Down-150x150.jpg" alt="OBO008 Spivak - Ocean Down">
+      <div class="album-name">OBO008 — Spivak - Ocean Down</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO009-Ki.Mi_.-Red-Friends-150x150.jpg')">
+      <img src="images/albums/OBO009-Ki.Mi_.-Red-Friends-150x150.jpg" alt="OBO009 Ki.Mi. - Red Friends">
+      <div class="album-name">OBO009 — Ki.Mi. - Red Friends</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO010-Nichtzusammen-161-Bar-150x150.jpg')">
+      <img src="images/albums/OBO010-Nichtzusammen-161-Bar-150x150.jpg" alt="OBO010 Nichtzusammen - 161 Bar">
+      <div class="album-name">OBO010 — Nichtzusammen - 161 Bar</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO011-VARIOUS-OBOHOBOS-Part-1-150x150.jpg')">
+      <img src="images/albums/OBO011-VARIOUS-OBOHOBOS-Part-1-150x150.jpg" alt="OBO011 VARIOUS OBO&HOBOS Part 1">
+      <div class="album-name">OBO011 — VARIOUS OBO&HOBOS Part 1</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO012-Nub-Louget-150x150.jpg')">
+      <img src="images/albums/OBO012-Nub-Louget-150x150.jpg" alt="OBO012 Nub - Louget">
+      <div class="album-name">OBO012 — Nub - Louget</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO013-Vavinchi-–-Hashkurani-150x150.jpg')">
+      <img src="images/albums/OBO013-Vavinchi-–-Hashkurani-150x150.jpg" alt="OBO013 Vavinchi - Hashkurani">
+      <div class="album-name">OBO013 — Vavinchi - Hashkurani</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO014-Nichtzussamen-Four-One-150x150.jpg')">
+      <img src="images/albums/OBO014-Nichtzussamen-Four-One-150x150.jpg" alt="OBO014 Nichtzusammen - Four One">
+      <div class="album-name">OBO014 — Nichtzusammen - Four One</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO015-Dinamica-Maxime-pres-Cosmogeologi-feat-Mad-Russian-Body-Soul-Included-Vlada-D’Shake-Remix-150x150.jpg')">
+      <img src="images/albums/OBO015-Dinamica-Maxime-pres-Cosmogeologi-feat-Mad-Russian-Body-Soul-Included-Vlada-D’Shake-Remix-150x150.jpg" alt="OBO015 Dinamica & Maxime - Body & Soul">
+      <div class="album-name">OBO015 — Dinamica & Maxime - Body & Soul</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO016-Alexei-Lisin-Dirty-150x150.jpg')">
+      <img src="images/albums/OBO016-Alexei-Lisin-Dirty-150x150.jpg" alt="OBO016 Alexei Lisin - Dirty">
+      <div class="album-name">OBO016 — Alexei Lisin - Dirty</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO017-Ki.Mi_.-Grooveland-150x150.jpg')">
+      <img src="images/albums/OBO017-Ki.Mi_.-Grooveland-150x150.jpg" alt="OBO017 Ki.Mi. - Grooveland">
+      <div class="album-name">OBO017 — Ki.Mi. - Grooveland</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO018-Vavinchi-NoMoreParty-150x150.jpg')">
+      <img src="images/albums/OBO018-Vavinchi-NoMoreParty-150x150.jpg" alt="OBO018 Vavinchi - NoMoreParty">
+      <div class="album-name">OBO018 — Vavinchi - NoMoreParty</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO019-Dinamica-In-The-Begining-150x150.jpg')">
+      <img src="images/albums/OBO019-Dinamica-In-The-Begining-150x150.jpg" alt="OBO019 Dinamica - In The Begining">
+      <div class="album-name">OBO019 — Dinamica - In The Begining</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO020-Mr-Pepper-Kaizen-150x150.jpg')">
+      <img src="images/albums/OBO020-Mr-Pepper-Kaizen-150x150.jpg" alt="OBO020 Mr Pepper - Kaizen">
+      <div class="album-name">OBO020 — Mr Pepper - Kaizen</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO022-In’R’Voice-Unterwelt-150x150.jpg')">
+      <img src="images/albums/OBO022-In’R’Voice-Unterwelt-150x150.jpg" alt="OBO022 In’R’Voice - Unterwelt">
+      <div class="album-name">OBO022 — In’R’Voice - Unterwelt</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO023-Hobos-Get-Lost-150x150.jpg')">
+      <img src="images/albums/OBO023-Hobos-Get-Lost-150x150.jpg" alt="OBO023 Hobos - Get Lost">
+      <div class="album-name">OBO023 — Hobos - Get Lost</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO024-Oleg-Zolotarev-Grounded-150x150.jpg')">
+      <img src="images/albums/OBO024-Oleg-Zolotarev-Grounded-150x150.jpg" alt="OBO024 Oleg Zolotarev - Grounded">
+      <div class="album-name">OBO024 — Oleg Zolotarev - Grounded</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO025-Nichtzusammen-Forbidden-Planet-150x150.jpg')">
+      <img src="images/albums/OBO025-Nichtzusammen-Forbidden-Planet-150x150.jpg" alt="OBO025 Nichtzusammen - Forbidden Planet">
+      <div class="album-name">OBO025 — Nichtzusammen - Forbidden Planet</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO026-Ki.Mi_.-Prana-150x150.jpg')">
+      <img src="images/albums/OBO026-Ki.Mi_.-Prana-150x150.jpg" alt="OBO026 Ki.Mi. - Prana">
+      <div class="album-name">OBO026 — Ki.Mi. - Prana</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO027-Batsula-Fasq-150x150.jpg')">
+      <img src="images/albums/OBO027-Batsula-Fasq-150x150.jpg" alt="OBO027 Batsula - Fasq">
+      <div class="album-name">OBO027 — Batsula - Fasq</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO028-Anjei-Eye-Of-L-150x150.jpg')">
+      <img src="images/albums/OBO028-Anjei-Eye-Of-L-150x150.jpg" alt="OBO028 Anjei - Eye Of L">
+      <div class="album-name">OBO028 — Anjei - Eye Of L</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO029-Inner-Squaere-Closed-Object-150x150.jpg')">
+      <img src="images/albums/OBO029-Inner-Squaere-Closed-Object-150x150.jpg" alt="OBO029 Inner Square - Closed Object">
+      <div class="album-name">OBO029 — Inner Square - Closed Object</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO030-2-Years-OboHobos-150x150.jpg')">
+      <img src="images/albums/OBO030-2-Years-OboHobos-150x150.jpg" alt="OBO030 2 Years Obo & Hobos">
+      <div class="album-name">OBO030 — 2 Years Obo & Hobos</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO031-Modd-–-Mystery-of-the-Third-Planet-150x150.jpg')">
+      <img src="images/albums/OBO031-Modd-–-Mystery-of-the-Third-Planet-150x150.jpg" alt="OBO031 Modd - Mystery of the Third Planet">
+      <div class="album-name">OBO031 — Modd - Mystery of the Third Planet</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO032-Various-–-Kolokol-Variables-150x150.jpg')">
+      <img src="images/albums/OBO032-Various-–-Kolokol-Variables-150x150.jpg" alt="OBO032 Various Artists - Kolokol Variables">
+      <div class="album-name">OBO032 — Various Artists - Kolokol Variables</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO033-Daria-Fisher-–-Drop-150x150.jpg')">
+      <img src="images/albums/OBO033-Daria-Fisher-–-Drop-150x150.jpg" alt="OBO033 Daria Fisher - Drop">
+      <div class="album-name">OBO033 — Daria Fisher - Drop</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO034-Koloniari-Hector-Cooper-–-Sidewalk-150x150.jpg')">
+      <img src="images/albums/OBO034-Koloniari-Hector-Cooper-–-Sidewalk-150x150.jpg" alt="OBO034 Koloniari & Hector Cooper - Sidewalk">
+      <div class="album-name">OBO034 — Koloniari & Hector Cooper - Sidewalk</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO035-Lunnar-–-White-Out-150x150.png')">
+      <img src="images/albums/OBO035-Lunnar-–-White-Out-150x150.png" alt="OBO035 Lunnar - White Out">
+      <div class="album-name">OBO035 — Lunnar - White Out</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO036-Denny-Kay-–-Elision-150x150.jpg')">
+      <img src="images/albums/OBO036-Denny-Kay-–-Elision-150x150.jpg" alt="OBO036 Denny Kay - Elision">
+      <div class="album-name">OBO036 — Denny Kay - Elision</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO037-Karmahacker-–-Labyrinthine-150x150.jpg')">
+      <img src="images/albums/OBO037-Karmahacker-–-Labyrinthine-150x150.jpg" alt="OBO037 Karmahacker - Labyrinthine">
+      <div class="album-name">OBO037 — Karmahacker - Labyrinthine</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO038-Sinstro-feat-Alateya-–-Underground--150x150.jpg')">
+      <img src="images/albums/OBO038-Sinstro-feat-Alateya-–-Underground--150x150.jpg" alt="OBO038 Sinstro feat Alateya - Underground">
+      <div class="album-name">OBO038 — Sinstro feat Alateya - Underground</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO039-Dima-Terem-Ancha-–-Back-To-Slow-150x150.jpg')">
+      <img src="images/albums/OBO039-Dima-Terem-Ancha-–-Back-To-Slow-150x150.jpg" alt="OBO039 Dima Terem & Ancha - Back To Slow">
+      <div class="album-name">OBO039 — Dima Terem & Ancha - Back To Slow</div>
+    </div>
+    <div class="album" onclick="openPopup('images/albums/OBO041-Kirill-Bagus-Optical-Illusion-1-150x150.jpg')">
+      <img src="images/albums/OBO041-Kirill-Bagus-Optical-Illusion-1-150x150.jpg" alt="OBO041 Kirill Bagus - Optical Illusion">
+      <div class="album-name">OBO041 — Kirill Bagus - Optical Illusion</div>
+    </div>
+  </div>
+
+  <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
+
+  <footer>
+    <p>© 2025 OBO&HOBOS — Record Label</p>
+  </footer>
+
+  <!-- Попап -->
+  <div id="popup" onclick="closePopup()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center;">
+    <img id="popup-img" src="" style="max-width:90%; max-height:90%; border-radius:10px; box-shadow:0 0 20px #fff;">
+  </div>
+
+  <script>
+    function openPopup(src) {
+      const popup = document.getElementById('popup');
+      const img = document.getElementById('popup-img');
+      img.src = src;
+      popup.style.display = 'flex';
+    }
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
+    function scrollToTop() {
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+  </script>
+
 </body>
 </html>
