@@ -1,141 +1,83 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>OBO&HOBOS — Record Label — Home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OBO&HOBOS — Home</title>
 <style>
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background:white;
-  color:#555;
-  margin:0;
-  padding:0;
-  text-align:center;
+  background: white;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #555;
+  margin: 0; padding: 0;
 }
-.menu a {
-  color: gray;
-  text-decoration: none;
-  margin: 0 10px;
+header {text-align: center; padding: 20px;}
+nav a {
+  color: #777; text-decoration: none; margin: 0 10px; font-weight: 500;
 }
-.container {
-  width: 95%;
-  max-width: 1200px;
-  margin: 40px auto;
+h2.section-title {text-align: center; margin: 40px 0 20px 0; font-size: 2em; color: #555;}
+.releases, .artists, .top-week {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
 }
-.block {
-  margin-bottom: 60px;
+.item {
+  border-radius: 50%; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  cursor: pointer; transition: transform 0.3s;
 }
-.block h3 {
-  margin-bottom: 20px;
-}
-.grid {
-  display:flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap:20px;
-}
-.grid-item {
-  flex: 0 0 200px;
-  text-align:center;
-}
-.grid-item img {
-  width: 100%;
-  border-radius: 20px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-}
-.scroll-btn {
-  position:fixed;
-  bottom:30px;
-  right:30px;
-  padding:15px;
-  border:none;
-  border-radius:50%;
-  background-color:rgba(0,0,0,0.2);
-  color:white;
-  font-size:20px;
-  cursor:pointer;
-}
+.item:hover {transform: scale(1.05);}
+.item img {width: 100%; height: 100%; object-fit: cover;}
+.video-block {text-align: center; margin: 50px 0;}
+.video-block video {max-width: 90%; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
+footer {text-align: center; padding: 20px; color: #aaa;}
 </style>
 </head>
 <body>
 
-<center>
-<img src="images/logo.jpg" alt="OBO&HOBOS" style="max-width:200px; margin-top:20px;">
-<p class="menu">
-  <a href="index.html">HOME</a> |
-  <a href="info.html">INFO</a> |
-  <a href="recordings.html">RECORDINGS</a> |
-  <a href="studio.html">STUDIO</a> |
-  <a href="artists.html">ARTISTS</a> |
-  <a href="events.html">EVENTS</a>
-</p>
-<hr>
-</center>
+<header>
+  <img src="images/logo.jpg" alt="OBO&HOBOS" width="180">
+  <nav>
+    <a href="index.html">HOME</a> |
+    <a href="info.html">INFO</a> |
+    <a href="recordings.html">RECORDINGS</a> |
+    <a href="studio.html">STUDIO</a> |
+    <a href="artists.html">ARTISTS</a> |
+    <a href="events.html">EVENTS</a>
+  </nav>
+</header>
 
-<div class="container">
-
-  <!-- Последние 4 релиза -->
-  <div class="block">
-    <h3>Последние релизы</h3>
-    <div class="grid">
-      <div class="grid-item"><img src="images/albums/OBO041-Kirill-Bagus-Optical-Illusion-1-150x150.jpg"><br>OBO41 — Kirill Bagus</div>
-      <div class="grid-item"><img src="images/albums/OBO040-Paul-Silve-Cicada-150x150.jpg"><br>OBO40 — Paul Silve</div>
-      <div class="grid-item"><img src="images/albums/OBO039-Dima-Terem-Ancha-Back-To-Slow-150x150.jpg"><br>OBO39 — Dima Terem & Ancha</div>
-      <div class="grid-item"><img src="images/albums/OBO038-Sinstro-feat-Alateya-Underground-150x150.jpg"><br>OBO38 — Sinstro feat Alateya</div>
-    </div>
-  </div>
-
-  <!-- 4 случайных релиза -->
-  <div class="block">
-    <h3>Случайные релизы</h3>
-    <div class="grid">
-      <div class="grid-item"><img src="images/albums/OBO035-Lunnar-White-Out-150x150.png"><br>OBO35 — Lunnar</div>
-      <div class="grid-item"><img src="images/albums/OBO027-Batsula-Fasq-150x150.jpg"><br>OBO27 — Batsula</div>
-      <div class="grid-item"><img src="images/albums/OBO022-In’R’Voice-Unterwelt-150x150.jpg"><br>OBO22 — In’R’Voice</div>
-      <div class="grid-item"><img src="images/albums/OBO017-Ki.Mi-Grooveland-150x150.jpg"><br>OBO17 — Ki.Mi.</div>
-    </div>
-  </div>
-
-  <!-- Артисты -->
-  <div class="block">
-    <h3>Артисты</h3>
-    <div class="grid">
-      <div class="grid-item"><img src="images/art_InnerSquare.png"><br>Inner Square</div>
-      <div class="grid-item"><img src="images/art_Mr.Pepper.jpg"><br>Mr Pepper</div>
-      <div class="grid-item"><img src="images/art_Lunnar.jpg"><br>Lunnar</div>
-      <div class="grid-item"><img src="images/art_Vavinchi.png"><br>Vavinchi</div>
-    </div>
-  </div>
-
-  <!-- Новость / Видео -->
-  <div class="block">
-    <h3>Новый клип</h3>
-    <p>Daria Fisher — Drop</p>
-    <video width="80%" controls>
-      <source src="images/vid/drop.mp4" type="video/mp4">
-      Ваш браузер не поддерживает видео.
-    </video>
-  </div>
-
-  <!-- Топ недели -->
-  <div class="block">
-    <h3>Топ недели</h3>
-    <div class="grid">
-      <div class="grid-item"><img src="images/albums/OBO030-2-Years-OboHobos-150x150.jpg"><br>OBO30 — 2 Years Obo&Hobos</div>
-      <div class="grid-item"><img src="images/albums/OBO026-Ki.Mi-Prana-150x150.jpg"><br>OBO26 — Ki.Mi.</div>
-      <div class="grid-item"><img src="images/albums/OBO015-Dinamica-Maxime-Body-Soul-150x150.jpg"><br>OBO15 — Dynamica & Maxime</div>
-      <div class="grid-item"><img src="images/albums/OBO010-Nichtzusammen-161-Bar-150x150.jpg"><br>OBO10 — Nichtzusammen</div>
-    </div>
-  </div>
-
+<h2 class="section-title">Последние релизы</h2>
+<div class="releases">
+  <div class="item" style="width:150px; height:150px;"><img src="images/OBO001-Vavinchi-Adeptus-150x150.jpg"></div>
+  <div class="item" style="width:120px; height:120px;"><img src="images/OBO002-In’R’Voice-Steezy-150x150.jpg"></div>
+  <div class="item" style="width:180px; height:180px;"><img src="images/OBO003-Boris-The-Spyder-Brainbow-150x150.jpg"></div>
+  <div class="item" style="width:130px; height:130px;"><img src="images/OBO004-Inner-Square-Storm-Seeker-150x150.jpg"></div>
 </div>
 
-<button onclick="window.scrollTo({top:0, behavior:'smooth'});" class="scroll-btn">↑</button>
+<h2 class="section-title">Наши артисты</h2>
+<div class="artists">
+  <div class="item" style="width:120px; height:120px;"><img src="images/art_Ki_Mi.jpg"></div>
+  <div class="item" style="width:150px; height:150px;"><img src="images/art_Daria Fisher.jpg"></div>
+  <div class="item" style="width:130px; height:130px;"><img src="images/art_Vavinchi.png"></div>
+  <div class="item" style="width:140px; height:140px;"><img src="images/art_Hobos.png"></div>
+</div>
 
-<footer style="text-align:center; color:gray; margin-top:50px; margin-bottom:20px;">
-  © 2025 OBO&HOBOS — Record Label
-</footer>
+<h2 class="section-title">Новый клип</h2>
+<div class="video-block">
+  <video controls>
+    <source src="images/vid/drop.mp4" type="video/mp4">
+    Ваш браузер не поддерживает видео.
+  </video>
+  <p>Daria Fisher — Drop</p>
+</div>
+
+<h2 class="section-title">Топ недели</h2>
+<div class="top-week">
+  <div class="item" style="width:180px; height:180px;"><img src="images/OBO005-DUSnDUS-Can-You-Feel-It-150x150.jpg"></div>
+  <div class="item" style="width:140px; height:140px;"><img src="images/OBO006-Vavinchi-Sample-Two-Ego-150x150.jpg"></div>
+  <div class="item" style="width:160px; height:160px;"><img src="images/OBO008-Spivak-Ocean-Down-150x150.jpg"></div>
+  <div class="item" style="width:130px; height:130px;"><img src="images/OBO009-Ki.Mi_.-Red-Friends-150x150.jpg"></div>
+</div>
+
+<footer>© 2025 OBO&HOBOS — Record Label</footer>
 
 </body>
 </html>
