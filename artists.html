@@ -1,80 +1,133 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OBO&HOBOS — ARTISTS</title>
-  <script>
-    function openPopup(imgSrc) {
-      const popup = document.getElementById('popup');
-      const popupImg = document.getElementById('popupImg');
-      popupImg.src = imgSrc;
-      popup.style.display = 'block';
-      popup.style.opacity = 0;
-      let op = 0;
-      const timer = setInterval(() => {
-        if (op >= 1) clearInterval(timer);
-        popup.style.opacity = op;
-        op += 0.05;
-      }, 20);
+  <style>
+    body {
+      background-color: white;
+      color: black;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
     }
-
-    function closePopup() {
-      const popup = document.getElementById('popup');
-      let op = 1;
-      const timer = setInterval(() => {
-        if (op <= 0) {
-          clearInterval(timer);
-          popup.style.display = 'none';
-        }
-        popup.style.opacity = op;
-        op -= 0.05;
-      }, 20);
+    header {
+      text-align: center;
+      padding: 20px;
     }
-  </script>
+    header img {
+      width: 200px;
+    }
+    nav {
+      text-align: center;
+      margin: 10px 0;
+    }
+    nav a {
+      color: gray;
+      text-decoration: none;
+      margin: 0 15px;
+    }
+    .artists-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 20px;
+    }
+    .artist {
+      text-align: center;
+      cursor: pointer;
+    }
+    .artist img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+    .artist img:hover {
+      transform: scale(1.1);
+    }
+    .artist-name {
+      margin-top: 10px;
+      font-size: 14px;
+      color: gray;
+    }
+    .scroll-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: rgba(0, 0, 0, 0.2);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      font-size: 24px;
+      color: white;
+      text-align: center;
+      line-height: 50px;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #f1f1f1;
+      position: relative;
+    }
+    footer p {
+      color: gray;
+      margin: 0;
+    }
+  </style>
 </head>
-<body style="background-color:white !important; color:black !important; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <center>
-    <!-- Логотип -->
-    <img src="images/logo.jpg" alt="OBO&HOBOS Logo" width="200">
+<body>
 
-    <!-- Меню -->
-    <p style="color:gray;">
-      <a href="index.html" style="color:gray;text-decoration:none;">HOME</a> |
-      <a href="info.html" style="color:gray;text-decoration:none;">INFO</a> |
-      <a href="recordings.html" style="color:gray;text-decoration:none;">RECORDINGS</a> |
-      <a href="studio.html" style="color:gray;text-decoration:none;">STUDIO</a> |
-      <a href="artists.html" style="color:gray;text-decoration:none;">ARTISTS</a> |
-      <a href="events.html" style="color:gray;text-decoration:none;">EVENTS</a>
-    </p>
-    <hr>
+  <header>
+    <img src="images/logo.jpg" alt="OBO&HOBOS Logo">
+  </header>
 
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="info.html">INFO</a>
+    <a href="recordings.html">RECORDINGS</a>
+    <a href="studio.html">STUDIO</a>
+    <a href="artists.html">ARTISTS</a>
+    <a href="events.html">EVENTS</a>
+  </nav>
+
+  <h3 style="text-align: center;">ARTISTS</h3>
+
+  <div class="artists-grid">
     <!-- Артисты -->
-    <h3>ARTISTS</h3>
-    <table border="0" cellspacing="30" cellpadding="10" align="center">
-      <tr>
-        <td align="center">
-          <img src="images/art_InnerSquare.png" width="100" height="100" style="border-radius:50%;cursor:pointer;" onclick="openPopup('images/art_InnerSquare.png')">
-          <br>INNER SQUARE
-        </td>
-        <td align="center">
-          <img src="images/art_Mr.Pepper.jpg" width="100" height="100" style="border-radius:50%;cursor:pointer;" onclick="openPopup('images/art_Mr.Pepper.jpg')">
-          <br>Mr Pepper
-        </td>
-        <td align="center">
-          <img src="images/art_Lunnar.jpg" width="100" height="100" style="border-radius:50%;cursor:pointer;" onclick="openPopup('images/art_Lunnar.jpg')">
-          <br>Lunnar
-        </td>
-      </tr>
-    </table>
-
-    <hr>
-    <p>© OBO&HOBOS — Record Label</p>
-  </center>
-
-  <!-- Попап -->
-  <div id="popup" onclick="closePopup()" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.7);text-align:center;transition:opacity 0.3s;">
-    <img id="popupImg" src="" style="max-width:90%;max-height:90%;margin-top:5%;">
-  </div>
-</body>
-</html>
+    <div class="artist" onclick="openPopup('images/art_InnerSquare.png')">
+      <img src="images/art_InnerSquare.png" alt="INNER SQUARE">
+      <div class="artist-name">INNER SQUARE</div>
+    </div>
+    <div class="artist" onclick="openPopup('images/art_Mr.Pepper.jpg')">
+      <img src="images/art_Mr.Pepper.jpg" alt="MR PEPPER">
+      <div class="artist-name">MR PEPPER</div>
+    </div>
+    <div class="artist" onclick="openPopup('images/art_Lunnar.jpg')">
+      <img src="images/art_Lunnar.jpg" alt="LUNNAR">
+      <div class="artist-name">LUNNAR</div>
+    </div>
+    <div class="artist" onclick="openPopup('images/art_Vavinchi.png')">
+      <img src="images/art_Vavinchi.png" alt="VAVINCHI">
+      <div class="artist-name">VAVINCHI</div>
+    </div>
+    <div class="artist" onclick="openPopup('images/art_Batsula.png')">
+      <img src="images/art_Batsula.png" alt="BATSULA">
+      <div class="artist-name">BATSULA</div>
+    </div>
+    <div class="artist" onclick="openPopup('images/art_DariaFisher.jpg')">
+      <img src="images/art_DariaFisher.jpg" alt="DARIA FISHER">
+      <div class="artist-name">DARIA FISHER</div>
+    </div>
+    <div class="artist" onclick="openPopup('images/art_InRVoice.png')">
+      <img src="images/art_InRVoice.png" alt="IN’R’VOICE">
+      <div class="artist-name">IN’R’VOICE</div>
+    </div>
+    <div class="artist" onclick="openPopup('images/art_CompasVrubell.png')">
+      <img src="images/art_CompasVrubell.png" alt="COMPASS VRUBELL">
+      <div class="artist-name">COMPASS VRUBELL</div>
+    </div>
