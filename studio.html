@@ -1,106 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buffalo Catering Info</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OBO&HOBOS — Studio</title>
+<meta name="description" content="OBO&HOBOS Studio - Professional recording, mixing, mastering, sound design, and music promotion services in Moscow. Creative audio production tailored to your project." />
+<meta name="keywords" content="audio studio Moscow, music recording, mixing and mastering, sound design, music promotion, OBO&HOBOS studio services" />
+<meta name="robots" content="index, follow" />
 <style>
+  /* Reset */
+  * {
+    box-sizing: border-box;
+  }
   body {
-    font-family: Arial, sans-serif;
+    background: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #444;
     margin: 0;
     padding: 0;
-    background: #fff;
-    color: #333;
+    line-height: 1.6;
+    text-align: center;
   }
-
   header {
+    background: #fff;
+    padding: 16px 0;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  header .logo-container img {
+    height: 64px;
+    object-fit: contain;
+    user-select: none;
+  }
+  nav.main-nav {
+    margin-top: 12px;
+  }
+  nav a {
+    color: #666;
+    text-decoration: none;
+    margin: 0 14px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    transition: color 0.3s ease;
+  }
+  nav a:hover,
+  nav a:focus {
+    color: #222;
+  }
+  main {
+    max-width: 1160px;
+    margin: 48px auto 60px;
+    padding: 0 20px;
+    text-align: left;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 12px;
     text-align: center;
-    padding: 40px 20px;
-    background: #f8f8f8;
+    letter-spacing: 0.04em;
   }
-
-  header h1 {
-    margin: 0;
-    font-size: 2rem;
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 36px;
+    font-style: italic;
+    text-align: center;
   }
-
   .services {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    justify-content: center;
   }
-
   .service {
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.2s ease;
+    background: #fafafa;
+    border-radius: 14px;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    padding: 28px 22px 32px;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
-
-  .service:hover {
-    transform: translateY(-5px);
+  .service:hover,
+  .service:focus-within {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.12);
   }
-
-  .service h3 {
-    margin-top: 0;
-    font-size: 1.2rem;
+  .service-title {
+    font-weight: 700;
+    font-size: 18px;
+    color: #2a2a2a;
+    margin-bottom: 14px;
+  }
+  .service-desc {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 14px;
+    min-height: 48px;
+  }
+  details {
+    font-size: 14px;
+    color: #666;
     margin-bottom: 10px;
   }
-
-  .service p {
-    margin: 0;
-    font-size: 1rem;
-    color: #666;
+  summary.details-summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: #555;
+    outline-offset: 2px;
   }
-
-  @media (max-width: 1024px) {
-    .services {
-      grid-template-columns: repeat(2, 1fr);
+  summary.details-summary:hover,
+  summary.details-summary:focus {
+    color: #222;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  .btn-group {
+    margin-top: auto;
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+  }
+  .btn {
+    flex-grow: 1;
+    padding: 10px 0;
+    border-radius: 24px;
+    background: #222;
+    color: #fff !important;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    user-select: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .btn:hover,
+  .btn:focus {
+    background: #555;
+  }
+  footer {
+    text-align: center;
+    padding: 24px 12px;
+    font-size: 13px;
+    color: #aaa;
+    border-top: 1px solid #eee;
+    user-select: none;
+  }
+  @media (max-width: 900px) {
+    .service {
+      width: 48%;
+    }
+    main {
+      margin: 36px auto 48px;
     }
   }
-
   @media (max-width: 600px) {
-    .services {
-      grid-template-columns: 1fr;
+    .service {
+      width: 100%;
+    }
+    nav a {
+      margin: 0 10px;
+      font-size: 13px;
+    }
+    main {
+      margin: 28px auto 36px;
+      padding: 0 14px;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+    h2 {
+      font-size: 18px;
+      margin-bottom: 28px;
     }
   }
 </style>
 </head>
 <body>
-
 <header>
-  <h1>Buffalo Catering Services</h1>
+  <div class="logo-container">
+    <img src="images/logo.jpg" alt="OBO&HOBOS Logo" />
+  </div>
+  <nav class="main-nav" role="navigation" aria-label="Primary Navigation">
+    <a href="index.html">Home</a>
+    <a href="info.html">Info</a>
+    <a href="recordings.html">Recordings</a>
+    <a href="studio.html" aria-current="page">Studio</a>
+    <a href="artists.html">Artists</a>
+    <a href="events.html">Events</a>
+  </nav>
 </header>
 
-<section class="services">
-  <div class="service">
-    <h3>Service 1</h3>
-    <p>Описание первого блока.</p>
-  </div>
-  <div class="service">
-    <h3>Service 2</h3>
-    <p>Описание второго блока.</p>
-  </div>
-  <div class="service">
-    <h3>Service 3</h3>
-    <p>Описание третьего блока.</p>
-  </div>
-  <div class="service">
-    <h3>Service 4</h3>
-    <p>Описание четвёртого блока.</p>
-  </div>
-  <div class="service">
-    <h3>Service 5</h3>
-    <p>Описание пятого блока.</p>
-  </div>
-  <div class="service">
-    <h3>Service 6</h3>
-    <p>Описание шестого блока.</p>
-  </div>
-</section>
+<main>
+  <h1>OBO&HOBOS Studio</h1>
+  <h2>Your Partner in Creative Audio Production</h2>
 
+  <section class="services" aria-label="Studio Services">
+    <article class="service" tabindex="0">
+      <h3 class="service-title">Recording & Micro Sessions</h3>
+      <p class="service-desc">Flexible recording sessions tailored for solo artists, bands, and producers with our top sound engineers.</p>
+      <details>
+        <summary class="details-summary">Learn more →</summary>
+        <p>- Basic to extended recording sessions<br>- Optional sound designer inclusion<br>- Comfortable professional environment</p>
+      </details>
+      <div class="btn-group">
+        <a href="#" class="btn" aria-label="Calculate price for Recording & Micro Sessions">Calculate</a>
+        <a href="#" class="btn" aria-label="Order Recording & Micro Sessions">Order</a>
+      </div>
+    </article>
+
+    <article class="service" tabindex="0">
+      <h3 class="service-title">Mixing & Mastering</h3>
+      <p class="service-desc">Achieve industry-standard polish with professional mixing and mastering services for any project size.</p>
+      <details>
+        <summary class="details-summary">Learn more →</summary>
+        <p>- Standard and premium mastering options<br>- Multi-track mixdowns<br>- Tailored audio enhancement</p>
+      </details>
+      <div class="btn-group">
+        <a href="#" class="btn" aria-label="Calculate price for Mixing & Mastering">Calculate</a>
+        <a href="#" class="btn" aria-label="Order Mixing & Mastering">Order</a>
+      </div>
+    </article>
+
+    <article class="service" tabindex="0">
+      <h3 class="service-title">Sound Design & Effects</h3>
+      <p class="service-desc">Custom sound design for tracks, live shows, and multimedia projects, creating unique atmospheres and textures.</p>
+      <details>
+        <summary class="details-summary">Learn more →</summary>
+        <p>- Synth presets and FX<br>- Ambience and atmosphere creation<br>- Layered soundscapes</p>
+      </details>
+      <div class="btn-group">
+        <a href="#" class="btn" aria-label="Calculate price for Sound Design & Effects">Calculate</a>
+        <a href="#" class="btn" aria-label="Order Sound Design & Effects">Order</a>
+      </div>
+    </article>
+
+    <article class="service" tabindex="0">
+      <h3 class="service-title">Promotion & SMM Packages</h3>
+      <p class="service-desc">Comprehensive music promotion including social media strategy, streaming platforms, and press outreach.</p>
+      <details>
+        <summary class="details-summary">Learn more →</summary>
+        <p>- Basic to full campaign management<br>- Targeted audience engagement<br>- Press and playlist submissions</p>
+      </details>
+      <div class="btn-group">
+        <a href="#" class="btn" aria-label="Calculate price for Promotion & SMM Packages">Calculate</a>
+        <a href="#" class="btn" aria-label="Order Promotion & SMM Packages">Order</a>
+      </div>
+    </article>
+
+    <article class="service" tabindex="0">
+      <h3 class="service-title">Custom Project Bundles</h3>
+      <p class="service-desc">Personalized packages that combine all services for end-to-end project execution and creative support.</p>
+      <details>
+        <summary class="details-summary">Learn more →</summary>
+        <p>- Integrated recording, mixing & mastering<br>- Sound design plus promotion<br>- Tailored full-cycle production solutions</p>
+      </details>
+      <div class="btn-group">
+        <a href="#" class="btn" aria-label="Calculate price for Custom Project Bundles">Calculate</a>
+        <a href="#" class="btn" aria-label="Order Custom Project Bundles">Order</a>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 OBO&HOBOS | <a href="mailto:info@oboandhobos.pro" style="color:#aaa;text-decoration:none;">info@oboandhobos.pro</a>
+</footer>
 </body>
 </html>
