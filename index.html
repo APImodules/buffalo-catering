@@ -5,97 +5,82 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OBO&HOBOS — Home</title>
 <style>
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: #f9f9f9;
-    color: #555;
-    text-align: center;
-  }
-  header {
-    background: #fff;
-    padding: 10px 0;
-    border-bottom: 1px solid #ccc;
-  }
-  header img { height: 60px; }
-  nav a {
-    color: #888;
-    text-decoration: none;
-    margin: 0 10px;
-    font-weight: 500;
-  }
-  nav a:hover { color: #555; }
+body {
+  margin:0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #f9f9f9;
+  color: #555;
+  text-align: center;
+}
+header {
+  background: #fff;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+header .logo-container {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+header .logo-container img { width: 80px; border-radius: 50%; }
+nav { margin: 10px 0; }
+nav a { color: #888; text-decoration: none; margin: 0 10px; font-weight: 500; }
+nav a:hover { color: #555; }
 
-  .container-wide {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px;
-  }
+.container-wide { max-width: 1600px; margin: 0 auto; padding: 20px; }
+h2 { margin: 40px 0 20px; color: #666; font-weight: 600; }
 
-  h2 {
-    margin: 40px 0 20px;
-    color: #666;
-    font-weight: 600;
-  }
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.row.reverse { flex-direction: row-reverse; }
 
-  /* FLEX GRID CONTAINERS */
-  .chain-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    position: relative;
-    padding-bottom: 40px;
-  }
-
-  /* Блоки разных размеров */
-  .block-small, .block-medium, .block-large {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    padding: 15px;
-    cursor: pointer;
-    transition: transform 0.2s;
-    position: relative;
-  }
-  .block-small { width: 180px; }
-  .block-medium { width: 240px; }
-  .block-large { width: 300px; }
-
-  .block-small:hover, .block-medium:hover, .block-large:hover {
-    transform: scale(1.05);
-  }
-
-  .block h3 { margin: 10px 0; font-size: 16px; color: #555; }
-  .block p { font-size: 13px; color: #777; }
-
-  /* Линии соединений */
-  .line {
-    position: absolute;
-    width: 2px;
-    background: #ccc;
-    z-index: -1;
-  }
-
-  /* Кнопки */
-  .btn {
-    display: inline-block;
-    padding: 6px 14px;
-    background: #ccc;
-    color: #fff;
-    border-radius: 20px;
-    font-size: 12px;
-    margin-top: 8px;
-    cursor: pointer;
-    text-decoration: none;
-  }
-
+.block {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.2s;
+  width: 160px;
+}
+.block:hover { transform: scale(1.05); }
+.block img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.block h3 { margin: 8px 0; font-size: 14px; }
+.block p { font-size: 12px; color: #777; height: 60px; overflow: hidden; }
+.btn {
+  display: inline-block;
+  padding: 5px 10px;
+  background: #ccc;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-top: 6px;
+  text-decoration: none;
+}
 </style>
 </head>
 <body>
 
 <header>
-  <div><img src="images/logo.jpg" alt="OBO&HOBOS Logo"></div>
+  <div class="logo-container">
+    <img src="images/logo.jpg" alt="OBO&HOBOS Logo">
+  </div>
   <nav>
     <a href="index.html">HOME</a>
     <a href="info.html">INFO</a>
@@ -109,68 +94,344 @@
 <div class="container-wide">
 
   <h2>FEATURED ARTISTS</h2>
-  <div class="chain-container">
-    <div class="block block-medium">
-      <img src="images/art_Ki_Mi.jpg" width="100%" style="border-radius:50%;">
+
+  <!-- 12 РЯДОВ АРТИСТОВ/РЕЛИЗОВ/СТАТЕЙ -->
+  <!-- ряд 1 -->
+  <div class="row">
+    <div class="block">
+      <img src="images/art_Ki_Mi.jpg">
       <h3>Ki.Mi.</h3>
-      <p>Hypnotic deep house grooves, innovative electronic producer.</p>
-      <a class="btn" href="kimi.html">Read more →</a>
+      <p>Exclusive deep house producer, creating hypnotic, premium tracks that define modern underground music.</p>
+      <a class="btn" href="kimi.html">Read More →</a>
     </div>
-
-    <div class="block block-small">
-      <img src="images/art_Batsula.jpg" width="100%" style="border-radius:50%;">
+    <div class="block">
+      <img src="images/art_Batsula.jpg">
       <h3>Batsula</h3>
-      <p>Underground house artist with dark rhythmic textures.</p>
-      <a class="btn" href="#">Read more →</a>
+      <p>Dark rhythmic textures with underground house vibe for immersive sets.</p>
+      <a class="btn" href="#">Read More →</a>
     </div>
-
-    <div class="block block-large">
-      <img src="images/art_DJ-FISH.jpg" width="100%" style="border-radius:50%;">
+    <div class="block">
+      <img src="images/art_DJ-FISH.jpg">
       <h3>DJ FISH</h3>
-      <p>Dynamic sets with deep groove explorations for energetic crowds.</p>
-      <a class="btn" href="#">Read more →</a>
+      <p>High-energy DJ delivering deep grooves that capture the crowd.</p>
+      <a class="btn" href="#">Read More →</a>
     </div>
-
-    <div class="block block-medium">
-      <img src="images/art_Vavinchi.png" width="100%" style="border-radius:50%;">
+    <div class="block">
+      <img src="images/art_Vavinchi.png">
       <h3>Vavinchi</h3>
-      <p>Melodic techno with futuristic vibe and rich atmosphere.</p>
-      <a class="btn" href="#">Read more →</a>
+      <p>Melodic techno, futuristic textures, atmospheric soundscapes.</p>
+      <a class="btn" href="#">Read More →</a>
     </div>
   </div>
 
-  <h2>FEATURED RELEASES</h2>
-  <div class="chain-container">
-    <div class="block block-large">
-      <img src="images/albums/OBO-021-Ki.Mi_.-Sunday-150x150.jpg" width="100%">
+  <!-- ряд 2 - релизы -->
+  <div class="row reverse">
+    <div class="block">
+      <img src="images/albums/OBO-021-Ki.Mi_.-Sunday-150x150.jpg">
       <h3>Sunday - Ki.Mi.</h3>
-      <p>A hypnotic deep house journey perfect for sunrise sets.</p>
-      <a class="btn">Listen Soon</a>
+      <p>A hypnotic deep house journey perfect for sunrise sets. Listen, enjoy, unlock the vibe.</p>
+      <a class="btn">Listen →</a>
     </div>
-
-    <div class="block block-medium">
-      <img src="images/albums/OBO001-Vavinchi-Adeptus-150x150.jpg" width="100%">
+    <div class="block">
+      <img src="images/albums/OBO001-Vavinchi-Adeptus-150x150.jpg">
       <h3>Adeptus - Vavinchi</h3>
-      <p>Melodic techno with futuristic atmosphere layers.</p>
-      <a class="btn">Listen Soon</a>
+      <p>Melodic techno with futuristic layers, ideal for premium experiences.</p>
+      <a class="btn">Listen →</a>
     </div>
-
-    <div class="block block-small">
-      <img src="images/albums/OBO003-Boris-The-Spyder-Brainbow-150x150.jpg" width="100%">
+    <div class="block">
+      <img src="images/albums/OBO003-Boris-The-Spyder-Brainbow-150x150.jpg">
       <h3>Brainbow - Boris</h3>
-      <p>Experimental textures and hypnotic loops for deep sets.</p>
-      <a class="btn">Listen Soon</a>
+      <p>Experimental textures and hypnotic loops for immersive listening.</p>
+      <a class="btn">Listen →</a>
     </div>
-
-    <div class="block block-medium">
-      <img src="images/albums/OBO004-Inner-Square-Storm-Seeker-150x150.jpg" width="100%">
+    <div class="block">
+      <img src="images/albums/OBO004-Inner-Square-Storm-Seeker-150x150.jpg">
       <h3>Storm Seeker - Inner Square</h3>
-      <p>Driving electronic rhythms with immersive atmosphere.</p>
-      <a class="btn">Listen Soon</a>
+      <p>Driving electronic rhythms with immersive atmospheric layers.</p>
+      <a class="btn">Listen →</a>
+    </div>
+  </div>
+
+  <!-- ряд 3 - статья -->
+  <div class="row">
+    <div class="block">
+      <img src="images/articles/music-trends.jpg">
+      <h3>Deep House 2025 Trends</h3>
+      <p>Explore the underground movements shaping electronic music this year. Unlock exclusive insights.</p>
+      <a class="btn" href="articles/deep-house.html">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/articles/techno-scene.jpg">
+      <h3>Techno Innovations</h3>
+      <p>Discover the latest production techniques and sound design in global techno.</p>
+      <a class="btn" href="articles/techno.html">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/articles/smm-promo.jpg">
+      <h3>Music Promotion Tips</h3>
+      <p>Maximize reach, convert listeners to fans, and create premium audience experiences.</p>
+      <a class="btn" href="articles/smm.html">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/articles/studio-tips.jpg">
+      <h3>Studio Secrets</h3>
+      <p>Get expert guidance on mixing, mastering, and building your sound signature.</p>
+      <a class="btn" href="articles/studio.html">Read More →</a>
+    </div>
+  </div>
+
+  <!-- ряд 4 -->
+  <div class="row reverse">
+    <div class="block">
+      <img src="images/art_Alexei Strelok.jpg">
+      <h3>Alexei Strelok</h3>
+      <p>Electronic composer blending ambient textures with modern techno rhythms.</p>
+      <a class="btn" href="#">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/art_Daria Fisher.jpg">
+      <h3>Daria Fisher</h3>
+      <p>Vocal-driven deep house productions with ethereal melodies and hypnotic beats.</p>
+      <a class="btn" href="#">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/art_DUSnDUS.jpeg">
+      <h3>DUSnDUS</h3>
+      <p>Innovative beats and underground textures for immersive club experiences.</p>
+      <a class="btn" href="#">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/art_Bassman.jpg">
+      <h3>Bassman</h3>
+      <p>Dynamic DJ known for high-energy sets and deep groove explorations.</p>
+      <a class="btn" href="#">Read More →</a>
+    </div>
+  </div>
+
+  <!-- ряд 5 - релизы -->
+  <div class="row">
+    <div class="block">
+      <img src="images/albums/OBO005-DeepSea-Sunset-150x150.jpg">
+      <h3>Sunset - DeepSea</h3>
+      <p>Chill deep house vibes for relaxing evenings and premium listening sessions.</p>
+      <a class="btn">Listen →</a>
+    </div>
+    <div class="block">
+      <img src="images/albums/OBO006-Ki.Mi_-Moonlight-150x150.jpg">
+      <h3>Moonlight - Ki.Mi.</h3>
+      <p>Atmospheric deep house tracks perfect for late-night experiences.</p>
+      <a class="btn">Listen →</a>
+    </div>
+    <div class="block">
+      <img src="images/albums/OBO007-Boris-Undercurrent-150x150.jpg">
+      <h3>Undercurrent - Boris</h3>
+      <p>Underground textures with hypnotic rhythms for premium club sets.</p>
+      <a class="btn">Listen →</a>
+    </div>
+    <div class="block">
+      <img src="images/albums/OBO008-Vavinchi-Stellar-150x150.jpg">
+      <h3>Stellar - Vavinchi</h3>
+      <p>Melodic techno with futuristic atmospheres for immersive listening.</p>
+      <a class="btn">Listen →</a>
+    </div>
+  </div>
+
+  <!-- ряд 6 - статьи -->
+  <div class="row reverse">
+    <div class="block">
+      <img src="images/articles/sound-design.jpg">
+      <h3>Sound Design Mastery</h3>
+      <p>Learn advanced techniques to craft unique sound signatures that stand out.</p>
+      <a class="btn" href="articles/sound-design.html">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/articles/mixing-tips.jpg">
+      <h3>Mixing Tips</h3>
+      <p>Professional methods for clean mixes, better clarity, and premium production.</p>
+      <a class="btn" href="articles/mixing.html">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/articles/mastering-guide.jpg">
+      <h3>Mastering Guide</h3>
+      <p>Unlock the secrets of mastering to ensure tracks sound perfect on every system.</p>
+      <a class="btn" href="articles/mastering.html">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/articles/promo-strategies.jpg">
+      <h3>Promotion Strategies</h3>
+      <p>Boost your reach, engage premium audiences, and convert listeners into loyal fans.</p>
+      <a class="btn" href="articles/promo.html">Read More →</a>
+    </div>
+  </div>
+
+  <!-- ряд 7 -->
+  <div class="row">
+    <div class="block">
+      <img src="images/art_SonicLab.jpg">
+      <h3>Sonic Lab</h3>
+      <p>Experimental electronic artist pushing boundaries with sound textures.</p>
+      <a class="btn" href="#">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/art_ElectroMuse.jpg">
+      <h3>ElectroMuse</h3>
+      <p>Combines melodic layers with electronic energy for immersive tracks.</p>
+      <a class="btn" href="#">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/art_Dreamwave.jpg">
+      <h3>Dreamwave</h3>
+      <p>Vaporwave and dreamlike textures for chill and deep listening.</p>
+      <a class="btn" href="#">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/art_Luma.jpg">
+      <h3>Luma</h3>
+      <p>Minimalistic and deep house tracks with hypnotic grooves.</p>
+      <a class="btn" href="#">Read More →</a>
+    </div>
+  </div>
+
+  <!-- ряд 8 -->
+  <div class="row reverse">
+    <div class="block">
+      <img src="images/albums/OBO009-Luma-Dusk-150x150.jpg">
+      <h3>Dusk - Luma</h3>
+      <p>Atmospheric deep house, perfect for evening listening and lounge sets.</p>
+      <a class="btn">Listen →</a>
+    </div>
+    <div class="block">
+      <img src="images/albums/OBO010-Dreamwave-Moonrise-150x150.jpg">
+      <h3>Moonrise - Dreamwave</h3>
+      <p>Dreamlike textures, melodic rhythms, and immersive atmosphere.</p>
+      <a class="btn">Listen →</a>
+    </div>
+    <div class="block">
+      <img src="images/albums/OBO011-ElectroMuse-Photon-150x150.jpg">
+      <h3>Photon - ElectroMuse</h3>
+      <p>Melodic techno layers with a futuristic vibe for premium sets.</p>
+      <a class="btn">Listen →</a>
+    </div>
+    <div class="block">
+      <img src="images/albums/OBO012-SonicLab-Aurora-150x150.jpg">
+      <h3>Aurora - SonicLab</h3>
+      <p>Experimental sound design and electronic textures for immersive experiences.</p>
+      <a class="btn">Listen →</a>
+    </div>
+  </div>
+
+  <!-- ряд 9 -->
+  <div class="row">
+    <div class="block">
+      <img src="images/articles/music-psychology.jpg">
+      <h3>Music Psychology</h3>
+      <p>Understand how music affects emotions, engagement, and listener behavior.</p>
+      <a class="btn" href="articles/music-psychology.html">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/articles/artist-strategy.jpg">
+      <h3>Artist Strategy</h3>
+      <p>Professional guidance for branding, promotion, and audience retention.</p>
+      <a class="btn" href="articles/artist-strategy.html">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/articles/club-lighting.jpg">
+      <h3>Club Lighting</h3>
+      <p>Enhance events with professional lighting and stage design for premium shows.</p>
+      <a class="btn" href="articles/club-lighting.html">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/articles/live-performance.jpg">
+      <h3>Live Performance</h3>
+      <p>Tips for unforgettable live shows and premium audience engagement.</p>
+      <a class="btn" href="articles/live-performance.html">Read More →</a>
+    </div>
+  </div>
+
+  <!-- ряд 10 -->
+  <div class="row reverse">
+    <div class="block">
+      <img src="images/art_Aurora.jpg">
+      <h3>Aurora</h3>
+      <p>Ambient electronic artist blending textures with deep house grooves.</p>
+      <a class="btn" href="#">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/art_Moonlight.jpg">
+      <h3>Moonlight</h3>
+      <p>Chill, melodic tracks perfect for sunset and lounge sessions.</p>
+      <a class="btn" href="#">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/art_Sunset.jpg">
+      <h3>Sunset</h3>
+      <p>Relaxing deep house and ambient textures for premium listening.</p>
+      <a class="btn" href="#">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/art_DeepSea.jpg">
+      <h3>DeepSea</h3>
+      <p>Immersive deep house tracks with hypnotic rhythm and melodic layers.</p>
+      <a class="btn" href="#">Read More →</a>
+    </div>
+  </div>
+
+  <!-- ряд 11 -->
+  <div class="row">
+    <div class="block">
+      <img src="images/albums/OBO013-Aurora-Dawn-150x150.jpg">
+      <h3>Dawn - Aurora</h3>
+      <p>Soft melodic textures blending ambient layers and deep house.</p>
+      <a class="btn">Listen →</a>
+    </div>
+    <div class="block">
+      <img src="images/albums/OBO014-Moonlight-Twilight-150x150.jpg">
+      <h3>Twilight - Moonlight</h3>
+      <p>Evening deep house tracks, perfect for lounge and chill sessions.</p>
+      <a class="btn">Listen →</a>
+    </div>
+    <div class="block">
+      <img src="images/albums/OBO015-Sunset-Echoes-150x150.jpg">
+      <h3>Echoes - Sunset</h3>
+      <p>Relaxing melodic flows with premium sound quality.</p>
+      <a class="btn">Listen →</a>
+    </div>
+    <div class="block">
+      <img src="images/albums/OBO016-DeepSea-Waves-150x150.jpg">
+      <h3>Waves - DeepSea</h3>
+      <p>Immersive electronic textures with rhythmic deep house vibes.</p>
+      <a class="btn">Listen →</a>
+    </div>
+  </div>
+
+  <!-- ряд 12 -->
+  <div class="row reverse">
+    <div class="block">
+      <img src="images/articles/advanced-production.jpg">
+      <h3>Advanced Production</h3>
+      <p>Explore advanced music production techniques for premium sound creation.</p>
+      <a class="btn" href="articles/advanced-production.html">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/articles/smm-strategy.jpg">
+      <h3>SMM Strategy</h3>
+      <p>Professional social media marketing tips to engage premium audiences.</p>
+      <a class="btn" href="articles/smm-strategy.html">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/articles/promo-techniques.jpg">
+      <h3>Promo Techniques</h3>
+      <p>Unlock proven strategies to increase reach, visibility, and premium engagement.</p>
+      <a class="btn" href="articles/promo-techniques.html">Read More →</a>
+    </div>
+    <div class="block">
+      <img src="images/articles/music-business.jpg">
+      <h3>Music Business</h3>
+      <p>Insights on monetization, licensing, and creating a sustainable premium career.</p>
+      <a class="btn" href="articles/music-business.html">Read More →</a>
     </div>
   </div>
 
 </div>
-
 </body>
 </html>
