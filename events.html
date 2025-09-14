@@ -4,55 +4,114 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>OBO&HOBOS — Record Label — Events</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background:white;
+      margin:0;
+      padding:0;
+    }
+    .menu a {
+      color: gray;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 30px;
+      padding: 30px;
+      scroll-behavior: smooth;
+    }
+    .event-card {
+      flex: 0 0 auto;
+      max-width: 400px;
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    .event-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+    }
+    .event-card button {
+      margin-top: 10px;
+      padding: 10px 25px;
+      border:none;
+      border-radius:12px;
+      background-color: lightgray;
+      color: white;
+      cursor: not-allowed;
+    }
+    .scroll-btn {
+      position:fixed;
+      bottom:30px;
+      right:30px;
+      padding:15px;
+      border:none;
+      border-radius:50%;
+      background-color:rgba(0,0,0,0.2);
+      color:white;
+      font-size:20px;
+      cursor:pointer;
+    }
+    .carousel::-webkit-scrollbar {
+      height:8px;
+    }
+    .carousel::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,0.3);
+      border-radius:4px;
+    }
+  </style>
 </head>
-<body bgcolor="white" text="black" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <!-- Логотип -->
+<body>
+
+  <!-- Логотип и меню -->
   <center>
     <img src="images/logo.jpg" alt="OBO&HOBOS" style="max-width:200px; margin-top:20px;">
-    <p>
-      <a href="index.html" style="color:gray; text-decoration:none;">HOME</a> |
-      <a href="info.html" style="color:gray; text-decoration:none;">INFO</a> |
-      <a href="recordings.html" style="color:gray; text-decoration:none;">RECORDINGS</a> |
-      <a href="studio.html" style="color:gray; text-decoration:none;">STUDIO</a> |
-      <a href="artists.html" style="color:gray; text-decoration:none;">ARTISTS</a> |
-      <a href="events.html" style="color:gray; text-decoration:none;">EVENTS</a>
+    <p class="menu">
+      <a href="index.html">HOME</a> |
+      <a href="info.html">INFO</a> |
+      <a href="recordings.html">RECORDINGS</a> |
+      <a href="studio.html">STUDIO</a> |
+      <a href="artists.html">ARTISTS</a> |
+      <a href="events.html">EVENTS</a>
     </p>
     <hr>
   </center>
 
   <h3 style="text-align:center;">Home &gt; EVENTS</h3>
 
-  <!-- События -->
-  <div style="display:flex; flex-direction:column; align-items:center; gap:30px; margin-bottom:50px;">
-    
-    <div style="text-align:center; width:300px;">
-      <img src="images/events/OBO & HOBOS LABEL NIGHT.png" alt="LABEL NIGHT" style="width:300px; height:300px; object-fit:cover; border-radius:20px; box-shadow:0 5px 15px rgba(0,0,0,0.2); cursor:pointer;">
-      <div style="margin-top:10px; font-weight:bold;">OBO & HOBOS LABEL NIGHT</div>
-      <button style="margin-top:5px; padding:10px 20px; border:none; border-radius:10px; background-color:lightgray; color:white; cursor:not-allowed;">Sold Out</button>
+  <!-- Горизонтальная карусель -->
+  <div class="carousel">
+    <div class="event-card">
+      <img src="images/events/OBO & HOBOS LABEL NIGHT.png" alt="LABEL NIGHT">
+      <div style="margin-top:10px; font-weight:bold; font-size:18px;">OBO & HOBOS LABEL NIGHT</div>
+      <button>Sold Out</button>
     </div>
 
-    <div style="text-align:center; width:300px;">
-      <img src="images/events/OBO & HOBOS MEMBERS ONLY.jpg" alt="MEMBERS ONLY" style="width:300px; height:300px; object-fit:cover; border-radius:20px; box-shadow:0 5px 15px rgba(0,0,0,0.2); cursor:pointer;">
-      <div style="margin-top:10px; font-weight:bold;">OBO & HOBOS MEMBERS ONLY</div>
-      <button style="margin-top:5px; padding:10px 20px; border:none; border-radius:10px; background-color:lightgray; color:white; cursor:not-allowed;">Sold Out</button>
+    <div class="event-card">
+      <img src="images/events/OBO & HOBOS MEMBERS ONLY.jpg" alt="MEMBERS ONLY">
+      <div style="margin-top:10px; font-weight:bold; font-size:18px;">OBO & HOBOS MEMBERS ONLY</div>
+      <button>Sold Out</button>
     </div>
 
-    <div style="text-align:center; width:300px;">
-      <img src="images/events/OBO & HOBOS OPEN AIR.jpg" alt="OPEN AIR" style="width:300px; height:300px; object-fit:cover; border-radius:20px; box-shadow:0 5px 15px rgba(0,0,0,0.2); cursor:pointer;">
-      <div style="margin-top:10px; font-weight:bold;">OBO & HOBOS OPEN AIR</div>
-      <button style="margin-top:5px; padding:10px 20px; border:none; border-radius:10px; background-color:lightgray; color:white; cursor:not-allowed;">Sold Out</button>
+    <div class="event-card">
+      <img src="images/events/OBO & HOBOS OPEN AIR.jpg" alt="OPEN AIR">
+      <div style="margin-top:10px; font-weight:bold; font-size:18px;">OBO & HOBOS OPEN AIR</div>
+      <button>Sold Out</button>
     </div>
 
-    <div style="text-align:center; width:300px;">
-      <img src="images/events/OBO & HOBOS SHOWCASE.jpg" alt="SHOWCASE" style="width:300px; height:300px; object-fit:cover; border-radius:20px; box-shadow:0 5px 15px rgba(0,0,0,0.2); cursor:pointer;">
-      <div style="margin-top:10px; font-weight:bold;">OBO & HOBOS SHOWCASE</div>
-      <button style="margin-top:5px; padding:10px 20px; border:none; border-radius:10px; background-color:lightgray; color:white; cursor:not-allowed;">Sold Out</button>
+    <div class="event-card">
+      <img src="images/events/OBO & HOBOS SHOWCASE.jpg" alt="SHOWCASE">
+      <div style="margin-top:10px; font-weight:bold; font-size:18px;">OBO & HOBOS SHOWCASE</div>
+      <button>Sold Out</button>
     </div>
-
   </div>
 
   <!-- Кнопка наверх -->
-  <button onclick="window.scrollTo({top:0, behavior:'smooth'});" style="position:fixed; bottom:30px; right:30px; padding:15px; border:none; border-radius:50%; background-color:rgba(0,0,0,0.2); color:white; font-size:20px; cursor:pointer;">↑</button>
+  <button onclick="window.scrollTo({top:0, behavior:'smooth'});" class="scroll-btn">↑</button>
 
   <footer style="text-align:center; color:gray; margin-top:50px; margin-bottom:20px;">
     © 2025 OBO&HOBOS — Record Label
