@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>OBO&HOBOS — Studio</title>
-<meta name="description" content="OBO&HOBOS Studio - Professional recording, mixing, mastering, sound design, and music promotion services in Moscow. Creative audio production tailored to your project." />
-<meta name="keywords" content="audio studio Moscow, music recording, mixing and mastering, sound design, music promotion, OBO&HOBOS studio services" />
+<title>OBO&HOBOS — Info</title>
+<meta name="description" content="OBO&HOBOS Studio Services - Professional audio production and creative solutions in Moscow. Recording, mixing, mastering, sound design, promotion, and custom project bundles." />
+<meta name="keywords" content="audio production Moscow, music recording studio, mixing mastering, sound design, music promotion, studio services Moscow" />
 <meta name="robots" content="index, follow" />
 <style>
   /* Reset */
@@ -19,23 +19,24 @@
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    text-align: center;
   }
   header {
     background: #fff;
     padding: 16px 0;
     border-bottom: 1px solid #ddd;
+    text-align: center;
     position: sticky;
     top: 0;
     z-index: 100;
   }
   header .logo-container img {
     height: 64px;
+    width: auto;
     object-fit: contain;
     user-select: none;
   }
   nav.main-nav {
-    margin-top: 12px;
+    margin-top: 14px;
   }
   nav a {
     color: #666;
@@ -50,17 +51,11 @@
   nav a:focus {
     color: #222;
   }
-  main {
-    max-width: 1160px;
-    margin: 48px auto 60px;
-    padding: 0 20px;
-    text-align: left;
-  }
   h1 {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 700;
     color: #222;
-    margin-bottom: 12px;
+    margin: 48px 0 16px;
     text-align: center;
     letter-spacing: 0.04em;
   }
@@ -68,52 +63,56 @@
     font-size: 20px;
     font-weight: 600;
     color: #555;
-    margin-bottom: 36px;
-    font-style: italic;
+    margin: 0 0 40px;
     text-align: center;
+    font-style: italic;
   }
-  .services {
+  .container {
+    max-width: 1160px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
     display: flex;
     flex-wrap: wrap;
-    gap: 28px;
     justify-content: center;
+    gap: 28px;
   }
-  .service {
-    background: #fafafa;
+  .service-block {
+    background: #fdfdfd;
     border-radius: 14px;
     border: 1px solid #eee;
     box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    padding: 28px 22px 32px;
+    padding: 24px 20px 28px;
     width: 280px;
+    text-align: left;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     display: flex;
     flex-direction: column;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
-  .service:hover,
-  .service:focus-within {
+  .service-block:hover,
+  .service-block:focus-within {
     transform: translateY(-6px);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
   }
   .service-title {
     font-weight: 700;
-    font-size: 18px;
     color: #2a2a2a;
-    margin-bottom: 14px;
+    font-size: 18px;
+    margin-bottom: 12px;
   }
   .service-desc {
     font-size: 14px;
     color: #666;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     min-height: 48px;
   }
   details {
     font-size: 14px;
     color: #666;
-    margin-bottom: 10px;
+    margin-top: 6px;
   }
   summary.details-summary {
-    cursor: pointer;
     font-weight: 600;
+    cursor: pointer;
     color: #555;
     outline-offset: 2px;
   }
@@ -124,29 +123,28 @@
   summary::-webkit-details-marker {
     display: none;
   }
-  .btn-group {
-    margin-top: auto;
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-  }
   .btn {
-    flex-grow: 1;
-    padding: 10px 0;
+    display: inline-block;
+    padding: 8px 20px;
     border-radius: 24px;
     background: #222;
     color: #fff !important;
-    font-weight: 600;
-    font-size: 14px;
     text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 16px;
+    cursor: pointer;
     user-select: none;
     text-align: center;
-    cursor: pointer;
     transition: background-color 0.3s ease;
+    flex-shrink: 0;
   }
   .btn:hover,
   .btn:focus {
     background: #555;
+  }
+  .btn + .btn {
+    margin-left: 12px;
   }
   footer {
     text-align: center;
@@ -156,33 +154,38 @@
     border-top: 1px solid #eee;
     user-select: none;
   }
+  /* Responsive */
   @media (max-width: 900px) {
-    .service {
+    .container {
+      gap: 22px;
+    }
+    .service-block {
       width: 48%;
     }
-    main {
-      margin: 36px auto 48px;
+    h1 {
+      font-size: 32px;
+      margin: 40px 0 16px;
+    }
+    h2 {
+      font-size: 18px;
+      margin-bottom: 30px;
     }
   }
   @media (max-width: 600px) {
-    .service {
+    .service-block {
       width: 100%;
     }
     nav a {
       margin: 0 10px;
       font-size: 13px;
     }
-    main {
-      margin: 28px auto 36px;
-      padding: 0 14px;
-    }
     h1 {
-      font-size: 24px;
-      margin-bottom: 18px;
+      font-size: 26px;
+      margin: 32px 0 14px;
     }
     h2 {
-      font-size: 18px;
-      margin-bottom: 28px;
+      font-size: 16px;
+      margin-bottom: 26px;
     }
   }
 </style>
@@ -192,85 +195,87 @@
   <div class="logo-container">
     <img src="images/logo.jpg" alt="OBO&HOBOS Logo" />
   </div>
-  <nav class="main-nav" role="navigation" aria-label="Primary Navigation">
+  <nav class="main-nav">
     <a href="index.html">Home</a>
     <a href="info.html">Info</a>
     <a href="recordings.html">Recordings</a>
-    <a href="studio.html" aria-current="page">Studio</a>
+    <a href="studio.html">Studio</a>
     <a href="artists.html">Artists</a>
     <a href="events.html">Events</a>
   </nav>
 </header>
 
 <main>
-  <h1>OBO&HOBOS Studio</h1>
-  <h2>Your Partner in Creative Audio Production</h2>
+  <h1>OBO&HOBOS Studio Services</h1>
+  <h2>Comprehensive Audio Production & Creative Solutions in Moscow</h2>
 
-  <section class="services" aria-label="Studio Services">
-    <article class="service" tabindex="0">
+  <section class="container" aria-label="Studio Services">
+    <article class="service-block" tabindex="0">
       <h3 class="service-title">Recording & Micro Sessions</h3>
-      <p class="service-desc">Flexible recording sessions tailored for solo artists, bands, and producers with our top sound engineers.</p>
+      <p class="service-desc">Flexible studio recording with top sound engineers, tailored for solo artists or bands.</p>
       <details>
-        <summary class="details-summary">Learn more →</summary>
-        <p>- Basic to extended recording sessions<br>- Optional sound designer inclusion<br>- Comfortable professional environment</p>
+        <summary class="details-summary">Expand options →</summary>
+        <p>- Basic recording<br>- Extended session<br>- With or without sound designer</p>
       </details>
-      <div class="btn-group">
+      <div>
         <a href="#" class="btn" aria-label="Calculate price for Recording & Micro Sessions">Calculate</a>
         <a href="#" class="btn" aria-label="Order Recording & Micro Sessions">Order</a>
       </div>
     </article>
 
-    <article class="service" tabindex="0">
+    <article class="service-block" tabindex="0">
       <h3 class="service-title">Mixing & Mastering</h3>
-      <p class="service-desc">Achieve industry-standard polish with professional mixing and mastering services for any project size.</p>
+      <p class="service-desc">Professional audio polishing to reach the perfect balance and industry standards.</p>
       <details>
-        <summary class="details-summary">Learn more →</summary>
-        <p>- Standard and premium mastering options<br>- Multi-track mixdowns<br>- Tailored audio enhancement</p>
+        <summary class="details-summary">Expand options →</summary>
+        <p>- Standard Mastering<br>- Premium Mastering<br>- Multi-track Mixing</p>
       </details>
-      <div class="btn-group">
+      <div>
         <a href="#" class="btn" aria-label="Calculate price for Mixing & Mastering">Calculate</a>
         <a href="#" class="btn" aria-label="Order Mixing & Mastering">Order</a>
       </div>
     </article>
 
-    <article class="service" tabindex="0">
+    <article class="service-block" tabindex="0">
       <h3 class="service-title">Sound Design & Effects</h3>
-      <p class="service-desc">Custom sound design for tracks, live shows, and multimedia projects, creating unique atmospheres and textures.</p>
+      <p class="service-desc">Custom sound design for tracks, live shows, or multimedia projects.</p>
       <details>
-        <summary class="details-summary">Learn more →</summary>
-        <p>- Synth presets and FX<br>- Ambience and atmosphere creation<br>- Layered soundscapes</p>
+        <summary class="details-summary">Expand options →</summary>
+        <p>- Synth & FX design<br>- Ambience creation<br>- Layered soundscapes</p>
       </details>
-      <div class="btn-group">
+      <div>
         <a href="#" class="btn" aria-label="Calculate price for Sound Design & Effects">Calculate</a>
         <a href="#" class="btn" aria-label="Order Sound Design & Effects">Order</a>
       </div>
     </article>
 
-    <article class="service" tabindex="0">
+    <article class="service-block" tabindex="0">
       <h3 class="service-title">Promotion & SMM Packages</h3>
-      <p class="service-desc">Comprehensive music promotion including social media strategy, streaming platforms, and press outreach.</p>
+      <p class="service-desc">Maximize reach via social media, streaming platforms, and press coverage.</p>
       <details>
-        <summary class="details-summary">Learn more →</summary>
-        <p>- Basic to full campaign management<br>- Targeted audience engagement<br>- Press and playlist submissions</p>
+        <summary class="details-summary">Expand options →</summary>
+        <p>- Basic promo<br>- Targeted campaigns<br>- Full media strategy</p>
       </details>
-      <div class="btn-group">
+      <div>
         <a href="#" class="btn" aria-label="Calculate price for Promotion & SMM Packages">Calculate</a>
         <a href="#" class="btn" aria-label="Order Promotion & SMM Packages">Order</a>
       </div>
     </article>
 
-    <article class="service" tabindex="0">
+    <article class="service-block" tabindex="0">
       <h3 class="service-title">Custom Project Bundles</h3>
-      <p class="service-desc">Personalized packages that combine all services for end-to-end project execution and creative support.</p>
+      <p class="service-desc">Personalized packages combining all studio services for full-cycle production.</p>
       <details>
-        <summary class="details-summary">Learn more →</summary>
-        <p>- Integrated recording, mixing & mastering<br>- Sound design plus promotion<br>- Tailored full-cycle production solutions</p>
+        <summary class="details-summary">Expand options →</summary>
+        <p>- Recording + Mixing + Mastering<br>- Sound Design + Promo<br>- Complete all-in-one solutions</p>
       </details>
-      <div class="btn-group">
+      <div>
         <a href="#" class="btn" aria-label="Calculate price for Custom Project Bundles">Calculate</a>
         <a href="#" class="btn" aria-label="Order Custom Project Bundles">Order</a>
       </div>
     </article>
+   
+
   </section>
 </main>
 
