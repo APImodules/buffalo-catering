@@ -6,56 +6,87 @@
   <title>OBO&HOBOS — Record Label — INFO</title>
   <style>
     body {
-      background-color: white;
-      color: #777777;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 0;
-      padding: 0 10px;
-      text-align: center;
-      line-height: 1.6;
-      word-break: break-word;
+      margin:0;
+      padding:0;
+      font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background:white;
+      color:#777777;
+      text-align:center;
     }
-    .container {
-      max-width: 900px;
-      margin: 50px auto;
+    header {
+      padding:20px 0;
     }
-    h2 {
-      margin-bottom: 30px;
-      font-weight: 600;
-      color: #222222;
+    .logo-container img {
+      max-width:180px;
     }
-    p {
-      font-size: 1rem;
-      margin-bottom: 25px;
+    .main-nav {
+      margin-top:15px;
+    }
+    .main-nav a {
+      color:#777777;
+      text-decoration:none;
+      margin:0 12px;
+      font-weight:500;
+      font-size:16px;
+    }
+    .main-nav a:hover {
+      color:#555555;
+    }
+    main {
+      max-width:900px;
+      margin:40px auto;
+      line-height:1.7;
+      font-size:16px;
+      text-align:center;
     }
     .contact {
-      margin-top: 50px;
-      font-size: 0.95rem;
-      color: #aaaaaa;
+      margin-top:40px;
+      font-size:15px;
+      color:#999999;
     }
-    a {
-      color: #777777;
-      text-decoration: none;
+    hr {
+      border:0.5px solid #e0e0e0;
+      margin:30px 0;
     }
-    a:hover {
-      text-decoration: underline;
+    footer {
+      margin-top:50px;
+      padding:20px 0;
+      color:#999999;
+      font-size:14px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="images/logo.jpg" alt="OBO&HOBOS Logo" style="max-width:200px; margin-bottom:30px;">
-
-    <h2>OBO&HOBOS RECORD LABEL</h2>
-
-    <p>For over 15 years, OBO&HOBOS has been uniting and empowering artists in the electronic music scene. Our signature sound is crafted by a dedicated team of composers, producers, and session musicians. Artists on our label are recognized both in Russia and internationally, consistently drawing attention with their unique performances and innovative projects.</p>
-
-    <p>Our state-of-the-art studio facilities provide a full production cycle: from initial recording, mixing, and mastering, to wide-scale distribution, media support, and live event management. OBO&HOBOS is where music ideas turn into global experiences.</p>
-
-    <div class="contact">
-      <p>📍 Kutuzovsky Prospekt 12, Building 3</p>
-      <p>📧 <a href="mailto:info@oboandhobos.pro">info@oboandhobos.pro</a></p>
+  <header>
+    <div class="logo-container">
+      <img src="images/logo.jpg" alt="OBO&HOBOS Logo">
     </div>
-  </div>
+    <nav class="main-nav">
+      <a href="index.html">HOME</a>
+      <a href="info.html">INFO</a>
+      <a href="recordings.html">RECORDINGS</a>
+      <a href="studio.html">STUDIO</a>
+      <a href="artists.html">ARTISTS</a>
+      <a href="events.html">EVENTS</a>
+    </nav>
+  </header>
+
+  <main>
+    <p>
+      OBO&HOBOS is a pioneering record label with over 15 years of experience in supporting and developing electronic music artists. Our sound is crafted by a team of dedicated composers, producers, and session musicians. Artists from OBO&HOBOS are known not only in Russia but internationally, consistently drawing attention with their live performances. 
+    </p>
+    <p>
+      Our modern studio facilities allow us to manage every stage of production — from initial recording and mixing to mastering, wide distribution, media support, and organizing live events. We ensure that every project receives full creative and technical attention to reach its maximum potential.
+    </p>
+    <div class="contact">
+      <p>Kutuzovsky Prospekt 12, Building 3</p>
+      <p>info@oboandhobos.pro</p>
+    </div>
+  </main>
+
+  <hr>
+  <footer>
+    © 2025 OBO&HOBOS — Record Label
+  </footer>
 </body>
 </html>
