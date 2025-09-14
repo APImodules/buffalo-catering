@@ -4,93 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OBO&HOBOS — Home</title>
+<meta name="description" content="OBO&HOBOS record label — supporting electronic music artists worldwide. Explore featured artists, releases, and studio services.">
 <style>
- body {
-      background: white;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: #555;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    header {
-      background: white;
-      padding: 10px 0;
-      border-bottom: 1px solid #ccc;
-    }
-    header img {
-      height: 60px;
-    }
-    nav {
-      margin: 10px 0;
-    }
-    nav a {
-      color: #888;
-      text-decoration: none;
-      margin: 0 10px;
-      font-weight: 500;
-      font-size: 16px;
-    }
-    nav a:hover {
-      color: #555;
-    }
-    h1 {
-      margin: 20px 0 10px 0;
-      color: #888;
-      font-weight: 600;
-    }
-    .grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 20px;
-    }
-    .release {
-      width: 150px;
-      text-align: center;
-    }
-    .release img {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 50%;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
-    }
-    .release img:hover {
-      transform: scale(1.05);
-    }
-    .release-name {
-      margin-top: 8px;
-      font-weight: 600;
-      color: #555;
-      font-size: 14px;
-    }
-    .release-desc {
-      font-size: 12px;
-      color: #888;
-      margin: 4px 0;
-      height: 32px;
-      overflow: hidden;
-    }
-    .listen-btn {
-      display: inline-block;
-      padding: 5px 12px;
-      background: #ccc;
-      color: #fff;
-      border-radius: 20px;
-      font-size: 12px;
-      margin-top: 6px;
-      cursor: default;
-    }
-    footer {
-      margin-top: 30px;
-      padding: 20px 0;
-      color: #aaa;
-      font-size: 12px;
-    }
-  </style>
+  body { background:white; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:#555; margin:0; padding:0; text-align:center; }
+  header { background:white; padding:10px 0; border-bottom:1px solid #ccc; }
+  header img { height:60px; }
+  nav { margin:10px 0; }
+  nav a { color:#888; text-decoration:none; margin:0 10px; font-weight:500; font-size:16px; }
+  nav a:hover { color:#555; }
+  h1,h2,h3 { color:#888; font-weight:600; margin:20px 0 10px 0; }
+  .grid { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; padding:20px; }
+  .artist, .release { width:150px; text-align:center; }
+  .artist img, .release img { width:150px; height:150px; object-fit:cover; border-radius:50%; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition:transform 0.2s; }
+  .artist img:hover, .release img:hover { transform:scale(1.05); }
+  .artist-name, .release-name { margin-top:8px; font-weight:700; color:#555; font-size:14px; }
+  .artist-desc, .release-desc { font-size:12px; color:#888; margin:4px 0; height:36px; overflow:hidden; }
+  .read-more, .listen-btn { display:inline-block; padding:5px 12px; background:#ccc; color:#fff; border-radius:20px; font-size:12px; margin-top:6px; text-decoration:none; cursor:pointer; }
+  .video-container { margin:30px 0; }
+  footer { margin-top:30px; padding:20px 0; color:#aaa; font-size:12px; }
+</style>
 </head>
 <body>
 
@@ -108,70 +40,134 @@
   </nav>
 </header>
 
+
+
 <h2>FEATURED ARTISTS</h2>
-<div class="section-container">
-  <!-- ARTISTS BLOCK -->
+<section class="grid">
+  <!-- Ki.Mi. -->
   <div class="artist">
-    <a href="kimi.html">
-      <img src="images/art_Ki_Mi.jpg" width="150" height="150">
+    <a href="kimi.html" title="Read more about Ki.Mi.">
+      <img src="images/art_Ki_Mi.jpg" alt="Ki.Mi. electronic music artist OBO&HOBOS">
       <div class="artist-name">Ki.Mi.</div>
     </a>
     <div class="artist-desc">Innovative electronic producer delivering hypnotic deep house grooves.</div>
     <a class="read-more" href="kimi.html">Read more →</a>
   </div>
-
+  <!-- Alexei Strelok -->
   <div class="artist">
-    <img src="images/art_Alexei Strelok.jpg" width="150" height="150">
-    <div class="artist-name">Alexei Strelok</div>
+    <a href="#" title="Read more about Alexei Strelok">
+      <img src="images/art_Alexei Strelok.jpg" alt="Alexei Strelok electronic music artist">
+      <div class="artist-name">Alexei Strelok</div>
+    </a>
     <div class="artist-desc">Electronic music composer blending ambient textures and techno beats.</div>
     <a class="read-more" href="#">Read more →</a>
   </div>
-
+  <!-- Batsula -->
   <div class="artist">
-    <img src="images/art_Batsula.jpg" width="150" height="150">
-    <div class="artist-name">Batsula</div>
+    <a href="#" title="Read more about Batsula">
+      <img src="images/art_Batsula.jpg" alt="Batsula electronic music artist">
+      <div class="artist-name">Batsula</div>
+    </a>
     <div class="artist-desc">Underground house artist with a focus on dark, hypnotic rhythms.</div>
     <a class="read-more" href="#">Read more →</a>
   </div>
-
+  <!-- DJ FISH -->
   <div class="artist">
-    <img src="images/art_DJ-FISH.jpg" width="150" height="150">
-    <div class="artist-name">DJ FISH</div>
+    <a href="#" title="Read more about DJ FISH">
+      <img src="images/art_DJ-FISH.jpg" alt="DJ FISH electronic music artist">
+      <div class="artist-name">DJ FISH</div>
+    </a>
     <div class="artist-desc">Dynamic DJ known for high-energy sets and deep groove explorations.</div>
     <a class="read-more" href="#">Read more →</a>
   </div>
+  <!-- DUSnDUS -->
+  <div class="artist">
+    <a href="#" title="Read more about DUSnDUS">
+      <img src="images/art_DUSnDUS.jpeg" alt="DUSnDUS electronic music artist">
+      <div class="artist-name">DUSnDUS</div>
+    </a>
+    <div class="artist-desc">Experimental electronic producer exploring glitch and minimalistic sounds.</div>
+    <a class="read-more" href="#">Read more →</a>
+  </div>
+  <!-- Daria Fisher -->
+  <div class="artist">
+    <a href="#" title="Read more about Daria Fisher">
+      <img src="images/art_Daria Fisher.jpg" alt="Daria Fisher electronic music artist">
+      <div class="artist-name">Daria Fisher</div>
+    </a>
+    <div class="artist-desc">Melodic techno and deep house artist with international recognition.</div>
+    <a class="read-more" href="#">Read more →</a>
+  </div>
+  <!-- Dinamica -->
+  <div class="artist">
+    <a href="#" title="Read more about Dinamica">
+      <img src="images/art_Dinamica.jpg" alt="Dinamica electronic music artist">
+      <div class="artist-name">Dinamica</div>
+    </a>
+    <div class="artist-desc">House and techno producer blending rhythmical grooves with emotion.</div>
+    <a class="read-more" href="#">Read more →</a>
+  </div>
+  <!-- Goshan -->
+  <div class="artist">
+    <a href="#" title="Read more about Goshan">
+      <img src="images/art_Goshan.jpeg" alt="Goshan electronic music artist">
+      <div class="artist-name">Goshan</div>
+    </a>
+    <div class="artist-desc">Deep house and progressive artist known for immersive live sets.</div>
+    <a class="read-more" href="#">Read more →</a>
+  </div>
+  <!-- Hector Cooper -->
+  <div class="artist">
+    <a href="#" title="Read more about Hector Cooper">
+      <img src="images/art_Hector-Cooper.jpg" alt="Hector Cooper electronic music artist">
+      <div class="artist-name">Hector Cooper</div>
+    </a>
+    <div class="artist-desc">Tech house DJ and producer with a signature groovy sound.</div>
+    <a class="read-more" href="#">Read more →</a>
+  </div>
+  <!-- Hobos -->
+  <div class="artist">
+    <a href="#" title="Read more about Hobos">
+      <img src="images/art_Hobos.png" alt="Hobos electronic music artist">
+      <div class="artist-name">Hobos</div>
+    </a>
+    <div class="artist-desc">Versatile producer blending house, techno, and ambient textures.</div>
+    <a class="read-more" href="#">Read more →</a>
+  </div>
 
-  <!-- Добавляем всех остальных артистов аналогично -->
-</div>
+  <!-- Добавить остальных артистов: In’R’Voice, Inner Square, Kirill Bagus, Koloniari, L.N.D.N., Lunnar, Mad Dim, Mr Pepper, Nichtzusammen, Spivak, Vavinchi -->
+</section>
 
 <h2>FEATURED RELEASES</h2>
-<div class="section-container">
-  <!-- RELEASES BLOCK -->
+<section class="grid">
+  <!-- Пример релиза -->
   <div class="release">
-    <img src="images/albums/OBO-021-Ki.Mi_.-Sunday-150x150.jpg" width="150" height="150">
+    <img src="images/albums/OBO-021-Ki.Mi_.-Sunday-150x150.jpg" alt="Sunday by Ki.Mi. deep house track OBO&HOBOS">
     <div class="release-name">Sunday - Ki.Mi.</div>
     <div class="release-desc">A hypnotic deep house journey perfect for sunrise sets.</div>
-    <a class="listen-btn">Listen Soon</a>
+    <a class="listen-btn" aria-label="Listen to Sunday by Ki.Mi.">Listen Soon</a>
   </div>
-
   <div class="release">
-    <img src="images/albums/OBO001-Vavinchi-Adeptus-150x150.jpg" width="150" height="150">
+    <img src="images/albums/OBO001-Vavinchi-Adeptus-150x150.jpg" alt="Adeptus by Vavinchi melodic techno track">
     <div class="release-name">Adeptus - Vavinchi</div>
     <div class="release-desc">Melodic techno with a futuristic vibe and deep atmospheric layers.</div>
-    <a class="listen-btn">Listen Soon</a>
+    <a class="listen-btn" aria-label="Listen to Adeptus by Vavinchi">Listen Soon</a>
   </div>
-
-  <!-- Продолжение для всех релизов до OBO041, с краткими промо -->
-</div>
+  <!-- Продолжение всех релизов до OBO041 аналогично -->
+</section>
 
 <h2>NEW VIDEO RELEASE</h2>
 <div class="video-container">
-  <video controls>
+  <video controls preload="none">
     <source src="images/vid/drop.mp4" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
   <div style="color:#888; margin-top:8px;">Daria Fisher — Drop</div>
 </div>
+
+<footer>
+  &copy; 2025 OBO&HOBOS. All rights reserved.
+</footer>
 
 </body>
 </html>
