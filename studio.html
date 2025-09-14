@@ -1,119 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OBO&HOBOS — Studio</title>
-  <style>
-    body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: white;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBO&HOBOS — Studio</title>
+<style>
+body {
+  background: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: #555;
-  margin:0;
-  padding:0;
-  text-align:center;
+  margin: 0;
+  padding: 0;
 }
 
-.menu a {
-  color: gray;
+header {
+  background: #fff;
+  padding: 15px 0;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+header img { height: 60px; }
+nav a {
+  color: #888;
   text-decoration: none;
   margin: 0 10px;
   font-weight: 500;
+  font-size: 16px;
 }
+nav a:hover { color: #555; }
 
-h2 {
-  color: #555;
+h1 {
+  text-align: center;
+  margin: 40px 0 20px 0;
+  font-size: 48px;
   font-weight: 600;
-  margin-top: 20px;
-}
-
-.events-grid {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-  margin: 50px auto;
-  max-width: 1200px;
-}
-
-.event {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-}
-
-.event img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.caption {
-  padding: 10px;
-  font-size: 1.1rem;
   color: #555;
-  background: rgba(255,255,255,0.9);
 }
 
-.soldout {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background: rgba(200,200,200,0.6);
-  color: #333;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
 }
 
-.up-button {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: rgba(200,200,200,0.6);
-  color: #333;
-  padding: 10px 15px;
-  border-radius: 50%;
+.studio-block {
+  width: 280px;
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
+}
+.studio-block:hover { transform: translateY(-3px); }
+
+.studio-block img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.studio-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.studio-desc {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 8px;
+  height: 32px;
+  overflow: hidden;
+}
+
+.book-btn {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: #ccc;
+  color: #fff;
+  font-size: 12px;
   cursor: pointer;
-  font-size: 1.2rem;
+  text-decoration: none;
 }
+.book-btn:hover { background: #bbb; }
+
+@media(max-width: 900px) { .studio-block { width: 45%; } }
+@media(max-width: 600px) { .studio-block { width: 100%; } }
+
 </style>
 </head>
 <body>
 
-<center>
-<img src="images/logo.jpg" alt="OBO&HOBOS" style="max-width:200px; margin-top:20px;">
-<p class="menu">
-  <a href="index.html">HOME</a> |
-  <a href="info.html">INFO</a> |
-  <a href="recordings.html">RECORDINGS</a> |
-  <a href="studio.html">STUDIO</a> |
-  <a href="artists.html">ARTISTS</a> |
-  <a href="events.html">EVENTS</a>
-</p>
-<hr>
-<h2>EVENTS</h2>
-</center>
+<header>
+  <div class="logo-container">
+    <img src="images/logo.jpg" alt="OBO&HOBOS Logo">
+  </div>
+  <nav class="main-nav">
+    <a href="index.html">HOME</a>
+    <a href="info.html">INFO</a>
+    <a href="recordings.html">RECORDINGS</a>
+    <a href="studio.html">STUDIO</a>
+    <a href="artists.html">ARTISTS</a>
+    <a href="events.html">EVENTS</a>
+  </nav>
+</header>
 
-<div class="studio-container">
-  <div class="studio-item">
-    <img src="images/studio/Studio.jpg" alt="Studio Interior 1">
-    <div class="studio-text">
-      <h2>OBO&HOBOS Studio</h2>
-      <p>Our <strong>state-of-the-art studio</strong> allows artists to record, mix, and master tracks with full production support.</p>
-    </div>
+<h1>STUDIO SERVICES</h1>
+
+<div class="grid">
+  <div class="studio-block">
+    <img src="images/studio/studio1.jpg" alt="Recording Studio Room">
+    <div class="studio-name">Recording Room</div>
+    <div class="studio-desc">Professional live room for tracking vocals and instruments.</div>
+    <a class="book-btn" href="#">Book Now</a>
   </div>
-  <div class="studio-item">
-    <img src="images/studio/studio2.png" alt="Studio Interior 2">
-    <div class="studio-text">
-      <p>From initial recording to distribution, our studio covers the full cycle — enabling projects to reach listeners worldwide.</p>
-    </div>
+
+  <div class="studio-block">
+    <img src="images/studio/studio2.jpg" alt="Mixing Console">
+    <div class="studio-name">Mixing & Mastering</div>
+    <div class="studio-desc">Full production workflow with sound engineers and mastering specialists.</div>
+    <a class="book-btn" href="#">Book Now</a>
   </div>
+
+  <div class="studio-block">
+    <img src="images/studio/studio3.jpg" alt="Sound Design Setup">
+    <div class="studio-name">Sound Design</div>
+    <div class="studio-desc">Custom sound design for tracks, film, and media projects.</div>
+    <a class="book-btn" href="#">Book Now</a>
+  </div>
+
+  <div class="studio-block">
+    <img src="images/studio/studio4.jpg" alt="Producer Desk">
+    <div class="studio-name">Producer Services</div>
+    <div class="studio-desc">Collaboration with producers for your project from scratch to release.</div>
+    <a class="book-btn" href="#">Book Now</a>
+  </div>
+
+  <!-- Добавляем остальные блоки аналогично -->
 </div>
 
 <footer>
-  © 2025 OBO&HOBOS — Record Label
+  &copy; 2025 OBO&HOBOS | info@oboandhobos.pro
 </footer>
 
 </body>
