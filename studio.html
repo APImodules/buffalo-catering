@@ -1,54 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OBO&HOBOS — Studio</title>
-  <meta name="description" content="Discover OBO&HOBOS professional recording studio in Moscow. Full-cycle music production: recording, mixing, mastering, creative support for artists worldwide." />
+  <style>
+    body {
+      background: white;
+      color: #555;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      text-align: center;
+      padding: 20px 0;
+    }
+    header img {
+      height: 60px;
+    }
+    nav {
+      text-align: center;
+      background: white;
+      border-bottom: 2px solid #ccc;
+      padding: 10px 0;
+    }
+    nav a {
+      color: #777;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      font-size: 16px;
+    }
+    nav a:hover {
+      color: #555;
+    }
+    .studio-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 20px;
+      gap: 40px;
+    }
+    .studio-item {
+      max-width: 500px;
+      text-align: center;
+    }
+    .studio-item img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .studio-text {
+      color: #555;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-top: 15px;
+    }
+    .studio-text strong {
+      color: #777;
+      font-weight: 600;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #999;
+      font-size: 14px;
+      border-top: 1px solid #eee;
+    }
+  </style>
 </head>
-<body bgcolor="white" text="black">
+<body>
 
-  <!-- Header -->
-  <header style="text-align:center; padding:20px 0; background:white;">
-    <div class="logo-container" style="margin-bottom:10px;">
-      <img src="images/logo.jpg" alt="OBO&HOBOS Logo" style="max-width:180px;">
+<header>
+  <img src="images/logo.jpg" alt="OBO&HOBOS Logo">
+</header>
+
+<nav>
+  <a href="index.html">HOME</a>
+  <a href="info.html">INFO</a>
+  <a href="recordings.html">RECORDINGS</a>
+  <a href="studio.html">STUDIO</a>
+  <a href="artists.html">ARTISTS</a>
+  <a href="events.html">EVENTS</a>
+</nav>
+
+<div class="studio-container">
+  <div class="studio-item">
+    <img src="images/studio/Studio.jpg" alt="Studio Interior 1">
+    <div class="studio-text">
+      <h2>OBO&HOBOS Studio</h2>
+      <p>Our <strong>state-of-the-art studio</strong> allows artists to record, mix, and master tracks with full production support.</p>
     </div>
-    <nav class="main-nav" style="margin-bottom:10px;">
-      <a href="index.html" style="color:#777777; margin:0 12px; font-weight:500; text-decoration:none;">HOME</a>
-      <a href="info.html" style="color:#777777; margin:0 12px; font-weight:500; text-decoration:none;">INFO</a>
-      <a href="recordings.html" style="color:#777777; margin:0 12px; font-weight:500; text-decoration:none;">RECORDINGS</a>
-      <a href="studio.html" style="color:#555555; margin:0 12px; font-weight:600; text-decoration:none;">STUDIO</a>
-      <a href="artists.html" style="color:#777777; margin:0 12px; font-weight:500; text-decoration:none;">ARTISTS</a>
-      <a href="events.html" style="color:#777777; margin:0 12px; font-weight:500; text-decoration:none;">EVENTS</a>
-    </nav>
-    <hr style="border:1px solid #ccc; width:80%; margin:0 auto;">
-  </header>
-
-  <!-- Main -->
-  <main style="text-align:center; padding:40px 20px; max-width:1000px; margin:0 auto;">
-
-    <h2 style="color:#777777; margin-bottom:30px;">STUDIO</h2>
-
-    <p style="color:#444; font-size:18px; line-height:1.7; margin-bottom:40px;">
-      The <strong>OBO&HOBOS Recording Studio</strong> is a creative space built for artists who aim for uncompromising sound.  
-      Located in Moscow, our facility offers a <em>full-cycle music production process</em> — from recording and mixing, to professional mastering and distribution.  
-      Equipped with state-of-the-art technology and driven by experienced sound engineers, our studio has become a hub for electronic music creators who perform across Russia and internationally.  
-      <br><br>
-      Whether you are producing your debut single or completing a full-length album, OBO&HOBOS Studio provides the tools, expertise, and atmosphere to transform ideas into releases heard worldwide.
-    </p>
-
-    <!-- Photos -->
-    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:30px;">
-      <img src="images/studio/Studio.jpg" alt="OBO&HOBOS Studio" style="width:45%; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);">
-      <img src="images/studio/studio2.png" alt="OBO&HOBOS Studio Interior" style="width:45%; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);">
+  </div>
+  <div class="studio-item">
+    <img src="images/studio/studio2.png" alt="Studio Interior 2">
+    <div class="studio-text">
+      <p>From initial recording to distribution, our studio covers the full cycle — enabling projects to reach listeners worldwide.</p>
     </div>
+  </div>
+</div>
 
-  </main>
-
-  <!-- Footer -->
-  <footer style="text-align:center; padding:20px 0; color:#aaa;">
-    © 2025 OBO&HOBOS — Record Label
-  </footer>
+<footer>
+  © 2025 OBO&HOBOS — Record Label
+</footer>
 
 </body>
 </html>
