@@ -1,210 +1,356 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>OBO&HOBOS — Events</title>
 <style>
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: #fff;
-  color: #555;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-header {
-  background: white;
-  padding: 15px 0;
-  border-bottom: 1px solid #ccc;
-}
-header img { height: 60px; }
-nav { margin: 10px 0; }
-nav a {
-  color: #888;
-  text-decoration: none;
-  margin: 0 10px;
-  font-weight: 500;
-  font-size: 16px;
-}
-nav a:hover { color: #555; }
-h1, h2 {
-  margin: 20px 0 10px 0;
-  color: #555;
-  font-weight: 600;
-}
-.events-timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  padding: 20px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.event-block {
-  display: flex;
-  flex-wrap: wrap;
-  background: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  overflow: hidden;
-  transition: transform 0.2s;
-}
-.event-block:hover {
-  transform: translateY(-2px);
-}
-.event-poster {
-  width: 220px;
-  height: 300px;
-  object-fit: cover;
-  margin: 10px;
-  border-radius: 8px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
-}
-.event-info {
-  flex: 1;
-  padding: 15px;
-  text-align: left;
-}
-.event-info h3 {
-  margin-top: 0;
-  font-weight: 600;
-  color: #555;
-}
-.event-desc {
-  font-size: 13px;
-  color: #666;
-  margin: 10px 0;
-  line-height: 1.5;
-}
-.read-more, .buy-btn, .presale-btn {
-  display: inline-block;
-  margin-right: 10px;
-  padding: 8px 18px;
-  font-size: 14px;
-  border-radius: 20px;
-  text-decoration: none;
-  font-weight: 600;
-  cursor: pointer;
-  user-select: none;
-  transition: background-color 0.3s ease;
-}
-.read-more {
-  background: #888;
-  color: #fff;
-}
-.read-more:hover {
-  background: #777;
-}
-.buy-btn {
-  background: #aaa;
-  color: #fff;
-}
-.buy-btn:hover {
-  background: #999;
-}
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #fff;
+    color: #555;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  header {
+    background: white;
+    padding: 15px 0;
+    border-bottom: 1px solid #ccc;
+  }
+  header img {
+    height: 60px;
+  }
+  nav {
+    margin: 10px 0;
+  }
+  nav a {
+    color: #888;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  nav a:hover {
+    color: #555;
+  }
+  h1,
+  h2 {
+    margin: 20px 0 10px 0;
+    color: #555;
+    font-weight: 600;
+  }
+  .events-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .event-block {
+    display: flex;
+    flex-wrap: wrap;
+    background: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+  .event-block:hover {
+    transform: translateY(-2px);
+  }
+  .event-poster {
+    width: 220px;
+    height: 300px;
+    object-fit: cover;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  }
+  .event-info {
+    flex: 1;
+    padding: 15px;
+    text-align: left;
+  }
+  .event-info h3 {
+    margin-top: 0;
+    font-weight: 600;
+    color: #555;
+  }
+  .event-desc {
+    font-size: 13px;
+    color: #666;
+    margin: 10px 0;
+    line-height: 1.5;
+  }
 
-/* Pre-sale Active Button for top event */
-.presale-btn {
-  background: #444;
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-}
-.presale-btn:hover {
-  background: #222;
-}
+  .presale-btn {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 8px 18px;
+    font-size: 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+    color: #fff;
+  }
 
-/* Inactive Pre-sale buttons for other events */
-.presale-btn.inactive {
-  background: rgba(136,136,136, 0.3);
-  color: rgba(255,255,255,0.7);
-  cursor: default;
-  box-shadow: none;
-}
-.presale-btn.inactive:hover {
-  background: rgba(136,136,136, 0.3);
-}
+  .presale-btn.active {
+    background: #444;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+  .presale-btn.active:hover {
+    background: #222;
+  }
 
-@media(max-width:900px) {
-  .event-block { flex-direction: column; align-items: center; }
-  .event-info { text-align: center; }
-}
+  .presale-btn.tickets-closed {
+    background: linear-gradient(135deg, #b22222 0%, #8b0000 100%);
+    font-weight: 700;
+    cursor: default;
+    box-shadow: 0 0 10px rgba(178, 34, 34, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    pointer-events: none;
+  }
+  .presale-btn.tickets-closed:hover {
+    background: #8b0000;
+  }
+
+  .read-more {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 6px 14px;
+    font-size: 12px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #fff;
+    background: #888;
+  }
+  .read-more:hover {
+    background: #777;
+  }
+
+  /* Фиксированный правый контейнер (воронка) */
+  .side-funnel {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    width: 320px;
+    background: rgba(238, 240, 243, 0.95);
+    border-radius: 15px;
+    padding: 25px 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    text-align: left;
+    z-index: 10000;
+  }
+  .side-funnel h4 {
+    margin-bottom: 16px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #444;
+  }
+  .side-funnel p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    color: #555;
+  }
+  .side-funnel textarea {
+    width: 100%;
+    min-height: 90px;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+  }
+  .side-funnel button {
+    background: #444;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.25s ease;
+  }
+  .side-funnel button:hover {
+    background: #222;
+  }
+  .side-funnel .success-msg {
+    color: #2a7f62;
+    font-weight: 600;
+    margin-top: 10px;
+    display: none;
+  }
+
+  @media (max-width: 1150px) {
+    .side-funnel {
+      position: static;
+      width: auto;
+      margin: 20px auto;
+      box-shadow: none;
+      border-radius: 12px;
+    }
+
+    .events-timeline {
+      max-width: 100%;
+      padding-right: 20px;
+    }
+  }
+
+  @media(max-width:900px) {
+    .event-block {
+      flex-direction: column;
+      align-items: center;
+    }
+    .event-info {
+      text-align: center;
+    }
+  }
 </style>
 </head>
 <body>
-<header>
-  <div class="logo-container">
-    <img src="images/logo.jpg" alt="OBO&HOBOS Logo">
-  </div>
-  <nav class="main-nav">
-    <a href="index.html">HOME</a>
-    <a href="info.html">INFO</a>
-    <a href="recordings.html">RECORDINGS</a>
-    <a href="studio.html">STUDIO</a>
-    <a href="artists.html">ARTISTS</a>
-    <a href="events.html">EVENTS</a>
-  </nav>
-</header>
-
-<h1>OUR EVENTS</h1>
-<p style="max-width:800px; margin: 0 auto 40px auto; color:#666; font-size:14px;">
-Explore our past events and discover how OBO&HOBOS combines premium sound, lighting, and clubbing experiences. Each event features exclusive photos showcasing the event's unique vibe and the party title. We are dedicated to delivering artistic quality, technical excellence, and unforgettable moments.
-</p>
-
-<div class="events-timeline">
-  <!-- Top Event with active Pre-sale -->
-  <div class="event-block" style="background:#eef0f3;">
-    <img src="https://raw.githubusercontent.com/APImodules/buffalo-catering/main/images/events/OBO%20%26%20HOBOS%20LABEL%20NIGHT.png" alt="OBO & HOBOS LABEL NIGHT" class="event-poster">
-    <div class="event-info">
-      <h3>OBO & HOBOS LABEL NIGHT</h3>
-      <p class="event-desc">
-        An exclusive label night bringing together the best of electronic music with premium sound, custom lighting, and artistic visuals. Experience our signature atmosphere in an intimate club setting designed for true music lovers.
-      </p>
-      <a class="presale-btn" href="#" title="Pre-sale tickets available now">Pre-sale Tickets</a>
-      <a class="read-more" href="#">Read more →</a>
+  <header>
+    <div class="logo-container">
+      <img src="images/logo.jpg" alt="OBO&HOBOS Logo" />
     </div>
-  </div>
+    <nav class="main-nav">
+      <a href="index.html">HOME</a>
+      <a href="info.html">INFO</a>
+      <a href="recordings.html">RECORDINGS</a>
+      <a href="studio.html">STUDIO</a>
+      <a href="artists.html">ARTISTS</a>
+      <a href="events.html">EVENTS</a>
+    </nav>
+  </header>
 
-  <!-- Other events - Pre-sale button inactive -->
-  <div class="event-block">
-    <img src="https://raw.githubusercontent.com/APImodules/buffalo-catering/main/images/events/OBO%20%26%20HOBOS%20MEMBERS%20ONLY.jpg" alt="OBO & HOBOS MEMBERS ONLY" class="event-poster">
-    <div class="event-info">
-      <h3>OBO & HOBOS MEMBERS ONLY</h3>
-      <p class="event-desc">
-        A private members-only event offering an exclusive environment with curated electronic sets, high-end sound, and immersive lighting. Perfect for dedicated fans seeking an intimate music experience.
-      </p>
-      <a class="presale-btn inactive" href="#" tabindex="-1" aria-disabled="true">Pre-sale Tickets</a>
-      <a class="read-more" href="#">Read more →</a>
+  <h1>OUR EVENTS</h1>
+  <p style="max-width: 800px; margin: 0 auto 40px auto; color: #666; font-size: 14px;">
+    Explore our past events and discover how OBO&HOBOS combines premium sound, lighting, and clubbing experiences. Each event features exclusive photos showcasing the event's unique vibe and the party title. We are dedicated to delivering artistic quality, technical excellence, and unforgettable moments.
+  </p>
+
+  <div style="display: flex; justify-content: center; align-items: flex-start; max-width: 1300px; margin: 0 auto; gap: 30px;">
+    <div class="events-timeline" style="flex-grow: 1; max-width: 900px;">
+
+      <!-- Top Event with active Pre-sale -->
+      <div class="event-block" style="background: #eef0f3;">
+        <img
+          src="https://raw.githubusercontent.com/APImodules/buffalo-catering/main/images/events/OBO%20%26%20HOBOS%20LABEL%20NIGHT.png"
+          alt="OBO & HOBOS LABEL NIGHT"
+          class="event-poster"
+        />
+        <div class="event-info">
+          <h3>OBO & HOBOS LABEL NIGHT</h3>
+          <p class="event-desc">
+            An exclusive label night bringing together the best of electronic music with premium sound, custom lighting, and artistic visuals. Experience our signature atmosphere in an intimate club setting designed for true music lovers.
+          </p>
+          <a href="#" class="presale-btn active" title="Pre-sale tickets available now">Pre-sale Tickets</a>
+          <a class="read-more" href="#">Read more →</a>
+        </div>
+      </div>
+
+      <!-- Other events - Tickets Closed -->
+      <div class="event-block">
+        <img
+          src="https://raw.githubusercontent.com/APImodules/buffalo-catering/main/images/events/OBO%20%26%20HOBOS%20MEMBERS%20ONLY.jpg"
+          alt="OBO & HOBOS MEMBERS ONLY"
+          class="event-poster"
+        />
+        <div class="event-info">
+          <h3>OBO & HOBOS MEMBERS ONLY</h3>
+          <p class="event-desc">
+            A private members-only event offering an exclusive environment with curated electronic sets, high-end sound, and immersive lighting. Perfect for dedicated fans seeking an intimate music experience.
+          </p>
+          <a href="#" class="presale-btn tickets-closed" tabindex="-1" aria-disabled="true">Tickets Closed</a>
+          <a class="read-more" href="#">Read more →</a>
+        </div>
+      </div>
+
+      <div class="event-block">
+        <img
+          src="https://raw.githubusercontent.com/APImodules/buffalo-catering/main/images/events/OBO%20%26%20HOBOS%20OPEN%20AIR.jpg"
+          alt="OBO & HOBOS OPEN AIR"
+          class="event-poster"
+        />
+        <div class="event-info">
+          <h3>OBO & HOBOS OPEN AIR</h3>
+          <p class="event-desc">
+            An outdoor open-air celebration with deep house and melodic techno vibes under the stars. Featuring top DJs, state-of-the-art sound, and breathtaking visuals.
+          </p>
+          <a href="#" class="presale-btn tickets-closed" tabindex="-1" aria-disabled="true">Tickets Closed</a>
+          <a class="read-more" href="#">Read more →</a>
+        </div>
+      </div>
+
+      <div class="event-block">
+        <img
+          src="https://raw.githubusercontent.com/APImodules/buffalo-catering/main/images/events/OBO%20%26%20HOBOS%20SHOWCASE.jpg"
+          alt="OBO & HOBOS SHOWCASE"
+          class="event-poster"
+        />
+        <div class="event-info">
+          <h3>OBO & HOBOS SHOWCASE</h3>
+          <p class="event-desc">
+            A curated showcase spotlighting OBO&HOBOS artists with innovative live sets, immersive visuals, and superb production values.
+          </p>
+          <a href="#" class="presale-btn tickets-closed" tabindex="-1" aria-disabled="true">Tickets Closed</a>
+          <a class="read-more" href="#">Read more →</a>
+        </div>
+      </div>
     </div>
+
+    <!-- Side funnel container -->
+    <aside class="side-funnel" aria-label="Форма обратной связи по приглашениям и выступлениям">
+      <h4>Хотите выступить или пригласить шоукейс?</h4>
+      <p>Мы всегда рады новым талантам и интересным союзам! Расскажите нам о своих идеях, предложениях или желаниях, и вместе создадим незабываемое событие!</p>
+      <p><em>Это ваш шанс стать частью эксклюзивной атмосферы OBO&HOBOS — не упустите возможность заявить о себе.</em></p>
+      <form id="funnelForm">
+        <textarea
+          id="funnelMessage"
+          placeholder="Напишите здесь, почему именно вы или ваше событие должны стать частью нашего лейбла..."
+          required
+          aria-required="true"
+        ></textarea>
+        <button type="submit" aria-label="Отправить сообщение">Отправить</button>
+      </form>
+      <div class="success-msg" role="alert" aria-live="polite">Спасибо! Мы получили ваше сообщение и свяжемся с вами в ближайшее время.</div>
+    </aside>
   </div>
 
-  <div class="event-block">
-    <img src="https://raw.githubusercontent.com/APImodules/buffalo-catering/main/images/events/OBO%20%26%20HOBOS%20OPEN%20AIR.jpg" alt="OBO & HOBOS OPEN AIR" class="event-poster">
-    <div class="event-info">
-      <h3>OBO & HOBOS OPEN AIR</h3>
-      <p class="event-desc">
-        An outdoor open-air celebration with deep house and melodic techno vibes under the stars. Featuring top DJs, state-of-the-art sound, and breathtaking visuals.
-      </p>
-      <a class="presale-btn inactive" href="#" tabindex="-1" aria-disabled="true">Pre-sale Tickets</a>
-      <a class="read-more" href="#">Read more →</a>
-    </div>
-  </div>
+  <footer>
+    &copy; 2025 OBO&HOBOS. All rights reserved. Designed with care for premium experiences.
+  </footer>
 
-  <div class="event-block">
-    <img src="https://raw.githubusercontent.com/APImodules/buffalo-catering/main/images/events/OBO%20%26%20HOBOS%20SHOWCASE.jpg" alt="OBO & HOBOS SHOWCASE" class="event-poster">
-    <div class="event-info">
-      <h3>OBO & HOBOS SHOWCASE</h3>
-      <p class="event-desc">
-        A curated showcase spotlighting OBO&HOBOS artists with innovative live sets, immersive visuals, and superb production values.
-      </p>
-      <a class="presale-btn inactive" href="#" tabindex="-1" aria-disabled="true">Pre-sale Tickets</a>
-      <a class="read-more" href="#">Read more →</a>
-    </div>
-  </div>
-</div>
+  <script>
+    const form = document.getElementById('funnelForm');
+    const messageInput = document.getElementById('funnelMessage');
+    const successMsg = document.querySelector('.success-msg');
 
-<footer>
-  &copy; 2025 OBO&HOBOS. All rights reserved. Designed with care for premium experiences.
-</footer>
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const message = messageInput.value.trim();
+      if (message.length < 10) {
+        alert('Пожалуйста, опишите вашу идею подробнее (минимум 10 символов).');
+        return;
+      }
+      // Здесь должна быть реальная отправка на сервер/почту (через fetch/AJAX)
+      successMsg.style.display = 'block';
+      form.reset();
+      setTimeout(() => {
+        successMsg.style.display = 'none';
+      }, 6000);
+    });
+  </script>
 </body>
 </html>
