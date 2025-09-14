@@ -1,39 +1,90 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OBO&HOBOS — Home</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OBO&HOBOS — Record Label — HOME</title>
 <style>
 body {
   background: white;
+  color: #888;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  color: #555;
-  margin: 0; padding: 0;
+  margin: 0;
+  padding: 0 10px;
 }
-header {text-align: center; padding: 20px;}
+header {
+  text-align: center;
+  padding: 20px;
+}
+header img {
+  max-width: 200px;
+}
+nav {
+  text-align: center;
+  margin: 20px 0;
+}
 nav a {
-  color: #777; text-decoration: none; margin: 0 10px; font-weight: 500;
+  color: #888;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: 500;
 }
-h2.section-title {text-align: center; margin: 40px 0 20px 0; font-size: 2em; color: #555;}
-.releases, .artists, .top-week {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+section {
+  max-width: 1000px;
+  margin: 40px auto;
+  text-align: center;
 }
-.item {
-  border-radius: 50%; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  cursor: pointer; transition: transform 0.3s;
+h2 {
+  margin-bottom: 20px;
 }
-.item:hover {transform: scale(1.05);}
-.item img {width: 100%; height: 100%; object-fit: cover;}
-.video-block {text-align: center; margin: 50px 0;}
-.video-block video {max-width: 90%; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
-footer {text-align: center; padding: 20px; color: #aaa;}
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.flex-item {
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.flex-item:hover {
+  transform: scale(1.05);
+}
+.flex-item img {
+  display: block;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+.video-container {
+  margin: 40px 0;
+}
+.top-week {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.top-week img {
+  width: 180px;
+  height: 180px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #aaa;
+}
 </style>
 </head>
 <body>
 
 <header>
-  <img src="images/logo.jpg" alt="OBO&HOBOS" width="180">
+  <img src="images/logo.jpg" alt="OBO&HOBOS">
   <nav>
     <a href="index.html">HOME</a> |
     <a href="info.html">INFO</a> |
@@ -44,40 +95,109 @@ footer {text-align: center; padding: 20px; color: #aaa;}
   </nav>
 </header>
 
-<h2 class="section-title">Последние релизы</h2>
-<div class="releases">
-  <div class="item" style="width:150px; height:150px;"><img src="images/OBO001-Vavinchi-Adeptus-150x150.jpg"></div>
-  <div class="item" style="width:120px; height:120px;"><img src="images/OBO002-In’R’Voice-Steezy-150x150.jpg"></div>
-  <div class="item" style="width:180px; height:180px;"><img src="images/OBO003-Boris-The-Spyder-Brainbow-150x150.jpg"></div>
-  <div class="item" style="width:130px; height:130px;"><img src="images/OBO004-Inner-Square-Storm-Seeker-150x150.jpg"></div>
+<section>
+<h2>Последние релизы</h2>
+<div class="flex-container" id="latest-releases">
+  <!-- JS подставит последние 4 релиза -->
 </div>
+</section>
 
-<h2 class="section-title">Наши артисты</h2>
-<div class="artists">
-  <div class="item" style="width:120px; height:120px;"><img src="images/art_Ki_Mi.jpg"></div>
-  <div class="item" style="width:150px; height:150px;"><img src="images/art_Daria Fisher.jpg"></div>
-  <div class="item" style="width:130px; height:130px;"><img src="images/art_Vavinchi.png"></div>
-  <div class="item" style="width:140px; height:140px;"><img src="images/art_Hobos.png"></div>
+<section>
+<h2>Случайные релизы</h2>
+<div class="flex-container" id="random-releases">
+  <!-- JS подставит 4 случайных релиза, не совпадающих с последними -->
 </div>
+</section>
 
-<h2 class="section-title">Новый клип</h2>
-<div class="video-block">
-  <video controls>
-    <source src="images/vid/drop.mp4" type="video/mp4">
-    Ваш браузер не поддерживает видео.
-  </video>
-  <p>Daria Fisher — Drop</p>
+<section>
+<h2>Артисты недели</h2>
+<div class="flex-container" id="random-artists">
+  <!-- JS подставит 4 случайных артиста -->
 </div>
+</section>
 
-<h2 class="section-title">Топ недели</h2>
-<div class="top-week">
-  <div class="item" style="width:180px; height:180px;"><img src="images/OBO005-DUSnDUS-Can-You-Feel-It-150x150.jpg"></div>
-  <div class="item" style="width:140px; height:140px;"><img src="images/OBO006-Vavinchi-Sample-Two-Ego-150x150.jpg"></div>
-  <div class="item" style="width:160px; height:160px;"><img src="images/OBO008-Spivak-Ocean-Down-150x150.jpg"></div>
-  <div class="item" style="width:130px; height:130px;"><img src="images/OBO009-Ki.Mi_.-Red-Friends-150x150.jpg"></div>
+<section class="video-container">
+<h2>Вышел клип</h2>
+<p>Daria Fisher — Drop</p>
+<video width="320" height="240" controls>
+  <source src="images/vid/drop.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+</section>
+
+<section>
+<h2>Топ недели</h2>
+<div class="top-week" id="top-week">
+  <!-- JS подставит релизы разного размера -->
 </div>
+</section>
 
-<footer>© 2025 OBO&HOBOS — Record Label</footer>
+<footer>
+© 2025 OBO&HOBOS — Record Label
+</footer>
+
+<script>
+// данные о релизах
+const releases = [
+  {file:"OBO001-Vavinchi-Adeptus-150x150.jpg", name:"Vavinchi - Adeptus"},
+  {file:"OBO002-In’R’Voice-Steezy-150x150.jpg", name:"In’R’Voice - Steezy"},
+  {file:"OBO003-Boris-The-Spyder-Brainbow-150x150.jpg", name:"Boris The Spyder - Brainbow"},
+  {file:"OBO004-Inner-Square-Storm-Seeker-150x150.jpg", name:"Inner Square - Storm Seeker"},
+  {file:"OBO005-DUSnDUS-Can-You-Feel-It-150x150.jpg", name:"DUSnDUS - Can You Feel It"},
+  {file:"OBO006-Vavinchi-Sample-Two-Ego-150x150.jpg", name:"Vavinchi - Sample Two Ego"},
+  {file:"OBO008-Spivak-Ocean-Down-150x150.jpg", name:"Spivak - Ocean Down"},
+  {file:"OBO009-Ki.Mi_.-Red-Friends-150x150.jpg", name:"Ki.Mi. - Red Friends"},
+  {file:"OBO010-Nichtzusammen-161-Bar-150x150.jpg", name:"Nichtzusammen - 161 Bar"},
+];
+
+// данные об артистах
+const artists = [
+  {file:"art_Ki_Mi.jpg", name:"Ki.Mi.", link:"artists/kimi.html"},
+  {file:"art_Vavinchi.png", name:"Vavinchi", link:"artists/vavinchi.html"},
+  {file:"art_Daria Fisher.jpg", name:"Daria Fisher", link:"artists/dariafisher.html"},
+  {file:"art_InnerSquare.png", name:"Inner Square", link:"artists/innersquare.html"},
+];
+
+// выбираем последние 4
+const latest = releases.slice(-4);
+const latestContainer = document.getElementById("latest-releases");
+latest.forEach(r => {
+  const div = document.createElement("div");
+  div.className="flex-item";
+  div.innerHTML = `<img src="images/albums/${r.file}" alt="${r.name}"><br>${r.name}`;
+  latestContainer.appendChild(div);
+});
+
+// выбираем случайные 4, не совпадающие с последними
+const remaining = releases.filter(r=>!latest.includes(r));
+const shuffled = remaining.sort(()=>0.5-Math.random()).slice(0,4);
+const randomContainer = document.getElementById("random-releases");
+shuffled.forEach(r=>{
+  const div=document.createElement("div");
+  div.className="flex-item";
+  div.innerHTML=`<img src="images/albums/${r.file}" alt="${r.name}"><br>${r.name}`;
+  randomContainer.appendChild(div);
+});
+
+// 4 случайных артиста
+const shuffledArtists = artists.sort(()=>0.5-Math.random()).slice(0,4);
+const artistContainer = document.getElementById("random-artists");
+shuffledArtists.forEach(a=>{
+  const div=document.createElement("div");
+  div.className="flex-item";
+  div.innerHTML=`<a href="${a.link}"><img src="images/${a.file}" alt="${a.name}"><br>${a.name}</a>`;
+  artistContainer.appendChild(div);
+});
+
+// топ недели (дублируем последние)
+const topWeekContainer=document.getElementById("top-week");
+releases.forEach(r=>{
+  const img=document.createElement("img");
+  img.src="images/albums/"+r.file;
+  img.alt=r.name;
+  topWeekContainer.appendChild(img);
+});
+</script>
 
 </body>
 </html>
