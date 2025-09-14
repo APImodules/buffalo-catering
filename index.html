@@ -1,131 +1,182 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buffalo Catering - Готовые сеты с доставкой</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* Базовые стили, остальные будут в css/style.css */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Montserrat', sans-serif;
-            color: #333;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OBO&HOBOS — Record Label — Home</title>
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background:white;
+  margin:0;
+  padding:0;
+}
+.menu a {
+  color: gray;
+  text-decoration: none;
+  margin: 0 10px;
+}
+.container {
+  width: 95%;
+  max-width: 1200px;
+  margin: auto;
+  margin-top:30px;
+}
+.section-title {
+  font-size: 24px;
+  margin: 30px 0 15px;
+  font-weight: bold;
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.grid-item {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  flex: 1 1 calc(25% - 20px);
+  min-width: 180px;
+  text-align: center;
+}
+.grid-item img {
+  width: 100%;
+  height: auto;
+}
+.grid-item p {
+  padding: 10px;
+  font-weight: bold;
+}
+.video-section {
+  margin: 40px 0;
+  text-align:center;
+}
+.video-section video {
+  width: 80%;
+  max-width: 800px;
+  border-radius:20px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+.scroll-btn {
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  padding:15px;
+  border:none;
+  border-radius:50%;
+  background-color:rgba(0,0,0,0.2);
+  color:white;
+  font-size:20px;
+  cursor:pointer;
+}
+</style>
 </head>
 <body>
-    <!-- Шапка сайта -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="https://buffalo.qr-cafe.ru/assets/themes/qrmenu/dist/img/logo_app.svg" alt="Buffalo Logo">
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#sets">Сеты</a></li>
-                        <li><a href="#about">О нас</a></li>
-                        <li><a href="#contacts">Контакты</a></li>
-                    </ul>
-                </nav>
-                <div class="cart-icon">
-                    <a href="cart.html">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
 
-    <!-- Главный баннер -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Готовые сеты с доставкой от ресторана Buffalo</h1>
-                <p>Доставка за 30 минут • Минимальный заказ 1000 ₽</p>
-                <a href="#sets" class="btn-primary">Выбрать сет</a>
-            </div>
-        </div>
-    </section>
+<!-- Логотип и меню -->
+<center>
+<img src="images/logo.jpg" alt="OBO&HOBOS" style="max-width:200px; margin-top:20px;">
+<p class="menu">
+  <a href="index.html">HOME</a> |
+  <a href="info.html">INFO</a> |
+  <a href="recordings.html">RECORDINGS</a> |
+  <a href="studio.html">STUDIO</a> |
+  <a href="artists.html">ARTISTS</a> |
+  <a href="events.html">EVENTS</a>
+</p>
+<hr>
+</center>
 
-    <!-- Каталог сетов -->
-    <section id="sets" class="sets-section">
-        <div class="container">
-            <h2 class="section-title">Наши сеты</h2>
-            <div class="sets-container">
-                <!-- Сеты будут добавлены через JavaScript -->
-            </div>
-        </div>
-    </section>
+<div class="container">
 
-    <!-- О нас -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <h2 class="section-title">О ресторане Buffalo</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Ресторан Buffalo - это место, где сочетаются традиции качественной кухни и современный подход к обслуживанию. Мы специализируемся на приготовлении вкусных и разнообразных блюд, которые порадуют даже самых искушенных гурманов.</p>
-                    <p>Наши шеф-повара с многолетним опытом создают кулинарные шедевры из свежих и качественных продуктов. Мы предлагаем готовые сеты на любой вкус и бюджет с быстрой доставкой в течение 30 минут.</p>
-                    <p>Доверьте нам организацию питания для ваших мероприятий, и мы гарантируем высокий уровень сервиса и незабываемые вкусовые впечатления!</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Последние релизы -->
+  <div class="section-title">Последние релизы</div>
+  <div class="grid" id="latest-releases"></div>
 
-    <!-- Контакты -->
-    <section id="contacts" class="contacts-section">
-        <div class="container">
-            <h2 class="section-title">Контакты</h2>
-            <div class="contacts-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <p><a href="tel:+71234567890">+7 (123) 456-78-90</a></p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <p>Работаем ежедневно с 10:00 до 22:00</p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <p><a href="mailto:andylondonmusic@gmail.com">andylondonmusic@gmail.com</a></p>
-                    </div>
-                </div>
-                <div class="delivery-info">
-                    <h3>Информация о доставке</h3>
-                    <p>Доставляем заказы в течение 30 минут</p>
-                    <p>Минимальная сумма заказа: 1000 ₽</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Рандомные релизы -->
+  <div class="section-title">Случайные релизы</div>
+  <div class="grid" id="random-releases"></div>
 
-    <!-- Футер -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="copyright">
-                    <p>© 2025 Buffalo Catering. Все права защищены.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+  <!-- Артисты -->
+  <div class="section-title">Артисты</div>
+  <div class="grid" id="random-artists"></div>
 
-    <script src="js/main.js"></script>
-    <script src="js/cart.js"></script>
+  <!-- Видео -->
+  <div class="video-section">
+    <h3>Новый клип: Daria Fisher - Drop</h3>
+    <video controls>
+      <source src="images/vid/drop.mp4" type="video/mp4">
+      Ваш браузер не поддерживает видео.
+    </video>
+  </div>
+
+  <!-- Топ недели -->
+  <div class="section-title">Топ недели</div>
+  <div class="grid" id="top-releases"></div>
+
+</div>
+
+<!-- Кнопка наверх -->
+<button onclick="window.scrollTo({top:0, behavior:'smooth'});" class="scroll-btn">↑</button>
+
+<footer style="text-align:center; color:gray; margin-top:50px; margin-bottom:20px;">
+  © 2025 OBO&HOBOS — Record Label
+</footer>
+
+<script>
+// Массив релизов (имя файла + название)
+const releases = [
+  {file:"OBO-021-Ki.Mi_.-Sunday-150x150.jpg", title:"Ki.Mi - Sunday"},
+  {file:"OBO001-Vavinchi-Adeptus-150x150.jpg", title:"Vavinchi - Adeptus"},
+  {file:"OBO002-In’R’Voice-Steezy-150x150.jpg", title:"In’R’Voice - Steezy"},
+  {file:"OBO003-Boris-The-Spyder-Brainbow-150x150.jpg", title:"Boris The Spyder - Brainbow"},
+  {file:"OBO004-Inner-Square-Storm-Seeker-150x150.jpg", title:"Inner Square - Storm Seeker"},
+  {file:"OBO005-DUSnDUS-Can-You-Feel-It-150x150.jpg", title:"DUSnDUS - Can You Feel It"},
+  {file:"OBO006-Vavinchi-Sample-Two-Ego-150x150.jpg", title:"Vavinchi - Sample Two Ego"},
+  {file:"OBO008-Spivak-Ocean-Down-150x150.jpg", title:"Spivak - Ocean Down"},
+  {file:"OBO009-Ki.Mi_.-Red-Friends-150x150.jpg", title:"Ki.Mi - Red Friends"},
+  {file:"OBO010-Nichtzusammen-161-Bar-150x150.jpg", title:"Nichtzusammen - 161 Bar"}
+  // Добавь остальные релизы при необходимости
+];
+
+// Массив артистов
+const artists = [
+  {file:"art_InnerSquare.png", name:"Inner Square"},
+  {file:"art_Mr.Pepper.jpg", name:"Mr Pepper"},
+  {file:"art_Lunnar.jpg", name:"Lunnar"},
+  {file:"art_Vavinchi.png", name:"Vavinchi"},
+  {file:"art_Daria Fisher.jpg", name:"Daria Fisher"},
+  {file:"art_Ki_Mi.jpg", name:"Ki.Mi"},
+  {file:"art_Hobos.png", name:"Hobos"}
+  // Добавь остальных артистов
+];
+
+// Функция для выбора случайных элементов из массива
+function getRandomItems(arr, count){
+  const shuffled = arr.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+}
+
+// Функция генерации карточек
+function renderGrid(gridId, items){
+  const container = document.getElementById(gridId);
+  container.innerHTML = "";
+  items.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "grid-item";
+    div.innerHTML = `<img src="images/albums/${item.file}" alt="${item.title || item.name}">
+                     <p>${item.title || item.name}</p>`;
+    container.appendChild(div);
+  });
+}
+
+// Рендерим блоки
+renderGrid("latest-releases", releases.slice(0,4));
+renderGrid("random-releases", getRandomItems(releases,4));
+renderGrid("random-artists", getRandomItems(artists,4));
+renderGrid("top-releases", getRandomItems(releases,4));
+</script>
+
 </body>
 </html>
