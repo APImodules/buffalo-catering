@@ -33,6 +33,7 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
       padding: 20px;
+      justify-items: center;
     }
     .artist {
       text-align: center;
@@ -42,7 +43,7 @@
       width: 100px;
       height: 100px;
       border-radius: 50%;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       transition: transform 0.3s;
     }
     .artist img:hover {
@@ -57,7 +58,7 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: rgba(0, 0, 0, 0.2);
+      background-color: rgba(0,0,0,0.2);
       border: none;
       border-radius: 50%;
       width: 50px;
@@ -72,7 +73,6 @@
       text-align: center;
       padding: 10px;
       background-color: #f1f1f1;
-      position: relative;
     }
     footer p {
       color: gray;
@@ -98,36 +98,140 @@
   <h3 style="text-align: center;">ARTISTS</h3>
 
   <div class="artists-grid">
-    <!-- Артисты -->
+    <div class="artist" onclick="openPopup('images/art_Alexei Strelok.jpg')">
+      <img src="images/art_Alexei Strelok.jpg" alt="ALEXEI STRELOK">
+      <div class="artist-name">ALEXEI STRELOK</div>
+    </div>
+    <div class="artist" onclick="openPopup('images/art_Batsula.jpg')">
+      <img src="images/art_Batsula.jpg" alt="BATSULA">
+      <div class="artist-name">BATSULA</div>
+    </div>
+    <div class="artist" onclick="openPopup('images/art_DJ-FISH.jpg')">
+      <img src="images/art_DJ-FISH.jpg" alt="DJ FISH">
+      <div class="artist-name">DJ FISH</div>
+    </div>
+    <div class="artist" onclick="openPopup('images/art_DUSnDUS.jpeg')">
+      <img src="images/art_DUSnDUS.jpeg" alt="DUS'N'DUS">
+      <div class="artist-name">DUS'N'DUS</div>
+    </div>
+
+    <div class="artist" onclick="openPopup('images/art_Daria Fisher.jpg')">
+      <img src="images/art_Daria Fisher.jpg" alt="DARIA FISHER">
+      <div class="artist-name">DARIA FISHER</div>
+    </div>
+    <div class="artist" onclick="openPopup('images/art_Dinamica.jpg')">
+      <img src="images/art_Dinamica.jpg" alt="DINAMICA">
+      <div class="artist-name">DINAMICA</div>
+    </div>
+    <div class="artist" onclick="openPopup('images/art_Goshan.jpeg')">
+      <img src="images/art_Goshan.jpeg" alt="DJ GOSHAN">
+      <div class="artist-name">DJ GOSHAN</div>
+    </div>
+    <div class="artist" onclick="openPopup('images/art_Hector-Cooper.jpg')">
+      <img src="images/art_Hector-Cooper.jpg" alt="HECTOR COOPER">
+      <div class="artist-name">HECTOR COOPER</div>
+    </div>
+
+    <div class="artist" onclick="openPopup('images/art_Hobos.png')">
+      <img src="images/art_Hobos.png" alt="HOBOS">
+      <div class="artist-name">HOBOS</div>
+    </div>
+    <div class="artist" onclick="openPopup('images/art_In\'R\'Voice.jpeg')">
+      <img src="images/art_In'R'Voice.jpeg" alt="IN’R’VOICE">
+      <div class="artist-name">IN’R’VOICE</div>
+    </div>
     <div class="artist" onclick="openPopup('images/art_InnerSquare.png')">
       <img src="images/art_InnerSquare.png" alt="INNER SQUARE">
       <div class="artist-name">INNER SQUARE</div>
     </div>
-    <div class="artist" onclick="openPopup('images/art_Mr.Pepper.jpg')">
-      <img src="images/art_Mr.Pepper.jpg" alt="MR PEPPER">
-      <div class="artist-name">MR PEPPER</div>
+    <div class="artist" onclick="openPopup('images/art_Ki_Mi.jpg')">
+      <img src="images/art_Ki_Mi.jpg" alt="Ki.Mi.">
+      <div class="artist-name">Ki.Mi.</div>
+    </div>
+
+    <div class="artist" onclick="openPopup('images/art_Kirill-Bagus.jpg')">
+      <img src="images/art_Kirill-Bagus.jpg" alt="KIRILL BAGUS">
+      <div class="artist-name">KIRILL BAGUS</div>
+    </div>
+    <div class="artist" onclick="openPopup('images/art_Koloniari.jpg')">
+      <img src="images/art_Koloniari.jpg" alt="KOLONIARI">
+      <div class="artist-name">KOLONIARI</div>
+    </div>
+    <div class="artist" onclick="openPopup('images/art_L.N.D.N..jpg')">
+      <img src="images/art_L.N.D.N..jpg" alt="L.N.D.N.">
+      <div class="artist-name">L.N.D.N.</div>
     </div>
     <div class="artist" onclick="openPopup('images/art_Lunnar.jpg')">
       <img src="images/art_Lunnar.jpg" alt="LUNNAR">
       <div class="artist-name">LUNNAR</div>
     </div>
+
+    <div class="artist" onclick="openPopup('images/art_Mad-Dim.jpg')">
+      <img src="images/art_Mad-Dim.jpg" alt="MAD DIM">
+      <div class="artist-name">MAD DIM</div>
+    </div>
+    <div class="artist" onclick="openPopup('images/art_Mr.Pepper.jpg')">
+      <img src="images/art_Mr.Pepper.jpg" alt="MR PEPPER">
+      <div class="artist-name">MR PEPPER</div>
+    </div>
+    <div class="artist" onclick="openPopup('images/art_Nichtzusammen.jpg')">
+      <img src="images/art_Nichtzusammen.jpg" alt="NICHTZUSAMMEN">
+      <div class="artist-name">NICHTZUSAMMEN</div>
+    </div>
+    <div class="artist" onclick="openPopup('images/art_Spivak.jpg')">
+      <img src="images/art_Spivak.jpg" alt="SPIVAK">
+      <div class="artist-name">SPIVAK</div>
+    </div>
+
     <div class="artist" onclick="openPopup('images/art_Vavinchi.png')">
       <img src="images/art_Vavinchi.png" alt="VAVINCHI">
       <div class="artist-name">VAVINCHI</div>
     </div>
-    <div class="artist" onclick="openPopup('images/art_Batsula.png')">
-      <img src="images/art_Batsula.png" alt="BATSULA">
-      <div class="artist-name">BATSULA</div>
-    </div>
-    <div class="artist" onclick="openPopup('images/art_DariaFisher.jpg')">
-      <img src="images/art_DariaFisher.jpg" alt="DARIA FISHER">
-      <div class="artist-name">DARIA FISHER</div>
-    </div>
-    <div class="artist" onclick="openPopup('images/art_InRVoice.png')">
-      <img src="images/art_InRVoice.png" alt="IN’R’VOICE">
-      <div class="artist-name">IN’R’VOICE</div>
-    </div>
-    <div class="artist" onclick="openPopup('images/art_CompasVrubell.png')">
-      <img src="images/art_CompasVrubell.png" alt="COMPASS VRUBELL">
-      <div class="artist-name">COMPASS VRUBELL</div>
-    </div>
+  </div>
+
+  <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
+
+  <footer>
+    <p>© 2025 OBO&HOBOS — Record Label</p>
+  </footer>
+
+  <!-- Попап -->
+  <div id="popup" onclick="closePopup()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); text-align:center; transition:opacity 0.3s;">
+    <img id="popupImg" src="" style="max-width:90%; max-height:90%; margin-top:5%;">
+  </div>
+
+  <script>
+    function openPopup(imgSrc) {
+      const popup = document.getElementById('popup');
+      const popupImg = document.getElementById('popupImg');
+      popupImg.src = imgSrc;
+      popup.style.display = 'block';
+      popup.style.opacity = 0;
+      let op = 0;
+      const timer = setInterval(() => {
+        if (op >= 1) clearInterval(timer);
+        popup.style.opacity = op;
+        op += 0.05;
+      }, 20);
+    }
+
+    function closePopup() {
+      const popup = document.getElementById('popup');
+      let op = 1;
+      const timer = setInterval(() => {
+        if (op <= 0) {
+          clearInterval(timer);
+          popup.style.display = 'none';
+        }
+        popup.style.opacity = op;
+        op -= 0.05;
+      }, 20);
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
