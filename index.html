@@ -1,90 +1,71 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>OBO&HOBOS — Record Label — HOME</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBO&HOBOS — Главная</title>
 <style>
 body {
   background: white;
-  color: #888;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #555;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-align: center;
   margin: 0;
-  padding: 0 10px;
+  padding: 0;
 }
 header {
-  text-align: center;
   padding: 20px;
-}
-header img {
-  max-width: 200px;
-}
-nav {
-  text-align: center;
-  margin: 20px 0;
 }
 nav a {
   color: #888;
-  text-decoration: none;
   margin: 0 10px;
+  text-decoration: none;
   font-weight: 500;
 }
-section {
-  max-width: 1000px;
-  margin: 40px auto;
-  text-align: center;
-}
-h2 {
-  margin-bottom: 20px;
-}
-.flex-container {
+h2 {margin: 20px 0;}
+.releases-container, .artists-container, .top-week-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  padding: 20px 10px;
 }
-.flex-item {
-  border-radius: 50%;
+.release, .artist, .top-release {
+  background: white;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-  cursor: pointer;
   transition: transform 0.3s;
 }
-.flex-item:hover {
-  transform: scale(1.05);
-}
-.flex-item img {
+.release img, .top-release img {
+  width: 100%;
+  height: auto;
   display: block;
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
 }
-.video-container {
+.release-info, .artist-info, .top-release-info {
+  margin: 5px 0;
+  color: #888;
+  font-weight: 500;
+}
+.release:hover, .artist:hover, .top-release:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+.artist img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+.video-block {
   margin: 40px 0;
-}
-.top-week {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-.top-week img {
-  width: 180px;
-  height: 180px;
-  border-radius: 10px;
-  object-fit: cover;
-}
-footer {
-  text-align: center;
-  padding: 20px;
-  color: #aaa;
 }
 </style>
 </head>
 <body>
 
 <header>
-  <img src="images/logo.jpg" alt="OBO&HOBOS">
+  <img src="images/logo.jpg" alt="OBO&HOBOS Logo" width="200">
   <nav>
     <a href="index.html">HOME</a> |
     <a href="info.html">INFO</a> |
@@ -95,109 +76,72 @@ footer {
   </nav>
 </header>
 
-<section>
 <h2>Последние релизы</h2>
-<div class="flex-container" id="latest-releases">
-  <!-- JS подставит последние 4 релиза -->
+<div class="releases-container">
+  <div class="release">
+    <img src="images/albums/OBO001-Vavinchi-Adeptus-150x150.jpg" alt="OBO001 Vavinchi - Adeptus">
+    <div class="release-info"><p>OBO001</p><p>Vavinchi — Adeptus</p></div>
+  </div>
+  <div class="release">
+    <img src="images/albums/OBO002-In’R’Voice-Steezy-150x150.jpg" alt="OBO002 In'R'Voice - Steezy">
+    <div class="release-info"><p>OBO002</p><p>In'R'Voice — Steezy</p></div>
+  </div>
+  <div class="release">
+    <img src="images/albums/OBO003-Boris-The-Spyder-Brainbow-150x150.jpg" alt="OBO003 Boris The Spyder - Brainbow">
+    <div class="release-info"><p>OBO003</p><p>Boris The Spyder — Brainbow</p></div>
+  </div>
+  <div class="release">
+    <img src="images/albums/OBO004-Inner-Square-Storm-Seeker-150x150.jpg" alt="OBO004 Inner Square - Storm Seeker">
+    <div class="release-info"><p>OBO004</p><p>Inner Square — Storm Seeker</p></div>
+  </div>
 </div>
-</section>
 
-<section>
-<h2>Случайные релизы</h2>
-<div class="flex-container" id="random-releases">
-  <!-- JS подставит 4 случайных релиза, не совпадающих с последними -->
+<h2>Рандомные релизы</h2>
+<div class="releases-container">
+  <div class="release">
+    <img src="images/albums/OBO005-DUSnDUS-Can-You-Feel-It-150x150.jpg" alt="OBO005 DUSnDUS - Can You Feel It">
+    <div class="release-info"><p>OBO005</p><p>DUSnDUS — Can You Feel It</p></div>
+  </div>
+  <div class="release">
+    <img src="images/albums/OBO006-Vavinchi-Sample-Two-Ego-150x150.jpg" alt="OBO006 Vavinchi - Sample Two Ego">
+    <div class="release-info"><p>OBO006</p><p>Vavinchi — Sample Two Ego</p></div>
+  </div>
+  <div class="release">
+    <img src="images/albums/OBO008-Spivak-Ocean-Down-150x150.jpg" alt="OBO008 Spivak - Ocean Down">
+    <div class="release-info"><p>OBO008</p><p>Spivak — Ocean Down</p></div>
+  </div>
+  <div class="release">
+    <img src="images/albums/OBO009-Ki.Mi_.-Red-Friends-150x150.jpg" alt="OBO009 Ki.Mi. - Red Friends">
+    <div class="release-info"><p>OBO009</p><p>Ki.Mi. — Red Friends</p></div>
+  </div>
 </div>
-</section>
 
-<section>
-<h2>Артисты недели</h2>
-<div class="flex-container" id="random-artists">
-  <!-- JS подставит 4 случайных артиста -->
+<h2>Артисты</h2>
+<div class="artists-container">
+  <div class="artist"><img src="images/artists/art_Ki_Mi.jpg" alt="Ki.Mi"><div class="artist-info">Ki.Mi</div></div>
+  <div class="artist"><img src="images/artists/art_Vavinchi.png" alt="Vavinchi"><div class="artist-info">Vavinchi</div></div>
+  <div class="artist"><img src="images/artists/art_Daria Fisher.jpg" alt="Daria Fisher"><div class="artist-info">Daria Fisher</div></div>
+  <div class="artist"><img src="images/artists/art_InnerSquare.png" alt="Inner Square"><div class="artist-info">Inner Square</div></div>
 </div>
-</section>
 
-<section class="video-container">
-<h2>Вышел клип</h2>
-<p>Daria Fisher — Drop</p>
-<video width="320" height="240" controls>
-  <source src="images/vid/drop.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-</section>
+<div class="video-block">
+  <h2>Новый клип</h2>
+  <video width="80%" controls>
+    <source src="images/vid/drop.mp4" type="video/mp4">
+    Ваш браузер не поддерживает видео.
+  </video>
+  <p>Daria Fisher — Drop</p>
+</div>
 
-<section>
 <h2>Топ недели</h2>
-<div class="top-week" id="top-week">
-  <!-- JS подставит релизы разного размера -->
+<div class="top-week-container">
+  <div class="top-release" style="width:220px;"><img src="images/albums/OBO010-Nichtzusammen-161-Bar-150x150.jpg"><div class="top-release-info">OBO010 — Nichtzusammen — 161 Bar</div></div>
+  <div class="top-release" style="width:180px;"><img src="images/albums/OBO011-VARIOUS-OBOHOBOS-Part-1-150x150.jpg"><div class="top-release-info">OBO011 — VARIOUS OBO&HOBOS Part 1</div></div>
+  <div class="top-release" style="width:240px;"><img src="images/albums/OBO012-Nub-Louget-150x150.jpg"><div class="top-release-info">OBO012 — Nub — Louget</div></div>
+  <div class="top-release" style="width:200px;"><img src="images/albums/OBO013-Vavinchi-–-Hashkurani-150x150.jpg"><div class="top-release-info">OBO013 — Vavinchi — Hashkurani</div></div>
 </div>
-</section>
 
-<footer>
-© 2025 OBO&HOBOS — Record Label
-</footer>
-
-<script>
-// данные о релизах
-const releases = [
-  {file:"OBO001-Vavinchi-Adeptus-150x150.jpg", name:"Vavinchi - Adeptus"},
-  {file:"OBO002-In’R’Voice-Steezy-150x150.jpg", name:"In’R’Voice - Steezy"},
-  {file:"OBO003-Boris-The-Spyder-Brainbow-150x150.jpg", name:"Boris The Spyder - Brainbow"},
-  {file:"OBO004-Inner-Square-Storm-Seeker-150x150.jpg", name:"Inner Square - Storm Seeker"},
-  {file:"OBO005-DUSnDUS-Can-You-Feel-It-150x150.jpg", name:"DUSnDUS - Can You Feel It"},
-  {file:"OBO006-Vavinchi-Sample-Two-Ego-150x150.jpg", name:"Vavinchi - Sample Two Ego"},
-  {file:"OBO008-Spivak-Ocean-Down-150x150.jpg", name:"Spivak - Ocean Down"},
-  {file:"OBO009-Ki.Mi_.-Red-Friends-150x150.jpg", name:"Ki.Mi. - Red Friends"},
-  {file:"OBO010-Nichtzusammen-161-Bar-150x150.jpg", name:"Nichtzusammen - 161 Bar"},
-];
-
-// данные об артистах
-const artists = [
-  {file:"art_Ki_Mi.jpg", name:"Ki.Mi.", link:"artists/kimi.html"},
-  {file:"art_Vavinchi.png", name:"Vavinchi", link:"artists/vavinchi.html"},
-  {file:"art_Daria Fisher.jpg", name:"Daria Fisher", link:"artists/dariafisher.html"},
-  {file:"art_InnerSquare.png", name:"Inner Square", link:"artists/innersquare.html"},
-];
-
-// выбираем последние 4
-const latest = releases.slice(-4);
-const latestContainer = document.getElementById("latest-releases");
-latest.forEach(r => {
-  const div = document.createElement("div");
-  div.className="flex-item";
-  div.innerHTML = `<img src="images/albums/${r.file}" alt="${r.name}"><br>${r.name}`;
-  latestContainer.appendChild(div);
-});
-
-// выбираем случайные 4, не совпадающие с последними
-const remaining = releases.filter(r=>!latest.includes(r));
-const shuffled = remaining.sort(()=>0.5-Math.random()).slice(0,4);
-const randomContainer = document.getElementById("random-releases");
-shuffled.forEach(r=>{
-  const div=document.createElement("div");
-  div.className="flex-item";
-  div.innerHTML=`<img src="images/albums/${r.file}" alt="${r.name}"><br>${r.name}`;
-  randomContainer.appendChild(div);
-});
-
-// 4 случайных артиста
-const shuffledArtists = artists.sort(()=>0.5-Math.random()).slice(0,4);
-const artistContainer = document.getElementById("random-artists");
-shuffledArtists.forEach(a=>{
-  const div=document.createElement("div");
-  div.className="flex-item";
-  div.innerHTML=`<a href="${a.link}"><img src="images/${a.file}" alt="${a.name}"><br>${a.name}</a>`;
-  artistContainer.appendChild(div);
-});
-
-// топ недели (дублируем последние)
-const topWeekContainer=document.getElementById("top-week");
-releases.forEach(r=>{
-  const img=document.createElement("img");
-  img.src="images/albums/"+r.file;
-  img.alt=r.name;
-  topWeekContainer.appendChild(img);
-});
-</script>
+<footer style="margin:40px 0; color:#888;">© 2025 OBO&HOBOS — Record Label</footer>
 
 </body>
 </html>
