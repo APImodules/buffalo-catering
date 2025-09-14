@@ -6,21 +6,36 @@
 <title>OBO&HOBOS — Recordings</title>
 <style>
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: #555;
     margin: 0;
     padding: 0;
   }
+
   header {
     background: #fff;
-    padding: 10px 0;
+    padding: 15px 0;
     border-bottom: 1px solid #ccc;
     text-align: center;
   }
   header img { height: 60px; }
-  nav a { color:#888; text-decoration:none; margin:0 10px; font-weight:500; }
-  nav a:hover { color:#555; }
+  nav a {
+    color: #888;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  nav a:hover { color: #555; }
+
+  h1 {
+    text-align: center;
+    margin: 60px 0 20px 0;
+    font-size: 28px;
+    font-weight: 600;
+    color: #555;
+  }
 
   .grid {
     display: flex;
@@ -28,204 +43,144 @@
     justify-content: center;
     gap: 20px;
     padding: 20px;
+    max-width: 1200px;
+    margin: auto;
   }
 
-  .release-container {
+  .release {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    width: 180px;
     background: #f9f9f9;
-    border-radius: 8px;
+    border: 1px solid #eee;
+    border-radius: 12px;
     padding: 10px;
+    width: 280px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    cursor: pointer;
     transition: transform 0.2s;
   }
-  .release-container:hover { transform: scale(1.05); }
+  .release:hover { transform: translateY(-3px); }
 
-  .release-container img {
-    width: 150px;
-    height: 150px;
+  .release img {
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 8px;
+    margin-right: 12px;
   }
 
-  .release-name { font-weight: 700; font-size: 14px; margin-bottom: 4px; text-align:center; }
-  .release-desc { font-size: 12px; color:#888; text-align:center; margin-bottom:6px; }
-  .read-more-btn {
+  .release-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .release-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 4px;
+  }
+  .release-desc {
     font-size: 12px;
+    color: #888;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .listen-btn {
+    display: inline-block;
     padding: 4px 10px;
+    border-radius: 20px;
     background: #ccc;
     color: #fff;
-    border-radius: 20px;
-    text-decoration: none;
+    font-size: 12px;
+    text-align: center;
+    cursor: default;
+    width: fit-content;
   }
+  .listen-btn:hover { background: #bbb; }
 
-  /* Попап */
-  .popup {
-    display:none;
-    position: fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background: rgba(0,0,0,0.5);
-    justify-content:center;
-    align-items:center;
-    z-index:1000;
+  @media(max-width: 900px) {
+    .release { width: 45%; }
   }
-  .popup-content {
-    background:#fff;
-    padding:20px;
-    border-radius:8px;
-    max-width:400px;
-    text-align:center;
-    position:relative;
+  @media(max-width: 600px) {
+    .release { width: 100%; }
   }
-  .popup-close {
-    position:absolute;
-    top:10px;
-    right:10px;
-    cursor:pointer;
-    font-weight:bold;
-    font-size:16px;
-  }
-  .popup-buttons {
-    margin-top:10px;
-    display:flex;
-    justify-content:center;
-    gap:10px;
-  }
-  .popup-buttons a {
-    padding:5px 12px;
-    border-radius:20px;
-    text-decoration:none;
-    color:#fff;
-    background:#ccc;
-    font-size:12px;
-  }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #fff;
+  color: #555;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+header {
+  background: white;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+header img { height: 60px; }
+nav { margin: 10px 0; }
+nav a {
+  color: #888;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: 500;
+  font-size: 16px;
+}
+nav a:hover { color: #555; }
 
-  /* Кнопка вверх */
-  #scrollTopBtn {
-    display:none;
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    padding:10px 15px;
-    font-size:14px;
-    border-radius:50%;
-    background:#888;
-    color:#fff;
-    cursor:pointer;
-    z-index:1000;
-  }
+h1, h2 { margin: 20px 0 10px; color: #888; font-weight: 600; }
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+.artist-block {
+  width: 220px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
+}
+.artist-block:hover { transform: translateY(-3px); }
+.artist-block img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  margin-bottom: 8px;
+}
+.artist-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 6px;
+}
+.artist-desc {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 8px;
+  height: 36px;
+  overflow: hidden;
+}
+.read-btn {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: #ccc;
+  color: #fff;
+  font-size: 12px;
+  text-decoration: none;
+}
+.read-btn:hover { background: #bbb; }
 
+@media(max-width:900px) { .artist-block { width: 45%; } }
+@media(max-width:600px) { .artist-block { width: 100%; } }
 </style>
 </head>
 <body>
-
-<header>
-  <div class="logo-container">
-    <img src="images/logo.jpg" alt="OBO&HOBOS Logo">
-  </div>
-  <nav>
-    <a href="index.html">HOME</a>
-    <a href="info.html">INFO</a>
-    <a href="recordings.html">RECORDINGS</a>
-    <a href="studio.html">STUDIO</a>
-    <a href="artists.html">ARTISTS</a>
-    <a href="events.html">EVENTS</a>
-  </nav>
-</header>
-
-<h2 style="text-align:center; margin-top:20px;">RECORDINGS</h2>
-<div class="grid">
-
-  <!-- Пример одного релиза -->
-  <div class="release-container" data-popup="popup1">
-    <img src="images/albums/OBO-021-Ki.Mi_.-Sunday-150x150.jpg" alt="Sunday - Ki.Mi.">
-    <div class="release-name">Sunday - Ki.Mi.</div>
-    <div class="release-desc">A hypnotic deep house journey perfect for sunrise sets.</div>
-    <a class="read-more-btn">Read More</a>
-  </div>
-
-  <div class="release-container" data-popup="popup2">
-    <img src="images/albums/OBO001-Vavinchi-Adeptus-150x150.jpg" alt="Adeptus - Vavinchi">
-    <div class="release-name">Adeptus - Vavinchi</div>
-    <div class="release-desc">Melodic techno with a futuristic vibe and deep atmospheric layers.</div>
-    <a class="read-more-btn">Read More</a>
-  </div>
-
-  <!-- Добавь остальные контейнеры аналогично -->
-
-</div>
-
-<!-- Попапы -->
-<div class="popup" id="popup1">
-  <div class="popup-content">
-    <span class="popup-close">&times;</span>
-    <h3>Sunday - Ki.Mi.</h3>
-    <p>Full description text goes here. Add 3–4 sentences about the track, vibe, style, and why it's special.</p>
-    <div class="popup-buttons">
-      <a href="#">Listen Soon</a>
-      <a href="#">Pre-order</a>
-    </div>
-  </div>
-</div>
-
-<div class="popup" id="popup2">
-  <div class="popup-content">
-    <span class="popup-close">&times;</span>
-    <h3>Adeptus - Vavinchi</h3>
-    <p>Full description text goes here. Include info about atmosphere, style, and special features.</p>
-    <div class="popup-buttons">
-      <a href="#">Listen Soon</a>
-      <a href="#">Pre-order</a>
-    </div>
-  </div>
-</div>
-
-<!-- Кнопка вверх -->
-<button id="scrollTopBtn" onclick="scrollTop()">↑</button>
-
-<script>
-  // Попапы
-  const releases = document.querySelectorAll('.release-container');
-  const popups = document.querySelectorAll('.popup');
-
-  releases.forEach(rel => {
-    rel.addEventListener('click', () => {
-      const popupId = rel.getAttribute('data-popup');
-      document.getElementById(popupId).style.display = 'flex';
-    });
-  });
-
-  const closeBtns = document.querySelectorAll('.popup-close');
-  closeBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.target.closest('.popup').style.display = 'none';
-    });
-  });
-
-  popups.forEach(popup => {
-    popup.addEventListener('click', (e) => {
-      if(e.target === popup) popup.style.display = 'none';
-    });
-  });
-
-  // Кнопка вверх
-  const scrollBtn = document.getElementById('scrollTopBtn');
-  window.onscroll = function() {
-    if(document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-      scrollBtn.style.display = "block";
-    } else {
-      scrollBtn.style.display = "none";
-    }
-  }
-  function scrollTop() {
-    window.scrollTo({top:0, behavior:'smooth'});
-  }
-</script>
-
-</body>
-</html>
