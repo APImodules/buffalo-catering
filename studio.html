@@ -3,32 +3,129 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OBO&HOBOS Studio</title>
+<title>OBO&HOBOS Studio Services</title>
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color:#555; margin:0; background:white; }
-  header { background:white; padding:10px 0; border-bottom:1px solid #ccc; text-align:center; }
-  header img { height:60px; }
-  nav a { color:#888; text-decoration:none; margin:0 10px; font-weight:500; font-size:16px; }
-  nav a:hover { color:#555; }
-  h1,h2 { color:#555; font-weight:600; text-align:center; margin:20px 0; }
-  .studio-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:15px; padding:20px; }
-  .studio-container { width:200px; background:#f9f9f9; border-radius:12px; padding:15px; box-shadow:0 4px 8px rgba(0,0,0,0.05); cursor:pointer; transition:transform 0.2s; text-align:center; }
-  .studio-container:hover { transform:scale(1.05); }
-  .service-title { font-weight:600; margin-bottom:5px; font-size:16px; }
-  .service-desc { font-size:13px; color:#777; margin-bottom:8px; height:40px; overflow:hidden; }
-  .studio-popup { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:999; }
-  .popup-content { background:white; border-radius:12px; padding:20px; max-width:600px; width:90%; text-align:left; }
-  .popup-item { background:#f5f5f5; padding:10px; margin:8px 0; border-radius:8px; font-size:14px; }
-  .popup-content button { margin:10px 5px 0 0; padding:8px 12px; border:none; border-radius:20px; background:#888; color:white; cursor:pointer; font-weight:500; }
-  .popup-content button:hover { background:#555; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #f9f9f9;
+    color: #555;
+    text-align: center;
+  }
+  header {
+    background: #fff;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+  }
+  header img { height: 60px; }
+  nav a {
+    color: #888;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 500;
+  }
+  nav a:hover { color: #555; }
+  h2 { margin: 20px 0; color: #666; font-weight: 600; }
+
+  .central-line {
+    width: 4px;
+    background: #ccc;
+    margin: 0 auto;
+    position: relative;
+    height: 100px;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 40px 0;
+    position: relative;
+  }
+
+  .service {
+    width: 220px;
+    background: #fff;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+    position: relative;
+  }
+  .service:hover { transform: scale(1.05); }
+  .service h3 { font-size: 16px; margin: 10px 0; }
+  .service p { font-size: 13px; color: #777; }
+
+  /* Lines from central line to service blocks */
+  .line-left, .line-right {
+    position: absolute;
+    width: 2px;
+    background: #ccc;
+    top: -40px;
+    bottom: 0;
+  }
+  .line-left { left: -20px; }
+  .line-right { right: -20px; }
+
+  /* Pop-up */
+  .popup {
+    display: none;
+    position: fixed;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+  }
+  .popup-content {
+    background: #fff;
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    max-height: 90%;
+    overflow-y: auto;
+    position: relative;
+  }
+  .popup-close {
+    position: absolute;
+    top:10px;
+    right:15px;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .popup-blocks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .popup-block {
+    background: #f5f5f5;
+    flex: 1 1 45%;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  .popup-block button {
+    margin-top: 10px;
+    background: #888;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo-container">
-    <img src="images/logo.jpg" alt="OBO&HOBOS Logo">
-  </div>
+  <div><img src="images/logo.jpg" alt="OBO&HOBOS Logo"></div>
   <nav>
     <a href="index.html">HOME</a>
     <a href="info.html">INFO</a>
@@ -39,98 +136,99 @@
   </nav>
 </header>
 
-<h1>STUDIO SERVICES</h1>
-<div class="studio-grid">
+<h2>STUDIO SERVICES</h2>
 
-  <!-- 30 контейнеров -->
-  <div class="studio-container" onclick="openPopup('recording')">
-    <div class="service-title">Recording Session</div>
-    <div class="service-desc">Professional recording options with or without sound engineer, vocalists, and custom setups for your project.</div>
+<div class="central-line"></div>
+
+<div class="container">
+  <!-- Пример одного блока услуги -->
+  <div class="service" onclick="openPopup('popup1')">
+    <h3>Recording Session</h3>
+    <p>Full recording sessions with professional engineers. Flexible options for artists.</p>
   </div>
 
-  <div class="studio-container" onclick="openPopup('mixing')">
-    <div class="service-title">Mixing & Mastering</div>
-    <div class="service-desc">Full production workflow, from raw tracks to polished, release-ready audio.</div>
+  <div class="service" onclick="openPopup('popup2')">
+    <h3>Mixing & Mastering</h3>
+    <p>High-quality mixing and mastering tailored for electronic music releases.</p>
   </div>
 
-  <div class="studio-container" onclick="openPopup('sound-design')">
-    <div class="service-title">Sound Design</div>
-    <div class="service-desc">Custom sound textures, FX, and atmospheric layers tailored to your music.</div>
+  <div class="service" onclick="openPopup('popup3')">
+    <h3>Sound Design</h3>
+    <p>Create unique sound textures, synth patches, and atmospheres for your tracks.</p>
   </div>
 
-  <div class="studio-container" onclick="openPopup('vocal-training')">
-    <div class="service-title">Vocal Training</div>
-    <div class="service-desc">Professional coaching to optimize vocal performance in recordings.</div>
+  <div class="service" onclick="openPopup('popup4')">
+    <h3>Vocal Coaching</h3>
+    <p>Individual or group sessions to improve vocal performance for recordings.</p>
   </div>
 
-  <div class="studio-container" onclick="openPopup('instrument-recording')">
-    <div class="service-title">Instrument Recording</div>
-    <div class="service-desc">Recording of live instruments with high-end mics and preamps for crisp, rich sound.</div>
-  </div>
-
-  <div class="studio-container" onclick="openPopup('custom-mixes')">
-    <div class="service-title">Custom Mixes</div>
-    <div class="service-desc">Tailored mixes for albums, singles, and online streaming platforms.</div>
-  </div>
-
-  <div class="studio-container" onclick="openPopup('demo-production')">
-    <div class="service-title">Demo Production</div>
-    <div class="service-desc">Create compelling demos ready for labels, publishers, or contests.</div>
-  </div>
-
-  <div class="studio-container" onclick="openPopup('mastering-only')">
-    <div class="service-title">Mastering Only</div>
-    <div class="service-desc">Bring your mixed track to professional loudness and clarity.</div>
-  </div>
-
-  <div class="studio-container" onclick="openPopup('smm-support')">
-    <div class="service-title">SMM & Promotion</div>
-    <div class="service-desc">Support for online promotion including social media campaigns and distribution.</div>
-  </div>
-
-  <div class="studio-container" onclick="openPopup('custom-workshop')">
-    <div class="service-title">Custom Workshop</div>
-    <div class="service-desc">One-on-one sessions to develop skills or co-produce tracks.</div>
-  </div>
-
-  <!-- Продолжаем добавлять контейнеры до 30 с SEO-описанием -->
-
+  <!-- Добавить остальные услуги до 30 контейнеров аналогично -->
 </div>
 
-<!-- Pop-ups для примера (аналогично для всех 30 сервисов) -->
-<div class="studio-popup" id="recording-popup">
+<!-- POPUPS -->
+
+<div class="popup" id="popup1">
   <div class="popup-content">
-    <h3>Recording Session Options</h3>
-    <div class="popup-item">Option 1: With Engineer</div>
-    <div class="popup-item">Option 2: Without Engineer</div>
-    <div class="popup-item">Option 3: Vocalist Included</div>
-    <div class="popup-item">Option 4: Custom Setup</div>
-    <button onclick="closePopup()">Back</button>
-    <button onclick="sendRequest('Recording Session')">Ask to Solve</button>
+    <span class="popup-close" onclick="closePopup('popup1')">&times;</span>
+    <h3>Recording Session Details</h3>
+    <div class="popup-blocks">
+      <div class="popup-block">
+        <p>Private studio recording with experienced engineer.</p>
+        <p>Optional vocal tuning included.</p>
+        <p>Flexible hours and session lengths.</p>
+        <button>Ask to Solve</button>
+      </div>
+      <div class="popup-block">
+        <p>Recording with session musicians.</p>
+        <p>Instrumental overdubs and arrangements.</p>
+        <button>Ask to Solve</button>
+      </div>
+      <div class="popup-block">
+        <p>Multi-track recording for electronic productions.</p>
+        <button>Ask to Solve</button>
+      </div>
+      <div class="popup-block">
+        <p>Basic recording package for demos.</p>
+        <button>Ask to Solve</button>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="studio-popup" id="mixing-popup">
+<div class="popup" id="popup2">
   <div class="popup-content">
-    <h3>Mixing & Mastering Options</h3>
-    <div class="popup-item">Option 1: Full Album Mix</div>
-    <div class="popup-item">Option 2: Single Track Mix</div>
-    <div class="popup-item">Option 3: Mastering Only</div>
-    <div class="popup-item">Option 4: Stem-Based Mastering</div>
-    <button onclick="closePopup()">Back</button>
-    <button onclick="sendRequest('Mixing & Mastering')">Ask to Solve</button>
+    <span class="popup-close" onclick="closePopup('popup2')">&times;</span>
+    <h3>Mixing & Mastering Details</h3>
+    <div class="popup-blocks">
+      <div class="popup-block">
+        <p>Full mix of individual tracks.</p>
+        <p>Final mastering for digital release.</p>
+        <button>Ask to Solve</button>
+      </div>
+      <div class="popup-block">
+        <p>Stem mixing for collaborative projects.</p>
+        <button>Ask to Solve</button>
+      </div>
+      <div class="popup-block">
+        <p>Advanced mastering with analog emulation.</p>
+        <button>Ask to Solve</button>
+      </div>
+      <div class="popup-block">
+        <p>Quick mastering for demos and drafts.</p>
+        <button>Ask to Solve</button>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- Аналогично для popup3, popup4 и всех остальных -->
 
 <script>
-function openPopup(service){
-  document.getElementById(service + '-popup').style.display='flex';
+function openPopup(id) {
+  document.getElementById(id).style.display = 'flex';
 }
-function closePopup(){
-  document.querySelectorAll('.studio-popup').forEach(p=>p.style.display='none');
-}
-function sendRequest(service){
-  alert('Request sent for '+service+'!');
+function closePopup(id) {
+  document.getElementById(id).style.display = 'none';
 }
 </script>
 
