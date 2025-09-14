@@ -1,186 +1,530 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>OBO&HOBOS — Recordings</title>
+<meta name="description" content="Explore OBO&HOBOS' premium electronic music recordings. Discover deep house, techno, and experimental releases by talented Moscow-based artists." />
+<meta name="keywords" content="electronic music recordings, deep house, techno, Moscow music label, OBO&HOBOS releases, music albums" />
+<meta name="robots" content="index, follow" />
 <style>
+  /* Reset */
+  * {
+    box-sizing: border-box;
+  }
   body {
-    background: #fff;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: #555;
+    background: #fff;
+    color: #444;
     margin: 0;
     padding: 0;
+    text-align: center;
+    line-height: 1.5;
   }
-
   header {
     background: #fff;
-    padding: 15px 0;
-    border-bottom: 1px solid #ccc;
-    text-align: center;
+    padding: 14px 0;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
-  header img { height: 60px; }
+  .logo-container img {
+    height: 64px;
+    object-fit: contain;
+    user-select: none;
+  }
+  nav.main-nav {
+    margin-top: 12px;
+  }
   nav a {
-    color: #888;
+    color: #666;
     text-decoration: none;
-    margin: 0 10px;
-    font-weight: 500;
-    font-size: 16px;
-  }
-  nav a:hover { color: #555; }
-
-  h1 {
-    text-align: center;
-    margin: 60px 0 20px 0;
-    font-size: 28px;
+    margin: 0 14px;
     font-weight: 600;
-    color: #555;
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    transition: color 0.3s ease;
   }
-
+  nav a:hover,
+  nav a:focus {
+    color: #222;
+  }
+  h1 {
+    margin: 36px 0 20px;
+    color: #222;
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+  }
   .grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    padding: 20px;
-    max-width: 1200px;
-    margin: auto;
+    gap: 24px;
+    padding: 20px 16px 60px;
+    max-width: 1260px;
+    margin: 0 auto;
   }
-
   .release {
-    display: flex;
-    align-items: center;
-    background: #f9f9f9;
-    border: 1px solid #eee;
-    border-radius: 12px;
-    padding: 10px;
-    width: 280px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    transition: transform 0.2s;
-  }
-  .release:hover { transform: translateY(-3px); }
-
-  .release img {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 12px;
-  }
-
-  .release-info {
-    flex: 1;
+    background: #fafafa;
+    border-radius: 14px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+    width: 220px;
+    padding: 16px 12px 20px;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: default;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+  }
+  .release:hover,
+  .release:focus-within {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 38px rgba(0,0,0,0.12);
+  }
+  .release img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    margin-bottom: 14px;
+    user-select: none;
   }
   .release-name {
-    font-weight: 600;
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 8px;
+    min-height: 40px;
   }
   .release-desc {
-    font-size: 12px;
-    color: #888;
-    margin-bottom: 6px;
-    line-height: 1.2;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 16px;
+    min-height: 42px;
   }
   .listen-btn {
     display: inline-block;
-    padding: 4px 10px;
-    border-radius: 20px;
-    background: #ccc;
+    padding: 8px 22px;
+    background: #222;
     color: #fff;
-    font-size: 12px;
-    text-align: center;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: 13px;
+    user-select: none;
     cursor: default;
-    width: fit-content;
+    transition: background-color 0.3s ease;
   }
-  .listen-btn:hover { background: #bbb; }
-
-  @media(max-width: 900px) {
-    .release { width: 45%; }
+  .listen-btn:hover,
+  .listen-btn:focus {
+    background: #555;
   }
-  @media(max-width: 600px) {
-    .release { width: 100%; }
+  @media (max-width: 900px) {
+    .release {
+      width: 48%;
+    }
+    h1 {
+      font-size: 24px;
+      margin: 32px 0 16px;
+    }
   }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: #fff;
-  color: #555;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-header {
-  background: white;
-  padding: 10px 0;
-  border-bottom: 1px solid #ccc;
-}
-header img { height: 60px; }
-nav { margin: 10px 0; }
-nav a {
-  color: #888;
-  text-decoration: none;
-  margin: 0 10px;
-  font-weight: 500;
-  font-size: 16px;
-}
-nav a:hover { color: #555; }
-
-h1, h2 { margin: 20px 0 10px; color: #888; font-weight: 600; }
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-}
-.artist-block {
-  width: 220px;
-  background: #f9f9f9;
-  border-radius: 12px;
-  padding: 10px;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  transition: transform 0.2s;
-}
-.artist-block:hover { transform: translateY(-3px); }
-.artist-block img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  margin-bottom: 8px;
-}
-.artist-name {
-  font-weight: 700;
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 6px;
-}
-.artist-desc {
-  font-size: 12px;
-  color: #888;
-  margin-bottom: 8px;
-  height: 36px;
-  overflow: hidden;
-}
-.read-btn {
-  display: inline-block;
-  padding: 5px 12px;
-  border-radius: 20px;
-  background: #ccc;
-  color: #fff;
-  font-size: 12px;
-  text-decoration: none;
-}
-.read-btn:hover { background: #bbb; }
-
-@media(max-width:900px) { .artist-block { width: 45%; } }
-@media(max-width:600px) { .artist-block { width: 100%; } }
+  @media (max-width: 600px) {
+    .release {
+      width: 100%;
+    }
+    nav a {
+      margin: 0 10px;
+      font-size: 13px;
+    }
+    h1 {
+      font-size: 22px;
+      margin: 28px 0 14px;
+    }
+  }
 </style>
 </head>
 <body>
+<header>
+  <div class="logo-container">
+    <img src="images/logo.jpg" alt="OBO&HOBOS Logo" />
+  </div>
+  <nav class="main-nav" role="navigation" aria-label="Primary Navigation">
+    <a href="index.html">Home</a>
+    <a href="info.html">Info</a>
+    <a href="recordings.html" aria-current="page">Recordings</a>
+    <a href="studio.html">Studio</a>
+    <a href="artists.html">Artists</a>
+    <a href="events.html">Events</a>
+  </nav>
+</header>
+
+<main>
+  <h1>Recordings</h1>
+  <section class="grid" aria-label="Music Releases">
+    <!-- Example release item -->
+    <article class="release" tabindex="0">
+      <img src="images/albums/OBO-021-Ki.Mi_.-Sunday-150x150.jpg" alt="Sunday - Ki.Mi." loading="lazy" width="150" height="150" />
+      <h2 class="release-name">Sunday - Ki.Mi.</h2>
+      <p class="release-desc">A hypnotic deep house journey perfect for sunrise sets.</p>
+      <span class="listen-btn" aria-disabled="true">Listen Soon</span>
+    </article>
+
+    <article class="release" tabindex="0">
+      <img src="images/albums/OBO001-Vavinchi-Adeptus-150x150.jpg" alt="Adeptus - Vavinchi" loading="lazy" width="150" height="150" />
+      <h2 class="release-name">Adeptus - Vavinchi</h2>
+      <p class="release-desc">Melodic techno with futuristic vibe and deep atmospheric layers.</p>
+      <span class="listen-btn" aria-disabled="true">Listen Soon</span>
+    </article>
+
+    <article class="release" tabindex="0">
+      <img src="images/albums/OBO002-In’R’Voice-Steezy-150x150.jpg" alt="Steezy - In’R’Voice" loading="lazy" width="150" height="150" />
+      <h2 class="release-name">Steezy - In’R’Voice</h2>
+      <p class="release-desc">Atmospheric beats blending house and progressive sounds.</p>
+      <span class="listen-btn" aria-disabled="true">Listen Soon</span>
+    </article>
+
+    <!-- Continue similarly for other releases up to OBO041 -->
+    <!-- Example snippet for next release -->
+  
+
+
+  <!-- OBO003 -->
+  <div class="release" id="OBO003">
+    <img src="images/albums/OBO003-Boris-The-Spyder-Brainbow-150x150.jpg" alt="Brainbow - Boris The Spyder">
+    <div class="release-name">Brainbow - Boris The Spyder</div>
+    <div class="release-artist">Boris The Spyder</div>
+    <div class="release-desc">A unique fusion of deep electronic textures with hypnotic grooves.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO004 -->
+  <div class="release" id="OBO004">
+    <img src="images/albums/OBO004-Inner-Square-Storm-Seeker-150x150.jpg" alt="Storm Seeker - Inner Square">
+    <div class="release-name">Storm Seeker - Inner Square</div>
+    <div class="release-artist">Inner Square</div>
+    <div class="release-desc">Melodic techno journey with intricate rhythms and atmospheric layers.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO005 -->
+  <div class="release" id="OBO005">
+    <img src="images/albums/OBO005-DUSnDUS-Can-You-Feel-It-150x150.jpg" alt="Can You Feel It - DUSnDUS">
+    <div class="release-name">Can You Feel It - DUSnDUS</div>
+    <div class="release-artist">DUSnDUS</div>
+    <div class="release-desc">Hypnotic house beats designed to captivate the dancefloor energy.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO006 -->
+  <div class="release" id="OBO006">
+    <img src="images/albums/OBO006-Vavinchi-Sample-Two-Ego-150x150.jpg" alt="Sample Two Ego - Vavinchi">
+    <div class="release-name">Sample Two Ego - Vavinchi</div>
+    <div class="release-artist">Vavinchi</div>
+    <div class="release-desc">Experimental electronic track blending ambient sounds with driving rhythm.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO008 -->
+  <div class="release" id="OBO008">
+    <img src="images/albums/OBO008-Spivak-Ocean-Down-150x150.jpg" alt="Ocean Down - Spivak">
+    <div class="release-name">Ocean Down - Spivak</div>
+    <div class="release-artist">Spivak</div>
+    <div class="release-desc">Deep, moody house with immersive melodic textures.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO009 -->
+  <div class="release" id="OBO009">
+    <img src="images/albums/OBO009-Ki.Mi_.-Red-Friends-150x150.jpg" alt="Red Friends - Ki.Mi.">
+    <div class="release-name">Red Friends - Ki.Mi.</div>
+    <div class="release-artist">Ki.Mi.</div>
+    <div class="release-desc">Smooth deep house grooves with hypnotic melodic lines.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO010 -->
+  <div class="release" id="OBO010">
+    <img src="images/albums/OBO010-Nichtzusammen-161-Bar-150x150.jpg" alt="161 Bar - Nichtzusammen">
+    <div class="release-name">161 Bar - Nichtzusammen</div>
+    <div class="release-artist">Nichtzusammen</div>
+    <div class="release-desc">Dark techno beats with underground vibes and rhythmic experimentation.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO011 -->
+  <div class="release" id="OBO011">
+    <img src="images/albums/OBO011-VARIOUS-OBOHOBOS-Part-1-150x150.jpg" alt="OBOHOBOS Part 1 - VARIOUS">
+    <div class="release-name">OBOHOBOS Part 1 - VARIOUS</div>
+    <div class="release-artist">VARIOUS</div>
+    <div class="release-desc">Compilation of deep house and techno tracks from the OBO&HOBOS family.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO012 -->
+  <div class="release" id="OBO012">
+    <img src="images/albums/OBO012-Nub-Louget-150x150.jpg" alt="Nub - Louget">
+    <div class="release-name">Nub - Louget</div>
+    <div class="release-artist">Louget</div>
+    <div class="release-desc">Melodic tech with smooth grooves and captivating atmosphere.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO013 -->
+  <div class="release" id="OBO013">
+    <img src="images/albums/OBO013-Vavinchi-–-Hashkurani-150x150.jpg" alt="Hashkurani - Vavinchi">
+    <div class="release-name">Hashkurani - Vavinchi</div>
+    <div class="release-artist">Vavinchi</div>
+    <div class="release-desc">Melodic and deep textures for late-night explorations.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO014 -->
+  <div class="release" id="OBO014">
+    <img src="images/albums/OBO014-Nichtzussamen-Four-One-150x150.jpg" alt="Four One - Nichtzusammen">
+    <div class="release-name">Four One - Nichtzusammen</div>
+    <div class="release-artist">Nichtzusammen</div>
+    <div class="release-desc">Driving underground techno with hypnotic sequences.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO015 -->
+  <div class="release" id="OBO015">
+    <img src="images/albums/OBO015-Dinamica-Maxime-pres-Cosmogeologi-feat-Mad-Russian-Body-Soul-Included-Vlada-D’Shake-Remix-150x150.jpg" alt="Body Soul Included - Dinamica Maxime">
+    <div class="release-name">Body Soul Included - Dinamica Maxime</div>
+    <div class="release-artist">Dinamica</div>
+    <div class="release-desc">Energetic remix with hypnotic layers and dynamic rhythms.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO016 -->
+  <div class="release" id="OBO016">
+    <img src="images/albums/OBO016-Alexei-Lisin-Dirty-150x150.jpg" alt="Dirty - Alexei Lisin">
+    <div class="release-name">Dirty - Alexei Lisin</div>
+    <div class="release-artist">Alexei Lisin</div>
+    <div class="release-desc">Tech-driven electronic track with dark undertones and groovy beats.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO017 -->
+  <div class="release" id="OBO017">
+    <img src="images/albums/OBO017-Ki.Mi_.-Grooveland-150x150.jpg" alt="Grooveland - Ki.Mi.">
+    <div class="release-name">Grooveland - Ki.Mi.</div>
+    <div class="release-artist">Ki.Mi.</div>
+    <div class="release-desc">Smooth melodic deep house journey for chill and dance moods.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO018 -->
+  <div class="release" id="OBO018">
+    <img src="images/albums/OBO018-Vavinchi-NoMoreParty-150x150.jpg" alt="No More Party - Vavinchi">
+    <div class="release-name">No More Party - Vavinchi</div>
+    <div class="release-artist">Vavinchi</div>
+    <div class="release-desc">Deep melodic tracks for late night immersive sets.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO019 -->
+  <div class="release" id="OBO019">
+    <img src="images/albums/OBO019-Dinamica-In-The-Begining-150x150.jpg" alt="In The Begining - Dinamica">
+    <div class="release-name">In The Begining - Dinamica</div>
+    <div class="release-artist">Dinamica</div>
+    <div class="release-desc">Hypnotic techno beats with a captivating underground vibe.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO020 -->
+  <div class="release" id="OBO020">
+    <img src="images/albums/OBO020-Mr-Pepper-Kaizen-150x150.jpg" alt="Kaizen - Mr Pepper">
+    <div class="release-name">Kaizen - Mr Pepper</div>
+    <div class="release-artist">Mr Pepper</div>
+    <div class="release-desc">Dynamic electronic grooves with deep melodic influence.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO022 -->
+  <div class="release" id="OBO022">
+    <img src="images/albums/OBO022-In’R’Voice-Unterwelt-150x150.jpg" alt="Unterwelt - In’R’Voice">
+    <div class="release-name">Unterwelt - In’R’Voice</div>
+    <div class="release-artist">In’R’Voice</div>
+    <div class="release-desc">Dark atmospheric tech house perfect for late night sessions.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO023 -->
+  <div class="release" id="OBO023">
+    <img src="images/albums/OBO023-Hobos-Get-Lost-150x150.jpg" alt="Get Lost - Hobos">
+    <div class="release-name">Get Lost - Hobos</div>
+    <div class="release-artist">Hobos</div>
+    <div class="release-desc">Hypnotic deep house vibes for immersive dance experiences.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO024 -->
+  <div class="release" id="OBO024">
+    <img src="images/albums/OBO024-Oleg-Zolotarev-Grounded-150x150.jpg" alt="Grounded - Oleg Zolotarev">
+    <div class="release-name">Grounded - Oleg Zolotarev</div>
+    <div class="release-artist">Oleg Zolotarev</div>
+    <div class="release-desc">Deep tech house grooves with intricate melodic layers.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO025 -->
+  <div class="release" id="OBO025">
+    <img src="images/albums/OBO025-Nichtzusammen-Forbidden-Planet-150x150.jpg" alt="Forbidden Planet - Nichtzusammen">
+    <div class="release-name">Forbidden Planet - Nichtzusammen</div>
+    <div class="release-artist">Nichtzusammen</div>
+    <div class="release-desc">Experimental house track with hypnotic underground textures.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO026 -->
+  <div class="release" id="OBO026">
+    <img src="images/albums/OBO026-Ki.Mi_.-Prana-150x150.jpg" alt="Prana - Ki.Mi.">
+    <div class="release-name">Prana - Ki.Mi.</div>
+    <div class="release-artist">Ki.Mi.</div>
+    <div class="release-desc">Smooth deep house journey with melodic and hypnotic elements.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO027 -->
+  <div class="release" id="OBO027">
+    <img src="images/albums/OBO027-Batsula-Fasq-150x150.jpg" alt="Fasq - Batsula">
+    <div class="release-name">Fasq - Batsula</div>
+    <div class="release-artist">Batsula</div>
+    <div class="release-desc">Underground house with dark hypnotic rhythms and textures.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO028 -->
+  <div class="release" id="OBO028">
+    <img src="images/albums/OBO028-Anjei-Eye-Of-L-150x150.jpg" alt="Eye Of L - Anjei">
+    <div class="release-name">Eye Of L - Anjei</div>
+    <div class="release-artist">Anjei</div>
+    <div class="release-desc">Deep melodic techno track with atmospheric textures.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO029 -->
+  <div class="release" id="OBO029">
+    <img src="images/albums/OBO029-Inner-Squaere-Closed-Object-150x150.jpg" alt="Closed Object - Inner Square">
+    <div class="release-name">Closed Object - Inner Square</div>
+    <div class="release-artist">Inner Square</div>
+    <div class="release-desc">Melodic deep house journey with hypnotic grooves.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO030 -->
+  <div class="release" id="OBO030">
+    <img src="images/albums/OBO030-2-Years-OboHobos-150x150.jpg" alt="2 Years - OBO&HOBOS">
+    <div class="release-name">2 Years - OBO&HOBOS</div>
+    <div class="release-artist">VARIOUS</div>
+    <div class="release-desc">Compilation celebrating two years of the OBO&HOBOS label.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO031 -->
+  <div class="release" id="OBO031">
+    <img src="images/albums/OBO031-Modd-–-Mystery-of-the-Third-Planet-150x150.jpg" alt="Mystery of the Third Planet - Modd">
+    <div class="release-name">Mystery of the Third Planet - Modd</div>
+    <div class="release-artist">Modd</div>
+    <div class="release-desc">Hypnotic tech house track with melodic deep layers.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO032 -->
+  <div class="release" id="OBO032">
+    <img src="images/albums/OBO032-Various-–-Kolokol-Variables-150x150.jpg" alt="Kolokol Variables - Various">
+    <div class="release-name">Kolokol Variables - Various</div>
+    <div class="release-artist">VARIOUS</div>
+    <div class="release-desc">Experimental deep tech compilation with hypnotic tracks.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO033 -->
+  <div class="release" id="OBO033">
+    <img src="images/albums/OBO033-Daria-Fisher-–-Drop-150x150.jpg" alt="Drop - Daria Fisher">
+    <div class="release-name">Drop - Daria Fisher</div>
+    <div class="release-artist">Daria Fisher</div>
+    <div class="release-desc">Deep house track with immersive melodic atmosphere.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO034 -->
+  <div class="release" id="OBO034">
+    <img src="images/albums/OBO034-Koloniari-Hector-Cooper-–-Sidewalk-150x150.jpg" alt="Sidewalk - Koloniari Hector Cooper">
+    <div class="release-name">Sidewalk - Koloniari Hector Cooper</div>
+    <div class="release-artist">Koloniari Hector Cooper</div>
+    <div class="release-desc">Melodic tech house with deep rhythmic layers.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO035 -->
+  <div class="release" id="OBO035">
+    <img src="images/albums/OBO035-Lunnar-–-White-Out-150x150.png" alt="White Out - Lunnar">
+    <div class="release-name">White Out - Lunnar</div>
+    <div class="release-artist">Lunnar</div>
+    <div class="release-desc">Deep house textures with hypnotic, smooth melodies.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO036 -->
+  <div class="release" id="OBO036">
+    <img src="images/albums/OBO036-Denny-Kay-–-Elision-150x150.jpg" alt="Elision - Denny Kay">
+    <div class="release-name">Elision - Denny Kay</div>
+    <div class="release-artist">Denny Kay</div>
+    <div class="release-desc">Deep melodic tech house track with immersive grooves.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO037 -->
+  <div class="release" id="OBO037">
+    <img src="images/albums/OBO037-Karmahacker-–-Labyrinthine-150x150.jpg" alt="Labyrinthine - Karmahacker">
+    <div class="release-name">Labyrinthine - Karmahacker</div>
+    <div class="release-artist">Karmahacker</div>
+    <div class="release-desc">Complex, hypnotic tech house journey with deep layers.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO038 -->
+  <div class="release" id="OBO038">
+    <img src="images/albums/OBO038-Sinstro-feat-Alateya-–-Underground--150x150.jpg" alt="Underground - Sinstro feat Alateya">
+    <div class="release-name">Underground - Sinstro feat Alateya</div>
+    <div class="release-artist">Sinstro feat Alateya</div>
+    <div class="release-desc">Dark deep house with immersive rhythmic elements.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO039 -->
+  <div class="release" id="OBO039">
+    <img src="images/albums/OBO039-Dima-Terem-Ancha-–-Back-To-Slow-150x150.jpg" alt="Back To Slow - Dima Terem Ancha">
+    <div class="release-name">Back To Slow - Dima Terem Ancha</div>
+    <div class="release-artist">Dima Terem Ancha</div>
+    <div class="release-desc">Hypnotic, melodic tech house track with deep grooves.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+  <!-- OBO041 -->
+  <div class="release" id="OBO041">
+    <img src="images/albums/OBO041-Kirill-Bagus-Optical-Illusion-1-150x150.jpg" alt="Optical Illusion - Kirill Bagus">
+    <div class="release-name">Optical Illusion - Kirill Bagus</div>
+    <div class="release-artist">Kirill Bagus</div>
+    <div class="release-desc">Deep techno journey with hypnotic and melodic layers.</div>
+    <a class="listen-btn">Listen Soon</a>
+  </div>
+
+</div>
+
+
+    <!-- Last shown release -->
+   
+  </section>
+</main>
+
+<footer>
+  © 2025 OBO&HOBOS — Record Label
+</footer>
+</body>
+</html>
