@@ -1,137 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>OBO&HOBOS — Events</title>
+<meta name="description" content="Discover exclusive OBO&HOBOS music events in Moscow. Night showcases, private member parties, outdoor summer festivals, and premium label artist performances." />
+<meta name="keywords" content="OBO&HOBOS events Moscow, electronic music parties, underground music events, label showcases, summer music festivals Moscow" />
+<meta name="robots" content="index, follow" />
 <style>
-body {
-  margin:0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: #f9f9f9;
-  color: #555;
-}
-header {
-  background: #fff;
-  padding: 10px 0;
-  border-bottom: 1px solid #ccc;
-  text-align: center;
-}
-header .logo-container {
-  width: 100px;
-  height: 100px;
-  margin: 0 auto;
-  border-radius: 50%;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-header .logo-container img { width: 80px; border-radius: 50%; }
-nav { margin: 10px 0; }
-nav a { color: #888; text-decoration: none; margin: 0 10px; font-weight: 500; }
-nav a:hover { color: #555; }
-
-.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-h2 { margin: 30px 0 20px; color: #666; font-weight: 600; }
-
-.row { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 40px; }
-
-.event-block {
-  background: rgba(255,255,255,0.95);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  width: 250px;
-  text-align: center;
-  padding: 15px;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.event-block:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-}
-.event-block img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 12px;
-}
-.event-block h3 { font-size: 16px; margin: 8px 0; color: #444; }
-.event-block p { font-size: 13px; color: #666; height: 60px; overflow: hidden; }
-.btn {
-  display: inline-block;
-  padding: 6px 14px;
-  margin-top: 8px;
-  font-size: 13px;
-  border-radius: 20px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.2s;
-}
-.btn.active {
-  background: #888;
-  color: #fff;
-}
-.btn.inactive {
-  background: rgba(200,200,200,0.4);
-  color: #aaa;
-  cursor: not-allowed;
-}
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background: #fff;
+    color: #444;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    text-align: center;
+  }
+  header {
+    background: #fff;
+    padding: 16px 0;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo-container img {
+    height: 64px;
+    object-fit: contain;
+    user-select: none;
+  }
+  nav.main-nav {
+    margin-top: 12px;
+  }
+  nav a {
+    color: #666;
+    text-decoration: none;
+    margin: 0 14px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    transition: color 0.3s ease;
+  }
+  nav a:hover,
+  nav a:focus {
+    color: #222;
+  }
+  main {
+    max-width: 900px;
+    margin: 48px auto 60px;
+    padding: 0 20px;
+    text-align: left;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 24px;
+    letter-spacing: 0.04em;
+    text-align: center;
+  }
+  .event {
+    background: #fafafa;
+    border-radius: 14px;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    padding: 22px 26px;
+    margin-bottom: 28px;
+    user-select: none;
+  }
+  .event-title {
+    font-weight: 700;
+    font-size: 20px;
+    color: #222;
+    margin-bottom: 10px;
+  }
+  .event-desc {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 5px;
+  }
+  .event-meta {
+    font-style: italic;
+    font-size: 13px;
+    color: #999;
+  }
+  .badge {
+    display: inline-block;
+    background: #444;
+    color: #fff;
+    font-weight: 600;
+    font-size: 11px;
+    padding: 3px 12px;
+    border-radius: 16px;
+    user-select: none;
+    margin-left: 12px;
+    vertical-align: middle;
+  }
+  @media (max-width: 600px) {
+    main {
+      margin: 36px auto 48px;
+      padding: 0 14px;
+    }
+    .event-title {
+      font-size: 18px;
+    }
+  }
 </style>
 </head>
 <body>
-
 <header>
   <div class="logo-container">
-    <img src="images/logo.jpg" alt="OBO&HOBOS Logo">
+    <img src="images/logo.jpg" alt="OBO&HOBOS Logo" />
   </div>
-  <nav>
-    <a href="index.html">HOME</a>
-    <a href="info.html">INFO</a>
-    <a href="recordings.html">RECORDINGS</a>
-    <a href="studio.html">STUDIO</a>
-    <a href="artists.html">ARTISTS</a>
-    <a href="events.html">EVENTS</a>
+  <nav class="main-nav" role="navigation" aria-label="Primary Navigation">
+    <a href="index.html">Home</a>
+    <a href="info.html">Info</a>
+    <a href="recordings.html">Recordings</a>
+    <a href="studio.html">Studio</a>
+    <a href="artists.html">Artists</a>
+    <a href="events.html" aria-current="page">Events</a>
   </nav>
 </header>
 
-<div class="container">
-  <h2>PAST & UPCOMING EVENTS</h2>
+<main>
+  <h1>Upcoming Events</h1>
 
-  <div class="row">
-    <!-- Превью-пресейл -->
-    <div class="event-block">
-      <img src="images/events/OBO & HOBOS LABEL NIGHT.png" alt="OBO & HOBOS LABEL NIGHT">
-      <h3>OBO & HOBOS LABEL NIGHT</h3>
-      <p>Exclusive night event showcasing label artists. Limited presale tickets available!</p>
-      <a href="#" class="btn active">Presale</a>
-    </div>
+  <section aria-label="Event list">
+    <article class="event" tabindex="0">
+      <div class="event-title">
+        Exclusive Night Event Showcasing Label Artists
+        <span class="badge">Presale</span>
+      </div>
+      <p class="event-desc">An exclusive night event featuring performances by our label artists in an intimate setting with premium sound and lighting.</p>
+    </article>
 
-    <!-- Остальные афиши -->
-    <div class="event-block">
-      <img src="images/events/OBO & HOBOS MEMBERS ONLY.jpg" alt="OBO & HOBOS MEMBERS ONLY">
-      <h3>OBO & HOBOS MEMBERS ONLY</h3>
-      <p>Private member event with curated line-up and exclusive vibes. Photos available for attendees.</p>
-      <a class="btn inactive">Presale</a>
-    </div>
+    <article class="event" tabindex="0">
+      <div class="event-title">
+        Private Member Event with Curated Line-up
+        <span class="badge">Presale</span>
+      </div>
+      <p class="event-desc">A private gathering for label members with a handpicked line-up and an exclusive vibe. Photo galleries accessible to attendees only.</p>
+    </article>
 
-    <div class="event-block">
-      <img src="images/events/OBO & HOBOS OPEN AIR.jpg" alt="OBO & HOBOS OPEN AIR">
-      <h3>OBO & HOBOS OPEN AIR</h3>
-      <p>Outdoor summer party featuring all our artists. Photo gallery included for memories.</p>
-      <a class="btn inactive">Presale</a>
-    </div>
+    <article class="event" tabindex="0">
+      <div class="event-title">
+        Outdoor Summer Party Featuring All Artists
+        <span class="badge">Presale</span>
+      </div>
+      <p class="event-desc">Celebrate summer with all OBO&HOBOS artists at an open-air venue. Includes a photo gallery capturing the memorable moments.</p>
+    </article>
 
-    <div class="event-block">
-      <img src="images/events/OBO & HOBOS SHOWCASE.jpg" alt="OBO & HOBOS SHOWCASE">
-      <h3>OBO & HOBOS SHOWCASE</h3>
-      <p>Special showcase of label talent, premium sound and visuals. Photos of the event available.</p>
-      <a class="btn inactive">Presale</a>
-    </div>
-  </div>
-</div>
+    <article class="event" tabindex="0">
+      <div class="event-title">
+        Special Showcase of Label Talent
+        <span class="badge">Presale</span>
+      </div>
+      <p class="event-desc">Experience a premium showcase of our best artists with advanced sound systems and immersive visual setups. Photos available post event.</p>
+    </article>
+  </section>
+</main>
 
+<footer>
+  &copy; 2025 OBO&HOBOS | <a href="mailto:info@oboandhobos.pro" style="color:#aaa; text-decoration:none;">info@oboandhobos.pro</a>
+</footer>
 </body>
 </html>
