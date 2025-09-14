@@ -1,39 +1,46 @@
-<h2>PAST EVENTS</h2>
-<div class="events-timeline">
-  <!-- EVENT BLOCK START -->
-  <div class="event-block">
-    <img src="images/events/event1.jpg" alt="Event 1 Poster" class="event-poster">
-    <div class="event-info">
-      <h3>Summer Night Party 2025</h3>
-      <p class="event-desc">
-        An unforgettable night blending deep house grooves with immersive lighting. Our premium service included full club setup, sound engineering, and visual design. Attendees experienced a seamless evening curated for audiophiles and dance enthusiasts. This event set a new standard in private club experiences, from sound to atmosphere, and demonstrated our capability to organize events with style and precision.
-      </p>
-      <a class="read-more" href="#">Read more →</a>
-      <a class="buy-btn" href="#">Buy / Order</a>
-    </div>
-  </div>
-  <!-- EVENT BLOCK END -->
-
-  <!-- NEXT EVENTS -->
-  <div class="event-block">
-    <img src="images/events/event2.jpg" alt="Event 2 Poster" class="event-poster">
-    <div class="event-info">
-      <h3>Winter Vibes Gala 2024</h3>
-      <p class="event-desc">
-        A showcase of curated electronic performances with bespoke lighting and immersive visuals. Our team handled venue preparation, sound engineering, and artist coordination. Guests enjoyed a premium clubbing experience highlighting our organizational skills and attention to detail. This event demonstrated how we combine entertainment, technical mastery, and luxury service seamlessly.
-      </p>
-      <a class="read-more" href="#">Read more →</a>
-      <a class="buy-btn" href="#">Buy / Order</a>
-    </div>
-  </div>
-</div>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBO&HOBOS — Events</title>
 <style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #fff;
+  color: #555;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+header {
+  background: white;
+  padding: 15px 0;
+  border-bottom: 1px solid #ccc;
+}
+header img { height: 60px; }
+nav { margin: 10px 0; }
+nav a {
+  color: #888;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: 500;
+  font-size: 16px;
+}
+nav a:hover { color: #555; }
+
+h1, h2 {
+  margin: 20px 0 10px 0;
+  color: #555;
+  font-weight: 600;
+}
 .events-timeline {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
   padding: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 .event-block {
   display: flex;
@@ -46,7 +53,7 @@
 }
 .event-block:hover { transform: translateY(-2px); }
 .event-poster {
-  width: 200px;
+  width: 220px;
   height: 300px;
   object-fit: cover;
   margin: 10px;
@@ -66,6 +73,7 @@
   font-size: 13px;
   color: #666;
   margin: 10px 0;
+  line-height: 1.5;
 }
 .read-more, .buy-btn {
   display: inline-block;
@@ -81,5 +89,105 @@
 .read-more:hover { background: #777; }
 .buy-btn:hover { background: #999; }
 
-@media(max-width:900px) { .event-block { flex-direction: column; align-items: center; } }
+@media(max-width:900px) {
+  .event-block { flex-direction: column; align-items: center; }
+  .event-info { text-align: center; }
+}
 </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="images/logo.jpg" alt="OBO&HOBOS Logo">
+  </div>
+  <nav class="main-nav">
+    <a href="index.html">HOME</a>
+    <a href="info.html">INFO</a>
+    <a href="recordings.html">RECORDINGS</a>
+    <a href="studio.html">STUDIO</a>
+    <a href="artists.html">ARTISTS</a>
+    <a href="events.html">EVENTS</a>
+  </nav>
+</header>
+
+<h1>OUR EVENTS</h1>
+<p style="max-width:800px; margin: 0 auto 40px auto; color:#666; font-size:14px;">
+Explore our past events and discover how OBO&HOBOS combines premium sound, lighting, and clubbing experiences. Each event demonstrates our commitment to artistic quality, technical excellence, and unforgettable moments.
+</p>
+
+<div class="events-timeline">
+
+  <!-- Event 1 -->
+  <div class="event-block">
+    <img src="images/events/event1.jpg" alt="Summer Night Party 2025 Poster" class="event-poster">
+    <div class="event-info">
+      <h3>Summer Night Party 2025</h3>
+      <p class="event-desc">
+        An unforgettable night blending deep house grooves with immersive lighting. Our premium service included full club setup, sound engineering, and visual design. Attendees experienced a seamless evening curated for audiophiles and dance enthusiasts. This event set a new standard in private club experiences, from sound to atmosphere, and demonstrated our capability to organize events with style and precision. Optional add-ons included professional photography, social media coverage, and live streaming.
+      </p>
+      <a class="read-more" href="#">Read more →</a>
+      <a class="buy-btn" href="#">Buy / Order</a>
+    </div>
+  </div>
+
+  <!-- Event 2 -->
+  <div class="event-block">
+    <img src="images/events/event2.jpg" alt="Winter Vibes Gala 2024 Poster" class="event-poster">
+    <div class="event-info">
+      <h3>Winter Vibes Gala 2024</h3>
+      <p class="event-desc">
+        A showcase of curated electronic performances with bespoke lighting and immersive visuals. Our team handled venue preparation, sound engineering, and artist coordination. Guests enjoyed a premium clubbing experience highlighting our organizational skills and attention to detail. Event services included optional catering, customized stage design, and multi-camera video recording. This event demonstrated how we combine entertainment, technical mastery, and luxury service seamlessly.
+      </p>
+      <a class="read-more" href="#">Read more →</a>
+      <a class="buy-btn" href="#">Buy / Order</a>
+    </div>
+  </div>
+
+  <!-- Event 3 -->
+  <div class="event-block">
+    <img src="images/events/event3.jpg" alt="Spring Groove Festival 2024 Poster" class="event-poster">
+    <div class="event-info">
+      <h3>Spring Groove Festival 2024</h3>
+      <p class="event-desc">
+        A festival celebrating electronic music with top-tier DJs and live acts. OBO&HOBOS provided full sound, lighting, and production management. Attendees enjoyed curated playlists, high-quality audio, and immersive visuals. Services offered included stage design, artist management, and recording sessions. Our modular approach allows clients to select specific elements, creating a fully tailored experience from music to promotion.
+      </p>
+      <a class="read-more" href="#">Read more →</a>
+      <a class="buy-btn" href="#">Buy / Order</a>
+    </div>
+  </div>
+
+  <!-- Event 4 -->
+  <div class="event-block">
+    <img src="images/events/event4.jpg" alt="Autumn Club Nights 2023 Poster" class="event-poster">
+    <div class="event-info">
+      <h3>Autumn Club Nights 2023</h3>
+      <p class="event-desc">
+        Evening sessions designed for intimate club settings, featuring local and international DJs. Full technical support included sound check, light programming, and live monitoring. Optional services such as SMM promotion and live recording were available. Our attention to detail and premium service ensures that every guest experiences the perfect balance of music, lighting, and ambiance.
+      </p>
+      <a class="read-more" href="#">Read more →</a>
+      <a class="buy-btn" href="#">Buy / Order</a>
+    </div>
+  </div>
+
+  <!-- Event 5 -->
+  <div class="event-block">
+    <img src="images/events/event5.jpg" alt="Electronic Winter Sessions 2023 Poster" class="event-poster">
+    <div class="event-info">
+      <h3>Electronic Winter Sessions 2023</h3>
+      <p class="event-desc">
+        Seasonal event series combining electronic sets, ambient soundscapes, and innovative lighting. We offered modular packages including sound engineering, stage setup, and post-event media coverage. Guests were immersed in high-quality audio and visuals, making each session a memorable experience. Optional premium services allow full customization, ensuring the event meets each client's unique vision and objectives.
+      </p>
+      <a class="read-more" href="#">Read more →</a>
+      <a class="buy-btn" href="#">Buy / Order</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  &copy; 2025 OBO&HOBOS. All rights reserved. Designed with care for premium experiences.
+</footer>
+
+</body>
+</html>
