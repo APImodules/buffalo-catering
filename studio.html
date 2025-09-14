@@ -1,106 +1,100 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>OBO&HOBOS — Record Label — Studio</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background:white;
-      margin:0;
-      padding:0;
-    }
-    .menu a {
-      color: gray;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 50px;
-      margin: 40px 0;
-    }
-    .studio-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      max-width: 900px;
-      width: 90%;
-      gap: 20px;
-    }
-    .studio-card img {
-      width: 100%;
-      height: auto;
-      border-radius: 20px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-    }
-    .studio-card p {
-      font-size: 18px;
-      text-align: center;
-      line-height: 1.5;
-      max-width: 800px;
-    }
-    .scroll-btn {
-      position:fixed;
-      bottom:30px;
-      right:30px;
-      padding:15px;
-      border:none;
-      border-radius:50%;
-      background-color:rgba(0,0,0,0.2);
-      color:white;
-      font-size:20px;
-      cursor:pointer;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OBO&HOBOS — Record Label — STUDIO</title>
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: white;
+  color: #555;
+  margin:0;
+  padding:0;
+  text-align:center;
+}
+.menu a {
+  color: gray;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: 500;
+}
+h2 {
+  color: #555;
+  font-weight: 600;
+}
+.container {
+  width: 95%;
+  max-width: 1200px;
+  margin: 40px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+.block {
+  background: white;
+  flex: 1 1 400px;
+  max-width: 500px;
+  text-align: center;
+}
+.block img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  margin-bottom: 15px;
+}
+.block p {
+  color: #777;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: justify;
+  text-justify: inter-word;
+}
+footer {
+  text-align: center;
+  color: gray;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+</style>
 </head>
 <body>
 
-  <!-- Логотип и меню -->
-  <center>
-    <img src="images/logo.jpg" alt="OBO&HOBOS" style="max-width:200px; margin-top:20px;">
-    <p class="menu">
-      <a href="index.html">HOME</a> |
-      <a href="info.html">INFO</a> |
-      <a href="recordings.html">RECORDINGS</a> |
-      <a href="studio.html">STUDIO</a> |
-      <a href="artists.html">ARTISTS</a> |
-      <a href="events.html">EVENTS</a>
+<center>
+<img src="images/logo.jpg" alt="OBO&HOBOS" style="max-width:200px; margin-top:20px;">
+<p class="menu">
+  <a href="index.html">HOME</a> |
+  <a href="info.html">INFO</a> |
+  <a href="recordings.html">RECORDINGS</a> |
+  <a href="studio.html">STUDIO</a> |
+  <a href="artists.html">ARTISTS</a> |
+  <a href="events.html">EVENTS</a>
+</p>
+<hr>
+<h2>STUDIO</h2>
+</center>
+
+<div class="container">
+  <div class="block">
+    <img src="images/studio/Studio.jpg" alt="OBO&HOBOS Studio 1">
+    <p>
+      RECORD STUDIO OBO&HOBOS оказывает полный цикл услуг по продюсированию и записи вашего музыкального материала. Запись, сведение и мастеринг — все на современном оборудовании в комфортной атмосфере.
     </p>
-    <hr>
-  </center>
-
-  <h3 style="text-align:center;">Home &gt; STUDIO</h3>
-
-  <div class="container">
-
-    <div class="studio-card">
-      <img src="images/studio/Studio.jpg" alt="OBO&HOBOS Studio 1">
-      <p>
-        RECORD STUDIO OBO&HOBOS оказывает полный цикл услуг по продюсированию и записи вашего музыкального материала.
-        Запись — сведение — мастеринг. Современные мощности студии позволяют работать с проектом в полном производственном цикле.
-      </p>
-    </div>
-
-    <div class="studio-card">
-      <img src="images/studio/studio2.png" alt="OBO&HOBOS Studio 2">
-      <p>
-        Наша студия оборудована профессиональной аппаратурой для работы с электронными и акустическими инструментами.
-        Команда опытных продюсеров и звукорежиссеров обеспечивает качественный звук на каждом этапе проекта.
-      </p>
-    </div>
-
   </div>
 
-  <!-- Кнопка наверх -->
-  <button onclick="window.scrollTo({top:0, behavior:'smooth'});" class="scroll-btn">↑</button>
+  <div class="block">
+    <img src="images/studio/studio2.png" alt="OBO&HOBOS Studio 2">
+    <p>
+      Наша команда профессионалов помогает каждому артисту раскрыть потенциал. Мы обеспечиваем высокое качество звука и креативный подход к каждому проекту, делая процесс записи максимально удобным и вдохновляющим.
+    </p>
+  </div>
+</div>
 
-  <footer style="text-align:center; color:gray; margin-top:50px; margin-bottom:20px;">
-    © 2025 OBO&HOBOS — Record Label
-  </footer>
+<footer>
+  © 2025 OBO&HOBOS — Record Label
+</footer>
 
 </body>
 </html>
