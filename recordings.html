@@ -1,115 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OBO&HOBOS — Recordings</title>
-  <style>
-    body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: white;
-  color: #555;
-  margin:0;
-  padding:0;
-  text-align:center;
-}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBO&HOBOS — Recordings</title>
+<style>
+  body {
+    background: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #555;
+    margin: 0;
+    padding: 0;
+  }
 
-.menu a {
-  color: gray;
-  text-decoration: none;
-  margin: 0 10px;
-  font-weight: 500;
-}
+  header {
+    background: #fff;
+    padding: 15px 0;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+  }
+  header img { height: 60px; }
+  nav a {
+    color: #888;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  nav a:hover { color: #555; }
 
-h2 {
-  color: #555;
-  font-weight: 600;
-  margin-top: 20px;
-}
+  h1 {
+    text-align: center;
+    margin: 40px 0 20px 0;
+    font-size: 48px;
+    font-weight: 600;
+    color: #555;
+  }
 
-.events-grid {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-  margin: 50px auto;
-  max-width: 1200px;
-}
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
 
-.event {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-}
+  .release {
+    display: flex;
+    align-items: center;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 10px;
+    width: 280px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+  }
+  .release:hover { transform: translateY(-3px); }
 
-.event img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
+  .release img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 12px;
+  }
 
-.caption {
-  padding: 10px;
-  font-size: 1.1rem;
-  color: #555;
-  background: rgba(255,255,255,0.9);
-}
+  .release-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .release-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 4px;
+  }
+  .release-desc {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .listen-btn {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: #ccc;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    cursor: default;
+    width: fit-content;
+  }
+  .listen-btn:hover { background: #bbb; }
 
-.soldout {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background: rgba(200,200,200,0.6);
-  color: #333;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
-}
-
-.up-button {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: rgba(200,200,200,0.6);
-  color: #333;
-  padding: 10px 15px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.2rem;
-}
+  @media(max-width: 900px) {
+    .release { width: 45%; }
+  }
+  @media(max-width: 600px) {
+    .release { width: 100%; }
+  }
 </style>
 </head>
 <body>
 
-<center>
-<img src="images/logo.jpg" alt="OBO&HOBOS" style="max-width:200px; margin-top:20px;">
-<p class="menu">
-  <a href="index.html">HOME</a> |
-  <a href="info.html">INFO</a> |
-  <a href="recordings.html">RECORDINGS</a> |
-  <a href="studio.html">STUDIO</a> |
-  <a href="artists.html">ARTISTS</a> |
-  <a href="events.html">EVENTS</a>
-</p>
-<hr>
-<h2>EVENTS</h2>
-</center>
+<header>
+  <div class="logo-container">
+    <img src="images/logo.jpg" alt="OBO&HOBOS Logo">
+  </div>
+  <nav class="main-nav">
+    <a href="index.html">HOME</a>
+    <a href="info.html">INFO</a>
+    <a href="recordings.html">RECORDINGS</a>
+    <a href="studio.html">STUDIO</a>
+    <a href="artists.html">ARTISTS</a>
+    <a href="events.html">EVENTS</a>
+  </nav>
+</header>
 
-   <div class="grid">
-    <div class="release">
-      <img src="images/albums/OBO001-Vavinchi-Adeptus-150x150.jpg" alt="Vavinchi — Adeptus">
-      <div class="release-name">OBO001 - Vavinchi — Adeptus</div>
-      <div class="release-desc">A hypnotic deep house journey from Vavinchi.</div>
-      <div class="listen-btn">Listen Soon</div>
-    </div>
+<h1>RECORDINGS</h1>
 
-    <div class="release">
-      <img src="images/albums/OBO002-In’R’Voice-Steezy-150x150.jpg" alt="In’R’Voice — Steezy">
-      <div class="release-name">OBO002 - In’R’Voice — Steezy</div>
-      <div class="release-desc">Smooth grooves for late night vibes.</div>
-      <div class="listen-btn">Listen Soon</div>
+<div class="grid">
+  <!-- Пример одного релиза -->
+  <div class="release">
+    <img src="images/albums/OBO-021-Ki.Mi_.-Sunday-150x150.jpg" alt="Sunday - Ki.Mi.">
+    <div class="release-info">
+      <div class="release-name">Sunday - Ki.Mi.</div>
+      <div class="release-desc">A hypnotic deep house journey perfect for sunrise sets.</div>
+      <span class="listen-btn">Listen Soon</span>
     </div>
+  </div>
+
+  <div class="release">
+    <img src="images/albums/OBO001-Vavinchi-Adeptus-150x150.jpg" alt="Adeptus - Vavinchi">
+    <div class="release-info">
+      <div class="release-name">Adeptus - Vavinchi</div>
+      <div class="release-desc">Melodic techno with futuristic vibe and deep atmospheric layers.</div>
+      <span class="listen-btn">Listen Soon</span>
+    </div>
+  </div>
+
+  <div class="release">
+    <img src="images/albums/OBO002-In’R’Voice-Steezy-150x150.jpg" alt="Steezy - In’R’Voice">
+    <div class="release-info">
+      <div class="release-name">Steezy - In’R’Voice</div>
+      <div class="release-desc">Atmospheric beats blending house and progressive sounds.</div>
+      <span class="listen-btn">Listen Soon</span>
+    </div>
+  </div>
+
+  <div class="release">
+    <img src="images/albums/OBO003-Boris-The-Spyder-Brainbow-150x150.jpg" alt="Brainbow - Boris The Spyder">
+    <div class="release-info">
+      <div class="release-name">Brainbow - Boris The Spyder</div>
+      <div class="release-desc">Experimental techno with deep, layered textures.</div>
+      <span class="listen-btn">Listen Soon</span>
+    </div>
+  </div>
+
+  <!-- Продолжай по аналогии для всех остальных релизов до OBO041 -->
+
+
 
     <div class="release">
       <img src="images/albums/OBO003-Boris-The-Spyder-Brainbow-150x150.jpg" alt="Boris The Spyder — Brainbow">
