@@ -8,8 +8,10 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background:white;
+  color:#555;
   margin:0;
   padding:0;
+  text-align:center;
 }
 .menu a {
   color: gray;
@@ -19,44 +21,28 @@ body {
 .container {
   width: 95%;
   max-width: 1200px;
-  margin: auto;
-  margin-top:30px;
+  margin: 40px auto;
 }
-.section-title {
-  font-size: 24px;
-  margin: 30px 0 15px;
-  font-weight: bold;
+.block {
+  margin-bottom: 60px;
+}
+.block h3 {
+  margin-bottom: 20px;
 }
 .grid {
-  display: flex;
+  display:flex;
   flex-wrap: wrap;
-  gap: 20px;
+  justify-content: center;
+  gap:20px;
 }
 .grid-item {
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-  flex: 1 1 calc(25% - 20px);
-  min-width: 180px;
-  text-align: center;
+  flex: 0 0 200px;
+  text-align:center;
 }
 .grid-item img {
   width: 100%;
-  height: auto;
-}
-.grid-item p {
-  padding: 10px;
-  font-weight: bold;
-}
-.video-section {
-  margin: 40px 0;
-  text-align:center;
-}
-.video-section video {
-  width: 80%;
-  max-width: 800px;
-  border-radius:20px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.2);
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
 }
 .scroll-btn {
   position:fixed;
@@ -74,7 +60,6 @@ body {
 </head>
 <body>
 
-<!-- Логотип и меню -->
 <center>
 <img src="images/logo.jpg" alt="OBO&HOBOS" style="max-width:200px; margin-top:20px;">
 <p class="menu">
@@ -90,94 +75,67 @@ body {
 
 <div class="container">
 
-  <!-- Последние релизы -->
-  <div class="section-title">Последние релизы</div>
-  <div class="grid" id="latest-releases"></div>
+  <!-- Последние 4 релиза -->
+  <div class="block">
+    <h3>Последние релизы</h3>
+    <div class="grid">
+      <div class="grid-item"><img src="images/albums/OBO041-Kirill-Bagus-Optical-Illusion-1-150x150.jpg"><br>OBO41 — Kirill Bagus</div>
+      <div class="grid-item"><img src="images/albums/OBO040-Paul-Silve-Cicada-150x150.jpg"><br>OBO40 — Paul Silve</div>
+      <div class="grid-item"><img src="images/albums/OBO039-Dima-Terem-Ancha-Back-To-Slow-150x150.jpg"><br>OBO39 — Dima Terem & Ancha</div>
+      <div class="grid-item"><img src="images/albums/OBO038-Sinstro-feat-Alateya-Underground-150x150.jpg"><br>OBO38 — Sinstro feat Alateya</div>
+    </div>
+  </div>
 
-  <!-- Рандомные релизы -->
-  <div class="section-title">Случайные релизы</div>
-  <div class="grid" id="random-releases"></div>
+  <!-- 4 случайных релиза -->
+  <div class="block">
+    <h3>Случайные релизы</h3>
+    <div class="grid">
+      <div class="grid-item"><img src="images/albums/OBO035-Lunnar-White-Out-150x150.png"><br>OBO35 — Lunnar</div>
+      <div class="grid-item"><img src="images/albums/OBO027-Batsula-Fasq-150x150.jpg"><br>OBO27 — Batsula</div>
+      <div class="grid-item"><img src="images/albums/OBO022-In’R’Voice-Unterwelt-150x150.jpg"><br>OBO22 — In’R’Voice</div>
+      <div class="grid-item"><img src="images/albums/OBO017-Ki.Mi-Grooveland-150x150.jpg"><br>OBO17 — Ki.Mi.</div>
+    </div>
+  </div>
 
   <!-- Артисты -->
-  <div class="section-title">Артисты</div>
-  <div class="grid" id="random-artists"></div>
+  <div class="block">
+    <h3>Артисты</h3>
+    <div class="grid">
+      <div class="grid-item"><img src="images/art_InnerSquare.png"><br>Inner Square</div>
+      <div class="grid-item"><img src="images/art_Mr.Pepper.jpg"><br>Mr Pepper</div>
+      <div class="grid-item"><img src="images/art_Lunnar.jpg"><br>Lunnar</div>
+      <div class="grid-item"><img src="images/art_Vavinchi.png"><br>Vavinchi</div>
+    </div>
+  </div>
 
-  <!-- Видео -->
-  <div class="video-section">
-    <h3>Новый клип: Daria Fisher - Drop</h3>
-    <video controls>
+  <!-- Новость / Видео -->
+  <div class="block">
+    <h3>Новый клип</h3>
+    <p>Daria Fisher — Drop</p>
+    <video width="80%" controls>
       <source src="images/vid/drop.mp4" type="video/mp4">
       Ваш браузер не поддерживает видео.
     </video>
   </div>
 
   <!-- Топ недели -->
-  <div class="section-title">Топ недели</div>
-  <div class="grid" id="top-releases"></div>
+  <div class="block">
+    <h3>Топ недели</h3>
+    <div class="grid">
+      <div class="grid-item"><img src="images/albums/OBO030-2-Years-OboHobos-150x150.jpg"><br>OBO30 — 2 Years Obo&Hobos</div>
+      <div class="grid-item"><img src="images/albums/OBO026-Ki.Mi-Prana-150x150.jpg"><br>OBO26 — Ki.Mi.</div>
+      <div class="grid-item"><img src="images/albums/OBO015-Dinamica-Maxime-Body-Soul-150x150.jpg"><br>OBO15 — Dynamica & Maxime</div>
+      <div class="grid-item"><img src="images/albums/OBO010-Nichtzusammen-161-Bar-150x150.jpg"><br>OBO10 — Nichtzusammen</div>
+    </div>
+  </div>
 
 </div>
 
-<!-- Кнопка наверх -->
 <button onclick="window.scrollTo({top:0, behavior:'smooth'});" class="scroll-btn">↑</button>
 
 <footer style="text-align:center; color:gray; margin-top:50px; margin-bottom:20px;">
   © 2025 OBO&HOBOS — Record Label
 </footer>
 
-<script>
-// Массив релизов (имя файла + название)
-const releases = [
-  {file:"OBO-021-Ki.Mi_.-Sunday-150x150.jpg", title:"Ki.Mi - Sunday"},
-  {file:"OBO001-Vavinchi-Adeptus-150x150.jpg", title:"Vavinchi - Adeptus"},
-  {file:"OBO002-In’R’Voice-Steezy-150x150.jpg", title:"In’R’Voice - Steezy"},
-  {file:"OBO003-Boris-The-Spyder-Brainbow-150x150.jpg", title:"Boris The Spyder - Brainbow"},
-  {file:"OBO004-Inner-Square-Storm-Seeker-150x150.jpg", title:"Inner Square - Storm Seeker"},
-  {file:"OBO005-DUSnDUS-Can-You-Feel-It-150x150.jpg", title:"DUSnDUS - Can You Feel It"},
-  {file:"OBO006-Vavinchi-Sample-Two-Ego-150x150.jpg", title:"Vavinchi - Sample Two Ego"},
-  {file:"OBO008-Spivak-Ocean-Down-150x150.jpg", title:"Spivak - Ocean Down"},
-  {file:"OBO009-Ki.Mi_.-Red-Friends-150x150.jpg", title:"Ki.Mi - Red Friends"},
-  {file:"OBO010-Nichtzusammen-161-Bar-150x150.jpg", title:"Nichtzusammen - 161 Bar"}
-  // Добавь остальные релизы при необходимости
-];
-
-// Массив артистов
-const artists = [
-  {file:"art_InnerSquare.png", name:"Inner Square"},
-  {file:"art_Mr.Pepper.jpg", name:"Mr Pepper"},
-  {file:"art_Lunnar.jpg", name:"Lunnar"},
-  {file:"art_Vavinchi.png", name:"Vavinchi"},
-  {file:"art_Daria Fisher.jpg", name:"Daria Fisher"},
-  {file:"art_Ki_Mi.jpg", name:"Ki.Mi"},
-  {file:"art_Hobos.png", name:"Hobos"}
-  // Добавь остальных артистов
-];
-
-// Функция для выбора случайных элементов из массива
-function getRandomItems(arr, count){
-  const shuffled = arr.sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
-}
-
-// Функция генерации карточек
-function renderGrid(gridId, items){
-  const container = document.getElementById(gridId);
-  container.innerHTML = "";
-  items.forEach(item => {
-    const div = document.createElement("div");
-    div.className = "grid-item";
-    div.innerHTML = `<img src="images/albums/${item.file}" alt="${item.title || item.name}">
-                     <p>${item.title || item.name}</p>`;
-    container.appendChild(div);
-  });
-}
-
-// Рендерим блоки
-renderGrid("latest-releases", releases.slice(0,4));
-renderGrid("random-releases", getRandomItems(releases,4));
-renderGrid("random-artists", getRandomItems(artists,4));
-renderGrid("top-releases", getRandomItems(releases,4));
-</script>
-
 </body>
 </html>
-
