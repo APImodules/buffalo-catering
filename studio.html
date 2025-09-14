@@ -1,247 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>OBO&HOBOS — Info</title>
-<meta name="description" content="OBO&HOBOS Studio Services and Label Info. Recording, mixing, mastering, sound design, promotion, and label history plus artist development." />
-<meta name="keywords" content="music studio services, music label info, recording studio, mixing mastering, sound design, music promotion, artist development, OBO&HOBOS" />
-<meta name="robots" content="index, follow" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buffalo Catering Info</title>
 <style>
-  * {
-    box-sizing: border-box;
-  }
   body {
-    background: #fff;
-    color: #444;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    line-height: 1.6;
-  }
-  header {
     background: #fff;
-    padding: 16px 0;
-    border-bottom: 1px solid #ddd;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    text-align: center;
-  }
-  header .logo-container img {
-    height: 64px;
-    object-fit: contain;
-    user-select: none;
-  }
-  nav.main-nav {
-    margin-top: 12px;
-  }
-  nav a {
-    color: #666;
-    text-decoration: none;
-    margin: 0 14px;
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 0.03em;
-    transition: color 0.3s ease;
-  }
-  nav a:hover,
-  nav a:focus {
-    color: #222;
-  }
-  main {
-    max-width: 1160px;
-    margin: 48px auto 60px;
-    padding: 0 20px;
-    display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .container {
-    background: #fafafa;
-    border-radius: 14px;
-    border: 1px solid #eee;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-    padding: 28px 24px;
-    flex: 1 1 440px;
-    min-width: 300px;
-  }
-  h1 {
-    font-size: 28px;
-    font-weight: 700;
-    color: #222;
-    margin: 0 0 30px;
-    text-align: center;
-    letter-spacing: 0.04em;
-    width: 100%;
-  }
-  h2.container-title {
-    font-size: 22px;
-    font-weight: 700;
-    color: #2a2a2a;
-    margin-bottom: 22px;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 6px;
-  }
-  .service-item {
-    margin-bottom: 24px;
-  }
-  .service-item:last-child {
-    margin-bottom: 0;
-  }
-  .service-title {
-    font-weight: 600;
     color: #333;
-    margin-bottom: 6px;
-    font-size: 18px;
-  }
-  .service-desc {
-    font-size: 14px;
-    line-height: 1.4;
-    color: #555;
-    margin-left: 8px;
-  }
-  ul.service-list {
-    list-style-type: disc;
-    margin-left: 20px;
-    padding-left: 0;
-    color: #666;
-    font-size: 14px;
   }
 
-  /* New container text styling */
-  .label-info p {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 16px;
+  header {
+    text-align: center;
+    padding: 40px 20px;
+    background: #f8f8f8;
   }
-  .label-info ul {
-    list-style-type: square;
-    margin-left: 20px;
+
+  header h1 {
+    margin: 0;
+    font-size: 2rem;
+  }
+
+  .services {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px 40px;
+  }
+
+  .service {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease;
+  }
+
+  .service:hover {
+    transform: translateY(-5px);
+  }
+
+  .service h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .service p {
+    margin: 0;
+    font-size: 1rem;
     color: #666;
   }
-  .label-info ul li {
-    margin-bottom: 6px;
-  }
-  @media (max-width: 900px) {
-    main {
-      flex-direction: column;
-      gap: 30px;
-      padding: 0 16px;
+
+  @media (max-width: 1024px) {
+    .services {
+      grid-template-columns: repeat(2, 1fr);
     }
-    .container {
-      min-width: auto;
+  }
+
+  @media (max-width: 600px) {
+    .services {
+      grid-template-columns: 1fr;
     }
   }
 </style>
 </head>
 <body>
+
 <header>
-  <div class="logo-container">
-    <img src="images/logo.jpg" alt="OBO&HOBOS Logo" />
-  </div>
-  <nav class="main-nav" role="navigation" aria-label="Primary Navigation">
-    <a href="index.html">Home</a>
-    <a href="info.html" aria-current="page">Info</a>
-    <a href="recordings.html">Recordings</a>
-    <a href="studio.html">Studio</a>
-    <a href="artists.html">Artists</a>
-    <a href="events.html">Events</a>
-  </nav>
+  <h1>Buffalo Catering Services</h1>
 </header>
 
-<main>
-  <h1>OBO&HOBOS Studio Services & Label Info</h1>
+<section class="services">
+  <div class="service">
+    <h3>Service 1</h3>
+    <p>Описание первого блока.</p>
+  </div>
+  <div class="service">
+    <h3>Service 2</h3>
+    <p>Описание второго блока.</p>
+  </div>
+  <div class="service">
+    <h3>Service 3</h3>
+    <p>Описание третьего блока.</p>
+  </div>
+  <div class="service">
+    <h3>Service 4</h3>
+    <p>Описание четвёртого блока.</p>
+  </div>
+  <div class="service">
+    <h3>Service 5</h3>
+    <p>Описание пятого блока.</p>
+  </div>
+  <div class="service">
+    <h3>Service 6</h3>
+    <p>Описание шестого блока.</p>
+  </div>
+</section>
 
-  <section class="container" aria-label="Studio Services">
-    <h2 class="container-title">Studio Services</h2>
-
-    <div class="service-item">
-      <div class="service-title">Recording & Micro Sessions</div>
-      <div class="service-desc">
-        Flexible studio recording with top sound engineers, tailored for solo artists or bands.
-        <ul class="service-list">
-          <li>Basic recording</li>
-          <li>Extended sessions</li>
-          <li>With or without sound designer</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="service-item">
-      <div class="service-title">Mixing & Mastering</div>
-      <div class="service-desc">
-        Professional audio polishing to reach the perfect balance and industry standards.
-        <ul class="service-list">
-          <li>Standard mastering</li>
-          <li>Premium mastering</li>
-          <li>Multi-track mixing</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="service-item">
-      <div class="service-title">Sound Design & Effects</div>
-      <div class="service-desc">
-        Custom sound design for tracks, live shows, or multimedia projects.
-        <ul class="service-list">
-          <li>Synth & FX design</li>
-          <li>Ambience creation</li>
-          <li>Layered soundscapes</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="service-item">
-      <div class="service-title">Promotion & SMM Packages</div>
-      <div class="service-desc">
-        Maximize reach via social media, streaming platforms, and press coverage.
-        <ul class="service-list">
-          <li>Basic promo</li>
-          <li>Targeted campaigns</li>
-          <li>Full media strategy</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="service-item">
-      <div class="service-title">Custom Project Bundles</div>
-      <div class="service-desc">
-        Personalized packages combining all studio services for full-cycle production.
-        <ul class="service-list">
-          <li>Recording + Mixing + Mastering</li>
-          <li>Sound Design + Promo</li>
-          <li>Complete all-in-one solutions</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="container label-info" aria-label="Label Information">
-    <h2 class="container-title">About OBO&HOBOS Label</h2>
-    <p>
-      OBO&HOBOS is a dynamic electronic music label based in Moscow, dedicated to promoting innovative deep house, techno, and experimental sounds.
-      Our mission is to support talented artists and deliver premium-quality music experiences worldwide.
-    </p>
-    <p>
-      Our label offers comprehensive artist development including:
-    </p>
-    <ul>
-      <li>Professional recording and production support</li>
-      <li>Marketing and promotion tailored to electronic music audiences</li>
-      <li>Event organization and community engagement</li>
-      <li>Distribution through major digital platforms and physical releases</li>
-      <li>Collaborations with visual artists for immersive live experiences</li>
-    </ul>
-    <p>
-      We pride ourselves on fostering a creative family atmosphere, combining artistic freedom with industry professionalism to help our roster achieve long-term success.
-    </p>
-  </section>
-</main>
-
-<footer>
-  &copy; 2025 OBO&HOBOS | <a href="mailto:info@oboandhobos.pro" style="color:#aaa; text-decoration:none;">info@oboandhobos.pro</a>
-</footer>
 </body>
 </html>
