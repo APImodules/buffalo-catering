@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OBO&HOBOS — Ki.Mi.</title>
+<style>
+body {
+  margin:0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #fff;
+  color: #555;
+  overflow-x: hidden;
+}
+
+.header {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.artist-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 20px auto;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.artist-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.description {
+  max-width: 800px;
+  margin: 0 auto 40px auto;
+  text-align: center;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  color: #666;
+  padding: 0 15px;
+}
+
+.releases-bg {
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index: -1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.15;
+}
+
+.release-thumb {
+  width: 120px;
+  height: 120px;
+  margin: 10px;
+  border-radius: 10px;
+  object-fit: cover;
+  transform: rotate(-5deg);
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.control-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+.control-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.menu a {
+  color: gray;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: 500;
+}
+
+footer {
+  text-align: center;
+  margin: 50px 0 20px 0;
+  color: #aaa;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <img src="images/logo.jpg" alt="OBO&HOBOS" style="max-width:150px;">
+  <p class="menu">
+    <a href="index.html">HOME</a> |
+    <a href="info.html">INFO</a> |
+    <a href="recordings.html">RECORDINGS</a> |
+    <a href="studio.html">STUDIO</a> |
+    <a href="artists.html">ARTISTS</a> |
+    <a href="events.html">EVENTS</a>
+  </p>
+</div>
+
+<div class="artist-photo">
+  <img src="images/art_Ki_Mi.jpg" alt="Ki.Mi.">
+</div>
+
+<div class="description">
+  Ki.Mi. — российский продюсер и электронный артист, известный глубоким погружением в атмосферный и экспериментальный deep tech. В 2025–2026 активно ведёт SMM на платформах IG, VK, TG, Twitch, продвигает релизы через визуально-медийные кампании и коллаборации. Цель — создание уникального музыкального опыта для аудитории по всему миру.  
+</div>
+
+<div class="releases-bg">
+  <img class="release-thumb" src="images/albums/OBO-021-Ki.Mi_.-Sunday-150x150.jpg">
+  <img class="release-thumb" src="images/albums/OBO009-Ki.Mi_.-Red-Friends-150x150.jpg">
+  <img class="release-thumb" src="images/albums/OBO026-Ki.Mi_.-Prana-150x150.jpg">
+  <img class="release-thumb" src="images/albums/OBO017-Ki.Mi_.-Grooveland-150x150.jpg">
+</div>
+
+<div class="controls">
+  <div class="control-circle"><img src="images/art_Ki_Mi.jpg"></div>
+  <div class="control-circle"><img src="images/albums/OBO-021-Ki.Mi_.-Sunday-150x150.jpg"></div>
+  <div class="control-circle"><img src="images/albums/OBO009-Ki.Mi_.-Red-Friends-150x150.jpg"></div>
+</div>
+
+<footer>
+  © 2025 OBO&HOBOS — Record Label
+</footer>
+
+</body>
+</html>
