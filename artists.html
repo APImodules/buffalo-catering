@@ -1,144 +1,185 @@
-<center>
-  <h2>OBO&HOBOS</h2>
-  <p>
-    <a href="index.html" style="color:grey; text-decoration:none;">HOME</a> |
-    <a href="info.html" style="color:grey; text-decoration:none;">INFO</a> |
-    <a href="recordings.html" style="color:grey; text-decoration:none;">RECORDINGS</a> |
-    <a href="studio.html" style="color:grey; text-decoration:none;">STUDIO</a> |
-    <a href="artists.html" style="color:grey; text-decoration:none;">ARTISTS</a> |
-    <a href="events.html" style="color:grey; text-decoration:none;">EVENTS</a>
-  </p>
-  <hr>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OBO&HOBOS — Artists</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: white;
+      color: #333;
+      text-align: center;
+    }
+    header {
+      padding: 20px 0;
+      background: white;
+    }
+    header img {
+      max-height: 80px;
+    }
+    nav {
+      margin: 15px 0;
+    }
+    nav a {
+      text-decoration: none;
+      color: #888;
+      margin: 0 15px;
+      font-weight: 500;
+    }
+    nav a:hover {
+      color: #555;
+    }
+    .artists-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 30px 10px;
+      gap: 25px;
+    }
+    .artist {
+      border-radius: 50%;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: inline-block;
+    }
+    .artist img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .artist:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .popup img {
+      max-width: 80%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+    footer {
+      padding: 20px;
+      color: #888;
+      font-size: 14px;
+      position: relative;
+    }
+    #scrollTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.1);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      font-size: 24px;
+      line-height: 50px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
 
-  <table border="0" cellspacing="20" cellpadding="10" align="center">
-    <tr>
-      <td align="center">
-        <a href="artists/kimi.html">
-          <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
-            <img src="images/art_Ki_Mi.jpg" style="width:100%; height:100%; object-fit:cover;">
-          </div>
-          <br>Ki.Mi.
-        </a>
-      </td>
-      <td align="center">
-        <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
-          <img src="images/art_InnerSquare.png" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <br>INNER SQUARE
-      </td>
-      <td align="center">
-        <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
-          <img src="images/art_Mr.Pepper.jpg" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <br>MR. PEPPER
-      </td>
-      <td align="center">
-        <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
-          <img src="images/art_Lunnar.jpg" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <br>LUNNAR
-      </td>
-    </tr>
+<header>
+  <img src="images/logo.jpg" alt="OBO&HOBOS Logo">
+</header>
 
-    <tr>
-      <td align="center">
-        <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
-          <img src="images/art_Batsula.jpg" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <br>BATSULA
-      </td>
-      <td align="center">
-        <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
-          <img src="images/art_Daria Fisher.jpg" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <br>DARIA FISHER
-      </td>
-      <td align="center">
-        <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
-          <img src="images/art_In'R'Voice.jpeg" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <br>IN’R’VOICE
-      </td>
-      <td align="center">
-        <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
-          <img src="images/art_DUSnDUS.jpeg" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <br>DUSnDUS
-      </td>
-    </tr>
+<nav>
+  <a href="index.html">HOME</a>
+  <a href="info.html">INFO</a>
+  <a href="recordings.html">RECORDINGS</a>
+  <a href="studio.html">STUDIO</a>
+  <a href="artists.html">ARTISTS</a>
+  <a href="events.html">EVENTS</a>
+</nav>
 
-    <tr>
-      <td align="center">
-        <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
-          <img src="images/art_Alexei Strelok.jpg" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <br>ALEXEI STRELOK
-      </td>
-      <td align="center">
-        <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
-          <img src="images/art_Hobos.png" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <br>HOBOS
-      </td>
-      <td align="center">
-        <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
-          <img src="images/art_DJ-FISH.jpg" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <br>DJ FISH
-      </td>
-      <td align="center">
-        <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
-          <img src="images/art_Kirill-Bagus.jpg" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <br>KIRILL BAGUS
-      </td>
-    </tr>
+<div class="artists-container" id="artistsContainer">
+  <!-- Артисты будут подгружаться через JS -->
+</div>
 
-    <tr>
-      <td align="center">
-        <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
-          <img src="images/art_Koloniari.jpg" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <br>KOLONIARI
-      </td>
-      <td align="center">
-        <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
-          <img src="images/art_L.N.D.N..jpg" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <br>L.N.D.N.
-      </td>
-      <td align="center">
-        <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
-          <img src="images/art_Mad-Dim.jpg" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <br>MAD DIM
-      </td>
-      <td align="center">
-        <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
-          <img src="images/art_Nichtzusammen.jpg" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <br>NICHTZUSAMMEN
-      </td>
-    </tr>
+<div class="popup" id="popup" onclick="closePopup()">
+  <img id="popupImg" src="" alt="Artist">
+</div>
 
-    <tr>
-      <td align="center">
-        <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
-          <img src="images/art_Spivak.jpg" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <br>SPIVAK
-      </td>
-      <td align="center">
-        <div style="width:120px; height:120px; border-radius:50%; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
-          <img src="images/art_Vavinchi.png" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <br>VAVINCHI
-      </td>
-    </tr>
-  </table>
+<footer>
+  © 2025 OBO&HOBOS — Record Label
+</footer>
 
-  <center>
-    <hr>
-    <p style="color:grey;">© 2025 OBO&HOBOS — Record Label</p>
-  </center>
-</center>
+<button id="scrollTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+
+<script>
+  const artists = [
+    {name:"Ki.Mi.", file:"art_Ki_Mi.jpg", link:"artists/kimi.html"},
+    {name:"Vavinchi", file:"art_Vavinchi.png", link:"artists/vavinchi.html"},
+    {name:"Daria Fisher", file:"art_Daria Fisher.jpg", link:"artists/dariafisher.html"},
+    {name:"Inner Square", file:"art_InnerSquare.png", link:"artists/innersquare.html"},
+    {name:"Mr. Pepper", file:"art_Mr.Pepper.jpg", link:"artists/mrpepper.html"},
+    {name:"Lunnar", file:"art_Lunnar.jpg", link:"artists/lunnar.html"},
+    {name:"Batsula", file:"art_Batsula.jpg", link:"artists/batsula.html"},
+    {name:"Nichtzusammen", file:"art_Nichtzusammen.jpg", link:"artists/nichtzusammen.html"},
+    {name:"Mad Dim", file:"art_Mad-Dim.jpg", link:"artists/maddim.html"},
+    {name:"DJ FISH", file:"art_DJ-FISH.jpg", link:"artists/djfish.html"},
+    {name:"Dinamica", file:"art_Dinamica.jpg", link:"artists/dinamica.html"},
+    {name:"Hobos", file:"art_Hobos.png", link:"artists/hobos.html"},
+    {name:"Alexei Strelok", file:"art_Alexei Strelok.jpg", link:"artists/alexeistrelok.html"},
+    {name:"Kirill Bagus", file:"art_Kirill-Bagus.jpg", link:"artists/kirillbagus.html"},
+    {name:"Goshan", file:"art_Goshan.jpeg", link:"artists/goshan.html"},
+    {name:"Hector Cooper", file:"art_Hector-Cooper.jpg", link:"artists/hectorcooper.html"},
+    {name:"Koloniari", file:"art_Koloniari.jpg", link:"artists/koloniari.html"},
+    {name:"L.N.D.N.", file:"art_L.N.D.N..jpg", link:"artists/lndn.html"},
+    {name:"In'R'Voice", file:"art_In'R'Voice.jpeg", link:"artists/inrvoice.html"}
+  ];
+
+  const container = document.getElementById('artistsContainer');
+
+  // Перемешиваем массив артистов
+  function shuffle(array) {
+    return array.sort(() => Math.random() - 0.5);
+  }
+
+  shuffle(artists).forEach(artist => {
+    const size = 100 + Math.floor(Math.random() * 50); // Диаметр от 100 до 150px
+    const div = document.createElement('div');
+    div.className = "artist";
+    div.style.width = size + "px";
+    div.style.height = size + "px";
+    div.onclick = () => { 
+      window.location.href = artist.link;
+      // Для попап вместо перехода можно использовать:
+      // showPopup(artist.file);
+    };
+    const img = document.createElement('img');
+    img.src = "images/" + artist.file;
+    img.alt = artist.name;
+    div.appendChild(img);
+    container.appendChild(div);
+  });
+
+  // Попап функции (если захотим потом включить)
+  function showPopup(src) {
+    document.getElementById('popupImg').src = "images/" + src;
+    document.getElementById('popup').style.display = "flex";
+  }
+  function closePopup() {
+    document.getElementById('popup').style.display = "none";
+  }
+</script>
+
+</body>
+</html>
