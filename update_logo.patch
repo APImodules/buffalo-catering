@@ -1,0 +1,47 @@
+diff --git a/index.html b/index.html
+index 0000000..1111111 100644
+--- a/index.html
++++ b/index.html
+@@ -1,7 +1,7 @@
+-    <img src="old_logo.png" alt="Logo">
++    <img src="images/logo.jpg" alt="Logo">
+
+diff --git a/info.html b/info.html
+index 0000000..1111111 100644
+--- a/info.html
++++ b/info.html
+@@ -1,7 +1,7 @@
+-    <img src="old_logo.png" alt="Logo">
++    <img src="images/logo.jpg" alt="Logo">
+
+diff --git a/recordings.html b/recordings.html
+index 0000000..1111111 100644
+--- a/recordings.html
++++ b/recordings.html
+@@ -1,7 +1,7 @@
+-    <img src="old_logo.png" alt="Logo">
++    <img src="images/logo.jpg" alt="Logo">
+
+diff --git a/studio.html b/studio.html
+index 0000000..1111111 100644
+--- a/studio.html
++++ b/studio.html
+@@ -1,7 +1,7 @@
+-    <img src="old_logo.png" alt="Logo">
++    <img src="images/logo.jpg" alt="Logo">
+
+diff --git a/artists.html b/artists.html
+index 0000000..1111111 100644
+--- a/artists.html
++++ b/artists.html
+@@ -1,7 +1,7 @@
+-    <img src="old_logo.png" alt="Logo">
++    <img src="images/logo.jpg" alt="Logo">
+
+diff --git a/events.html b/events.html
+index 0000000..1111111 100644
+--- a/events.html
++++ b/events.html
+@@ -1,7 +1,7 @@
+-    <img src="old_logo.png" alt="Logo">
++    <img src="images/logo.jpg" alt="Logo">
