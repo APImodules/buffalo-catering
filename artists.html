@@ -1,258 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>OBO&HOBOS — Artists</title>
+<meta name="description" content="Discover OBO&HOBOS featured electronic music artists from Moscow. Innovative producers, DJs, and vocalists shaping the underground scene." />
+<meta name="keywords" content="OBO&HOBOS artists, electronic music Moscow, deep house artists, techno producers, Moscow underground music" />
+<meta name="robots" content="index, follow" />
 <style>
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: #fff;
-  color: #555;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-header {
-  background: white;
-  padding: 10px 0;
-  border-bottom: 1px solid #ccc;
-}
-header img { height: 60px; }
-nav { margin: 10px 0; }
-nav a {
-  color: #888;
-  text-decoration: none;
-  margin: 0 10px;
-  font-weight: 500;
-  font-size: 16px;
-}
-nav a:hover { color: #555; }
-
-h1, h2 { margin: 20px 0 10px; color: #888; font-weight: 600; }
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-}
-.artist-block {
-  width: 220px;
-  background: #f9f9f9;
-  border-radius: 12px;
-  padding: 10px;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  transition: transform 0.2s;
-}
-.artist-block:hover { transform: translateY(-3px); }
-.artist-block img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  margin-bottom: 8px;
-}
-.artist-name {
-  font-weight: 700;
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 6px;
-}
-.artist-desc {
-  font-size: 12px;
-  color: #888;
-  margin-bottom: 8px;
-  height: 36px;
-  overflow: hidden;
-}
-.read-btn {
-  display: inline-block;
-  padding: 5px 12px;
-  border-radius: 20px;
-  background: #ccc;
-  color: #fff;
-  font-size: 12px;
-  text-decoration: none;
-}
-.read-btn:hover { background: #bbb; }
-
-@media(max-width:900px) { .artist-block { width: 45%; } }
-@media(max-width:600px) { .artist-block { width: 100%; } }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #fff;
+    color: #444;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    text-align: center;
+  }
+  header {
+    background: #fff;
+    padding: 16px 0;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo-container img {
+    height: 64px;
+    object-fit: contain;
+    user-select: none;
+  }
+  nav.main-nav {
+    margin-top: 12px;
+  }
+  nav a {
+    color: #666;
+    text-decoration: none;
+    margin: 0 14px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    transition: color 0.3s ease;
+  }
+  nav a:hover,
+  nav a:focus {
+    color: #222;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #222;
+    margin: 48px 0 30px;
+    letter-spacing: 0.04em;
+  }
+  .container {
+    max-width: 1160px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(260px,1fr));
+    gap: 28px;
+    text-align: left;
+  }
+  article.artist {
+    background: #fafafa;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    padding: 24px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: box-shadow 0.25s ease;
+  }
+  article.artist:hover,
+  article.artist:focus-within {
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+  }
+  .artist-photo {
+    flex-shrink: 0;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: #ddd;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    user-select: none;
+  }
+  .artist-info {
+    flex-grow: 1;
+  }
+  .artist-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 6px;
+  }
+  .artist-desc {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.3;
+  }
+  .read-more {
+    display: inline-block;
+    margin-top: 12px;
+    color: #222;
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+    user-select: none;
+  }
+  .read-more:hover,
+  .read-more:focus {
+    border-color: #222;
+  }
+  footer {
+    text-align: center;
+    padding: 24px 12px;
+    font-size: 13px;
+    color: #aaa;
+    border-top: 1px solid #eee;
+    user-select: none;
+  }
+  @media (max-width: 700px) {
+    article.artist {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .artist-photo {
+      width: 120px;
+      height: 120px;
+    }
+    .artist-info {
+      margin-top: 12px;
+    }
+    .read-more {
+      margin-top: 16px;
+    }
+  }
 </style>
 </head>
 <body>
-
 <header>
   <div class="logo-container">
-    <img src="images/logo.jpg" alt="OBO&HOBOS Logo">
+    <img src="images/logo.jpg" alt="OBO&HOBOS Logo" />
   </div>
-  <nav class="main-nav">
-    <a href="index.html">HOME</a>
-    <a href="info.html">INFO</a>
-    <a href="recordings.html">RECORDINGS</a>
-    <a href="studio.html">STUDIO</a>
-    <a href="artists.html">ARTISTS</a>
-    <a href="events.html">EVENTS</a>
+  <nav class="main-nav" role="navigation" aria-label="Primary Navigation">
+    <a href="index.html">Home</a>
+    <a href="info.html">Info</a>
+    <a href="recordings.html">Recordings</a>
+    <a href="studio.html">Studio</a>
+    <a href="artists.html" aria-current="page">Artists</a>
+    <a href="events.html">Events</a>
   </nav>
 </header>
 
-<h2>FEATURED ARTISTS</h2>
-<div class="grid">
+<main>
+  <h1>Featured Artists</h1>
+  <section class="container" aria-label="OBO&HOBOS Featured Artists">
+    <article class="artist" tabindex="0">
+      <img class="artist-photo" src="images/art_Ki_Mi.jpg" alt="Ki.Mi." loading="lazy" width="96" height="96" />
+      <div class="artist-info">
+        <div class="artist-name">Ki.Mi.</div>
+        <p class="artist-desc">Innovative electronic producer delivering hypnotic deep house grooves.</p>
+        <a class="read-more" href="kimi.html" aria-label="Read more about Ki.Mi.">Read more →</a>
+      </div>
+    </article>
 
-<!-- ARTISTS BLOCK START -->
+    <article class="artist" tabindex="0">
+      <img class="artist-photo" src="images/art_Alexei Strelok.jpg" alt="Alexei Strelok" loading="lazy" width="96" height="96" />
+      <div class="artist-info">
+        <div class="artist-name">Alexei Strelok</div>
+        <p class="artist-desc">Electronic music composer blending ambient textures and techno beats.</p>
+        <a class="read-more" href="#" aria-label="Read more about Alexei Strelok">Read more →</a>
+      </div>
+    </article>
 
-<div class="artist-block">
-  <a href="kimi.html"><img src="images/art_Ki_Mi.jpg" alt="Ki.Mi."></a>
-  <div class="artist-name">Ki.Mi.</div>
-  <div class="artist-desc">Innovative electronic producer delivering hypnotic deep house grooves.</div>
-  <a class="read-btn" href="kimi.html">Read more →</a>
-</div>
+    <article class="artist" tabindex="0">
+      <img class="artist-photo" src="images/art_Batsula.jpg" alt="Batsula" loading="lazy" width="96" height="96" />
+      <div class="artist-info">
+        <div class="artist-name">Batsula</div>
+        <p class="artist-desc">Underground house artist with a focus on dark, hypnotic rhythms.</p>
+        <a class="read-more" href="#" aria-label="Read more about Batsula">Read more →</a>
+      </div>
+    </article>
 
-<div class="artist-block">
-  <a href="#"><img src="images/art_Alexei Strelok.jpg" alt="Alexei Strelok"></a>
-  <div class="artist-name">Alexei Strelok</div>
-  <div class="artist-desc">Electronic music composer blending ambient textures and techno beats.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
+    <article class="artist" tabindex="0">
+      <img class="artist-photo" src="images/art_DJ-FISH.jpg" alt="DJ FISH" loading="lazy" width="96" height="96" />
+      <div class="artist-info">
+        <div class="artist-name">DJ FISH</div>
+        <p class="artist-desc">Dynamic DJ known for high-energy sets and deep groove explorations.</p>
+        <a class="read-more" href="#" aria-label="Read more about DJ FISH">Read more →</a>
+      </div>
+    </article>
 
-<div class="artist-block">
-  <a href="#"><img src="images/art_Batsula.jpg" alt="Batsula"></a>
-  <div class="artist-name">Batsula</div>
-  <div class="artist-desc">Underground house artist with a focus on dark, hypnotic rhythms.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
+    <article class="artist" tabindex="0">
+      <img class="artist-photo" src="images/art_DUSnDUS.jpeg" alt="DUSnDUS" loading="lazy" width="96" height="96" />
+      <div class="artist-info">
+        <div class="artist-name">DUSnDUS</div>
+        <p class="artist-desc">Experimental electronic duo crafting immersive soundscapes.</p>
+        <a class="read-more" href="#" aria-label="Read more about DUSnDUS">Read more →</a>
+      </div>
+    </article>
 
-<div class="artist-block">
-  <a href="#"><img src="images/art_DJ-FISH.jpg" alt="DJ FISH"></a>
-  <div class="artist-name">DJ FISH</div>
-  <div class="artist-desc">Dynamic DJ known for high-energy sets and deep groove explorations.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
+    <article class="artist" tabindex="0">
+      <img class="artist-photo" src="images/art_Daria Fisher.jpg" alt="Daria Fisher" loading="lazy" width="96" height="96" />
+      <div class="artist-info">
+        <div class="artist-name">Daria Fisher</div>
+        <p class="artist-desc">Vocalist and producer merging soulful melodies with electronic beats.</p>
+        <a class="read-more" href="#" aria-label="Read more about Daria Fisher">Read more →</a>
+      </div>
+    </article>
 
-<div class="artist-block">
-  <a href="#"><img src="images/art_DUSnDUS.jpeg" alt="DUSnDUS"></a>
-  <div class="artist-name">DUSnDUS</div>
-  <div class="artist-desc">Experimental electronic duo crafting immersive soundscapes.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
+    <article class="artist" tabindex="0">
+      <img class="artist-photo" src="images/art_Dinamica.jpg" alt="Dinamica" loading="lazy" width="96" height="96" />
+      <div class="artist-info">
+        <div class="artist-name">Dinamica</div>
+        <p class="artist-desc">Dancefloor-focused productions with a hypnotic techno edge.</p>
+        <a class="read-more" href="#" aria-label="Read more about Dinamica">Read more →</a>
+      </div>
+    </article>
 
-<div class="artist-block">
-  <a href="#"><img src="images/art_Daria Fisher.jpg" alt="Daria Fisher"></a>
-  <div class="artist-name">Daria Fisher</div>
-  <div class="artist-desc">Vocalist and producer merging soulful melodies with electronic beats.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
+    <article class="artist" tabindex="0">
+      <img class="artist-photo" src="images/art_Goshan.jpg" alt="Goshan" loading="lazy" width="96" height="96" />
+      <div class="artist-info">
+        <div class="artist-name">Goshan</div>
+        <p class="artist-desc">Producer blending deep house grooves with atmospheric layers.</p>
+        <a class="read-more" href="#" aria-label="Read more about Goshan">Read more →</a>
+      </div>
+    </article>
 
-<div class="artist-block">
-  <a href="#"><img src="images/art_Dinamica.jpg" alt="Dinamica"></a>
-  <div class="artist-name">Dinamica</div>
-  <div class="artist-desc">Dancefloor-focused productions with a hypnotic techno edge.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
+    <article class="artist" tabindex="0">
+      <img class="artist-photo" src="images/art_Hector Cooper.jpg" alt="Hector Cooper" loading="lazy" width="96" height="96" />
+      <div class="artist-info">
+        <div class="artist-name">Hector Cooper</div>
+        <p class="artist-desc">DJ and composer creating melodic techno experiences.</p>
+        <a class="read-more" href="#" aria-label="Read more about Hector Cooper">Read more →</a>
+      </div>
+    </article>
 
-<div class="artist-block">
-  <a href="#"><img src="images/art_Goshan.jpeg" alt="Goshan"></a>
-  <div class="artist-name">Goshan</div>
-  <div class="artist-desc">Producer blending deep house grooves with atmospheric layers.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
+    <article class="artist" tabindex="0">
+      <img class="artist-photo" src="images/art_Hobos.jpg" alt="Hobos" loading="lazy" width="96" height="96" />
+      <div class="artist-info">
+        <div class="artist-name">Hobos</div>
+        <p class="artist-desc">Veteran producer delivering smooth house and tech grooves.</p>
+        <a class="read-more" href="#" aria-label="Read more about Hobos">Read more →</a>
+      </div>
+    </article>
+    <!-- Add more artists as needed using similar markup -->
+  </section>
+</main>
 
-<div class="artist-block">
-  <a href="#"><img src="images/art_Hector-Cooper.jpg" alt="Hector Cooper"></a>
-  <div class="artist-name">Hector Cooper</div>
-  <div class="artist-desc">DJ and composer creating melodic techno experiences.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
-
-<div class="artist-block">
-  <a href="#"><img src="images/art_Hobos.png" alt="Hobos"></a>
-  <div class="artist-name">Hobos</div>
-  <div class="artist-desc">Veteran producer delivering smooth house and tech grooves.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
-
-<div class="artist-block">
-  <a href="#"><img src="images/art_In'R'Voice.jpeg" alt="In’R’Voice"></a>
-  <div class="artist-name">In’R’Voice</div>
-  <div class="artist-desc">Innovative deep house project with atmospheric textures.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
-
-<div class="artist-block">
-  <a href="#"><img src="images/art_InnerSquare.png" alt="Inner Square"></a>
-  <div class="artist-name">Inner Square</div>
-  <div class="artist-desc">Experimental producer exploring minimalist techno landscapes.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
-
-<div class="artist-block">
-  <a href="#"><img src="images/art_Kirill-Bagus.jpg" alt="Kirill Bagus"></a>
-  <div class="artist-name">Kirill Bagus</div>
-  <div class="artist-desc">Tech house producer known for rhythmic and melodic layers.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
-
-<div class="artist-block">
-  <a href="#"><img src="images/art_Koloniari.jpg" alt="Koloniari"></a>
-  <div class="artist-name">Koloniari</div>
-  <div class="artist-desc">Electronic music composer blending techno and melodic elements.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
-
-<div class="artist-block">
-  <a href="#"><img src="images/art_L.N.D.N..jpg" alt="L.N.D.N."></a>
-  <div class="artist-name">L.N.D.N.</div>
-  <div class="artist-desc">House producer creating groovy, atmospheric tracks.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
-
-<div class="artist-block">
-  <a href="#"><img src="images/art_Lunnar.jpg" alt="Lunnar"></a>
-  <div class="artist-name">Lunnar</div>
-  <div class="artist-desc">Ambient and deep house productions with immersive sound design.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
-
-<div class="artist-block">
-  <a href="#"><img src="images/art_Mad-Dim.jpg" alt="Mad Dim"></a>
-  <div class="artist-name">Mad Dim</div>
-  <div class="artist-desc">Techno and house artist combining rhythmic complexity and groove.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
-
-<div class="artist-block">
-  <a href="#"><img src="images/art_Mr.Pepper.jpg" alt="Mr Pepper"></a>
-  <div class="artist-name">Mr Pepper</div>
-  <div class="artist-desc">Producer creating melodic electronic journeys for the dancefloor.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
-
-<div class="artist-block">
-  <a href="#"><img src="images/art_Nichtzusammen.jpg" alt="Nichtzusammen"></a>
-  <div class="artist-name">Nichtzusammen</div>
-  <div class="artist-desc">Experimental house duo with unique rhythmic patterns.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
-
-<div class="artist-block">
-  <a href="#"><img src="images/art_Spivak.jpg" alt="Spivak"></a>
-  <div class="artist-name">Spivak</div>
-  <div class="artist-desc">Electronic producer focusing on groovy, textured house tracks.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
-
-<div class="artist-block">
-  <a href="#"><img src="images/art_Vavinchi.png" alt="Vavinchi"></a>
-  <div class="artist-name">Vavinchi</div>
-  <div class="artist-desc">Deep house and melodic techno producer with international recognition.</div>
-  <a class="read-btn" href="#">Read more →</a>
-</div>
-
-<!-- ARTISTS BLOCK END -->
-
-</div>
+<footer>
+  &copy; 2025 OBO&HOBOS | <a href="mailto:info@oboandhobos.pro" style="color:#aaa;text-decoration:none;">info@oboandhobos.pro</a>
+</footer>
 </body>
 </html>
