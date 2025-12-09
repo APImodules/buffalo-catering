@@ -1,0 +1,26 @@
+name: Update Kanban Data
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Update JSON file (example)
+        run: |
+          # Здесь можно добавить Python/Node.js скрипт, который обновляет data.json
+          # Пример для теста:
+          echo '{"columns": [{"id": "col1", "title": "Test", "cards": []}]}' > data.json
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'your-name'
+          git config --global user.email 'your-email'
+          git add data.json
+          git commit -m "Auto-update kanban data"
+          git push
