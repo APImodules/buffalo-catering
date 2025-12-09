@@ -374,7 +374,7 @@
 
 <script>
   const STORAGE_KEY = 'kanban_kb_lcc_v1';
-  const DATA_FILE = 'data.json'; // Путь к файлу с данными
+  const DATA_FILE = 'data.json';
 
   function statusClass(status) {
     if (!status) return '';
@@ -483,6 +483,7 @@
     });
     cardEl.addEventListener('dragend',()=>{
       cardEl.classList.remove('dragging');
+      saveBoard(); // Автоматически сохраняем при перетаскивании
     });
     cardEl.addEventListener('click',(e)=>{
       if(e.target.tagName==='BUTTON') return;
@@ -506,6 +507,7 @@
       const dragging=document.querySelector('.card.dragging');
       if(dragging) body.appendChild(dragging);
       body.classList.remove('drop-hover');
+      saveBoard(); // Автоматически сохраняем при перетаскивании карточки
     });
 
     colEl.addEventListener('dragstart', (e) => {
@@ -515,6 +517,7 @@
 
     colEl.addEventListener('dragend', () => {
       colEl.classList.remove('dragging');
+      saveBoard(); // Автоматически сохраняем при перетаскивании колонки
     });
 
     (column.cards||[]).forEach(c=>body.appendChild(renderCard(c)));
@@ -536,11 +539,13 @@
       renderBoard(data);
     } catch (error) {
       console.error('Не удалось загрузить данные:', error);
-      renderBoard(defaultData);
+      const stored = localStorage.getItem(STORAGE_KEY);
+      const data = stored ? JSON.parse(stored) : defaultData;
+      renderBoard(data);
     }
   }
 
-  async function saveBoard() {
+  function saveBoard() {
     const boardEl = document.getElementById('board');
     const colsEls = Array.from(boardEl.querySelectorAll('.column'));
 
@@ -577,22 +582,14 @@
       })
     };
 
-    // Для GitHub Pages: скачайте файл и обновите его вручную или через скрипт
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'data.json';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    alert('Данные экспортированы в data.json. Загрузите этот файл на GitHub для обновления базы.');
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    console.log('Данные автоматически сохранены в localStorage');
   }
 
   function resetToDefault(){
     if(confirm('Сбросить к исходным данным?')){
       renderBoard(defaultData);
+      localStorage.removeItem(STORAGE_KEY);
     }
   }
 
@@ -683,12 +680,14 @@
     }
 
     closeModal();
+    saveBoard(); // Автоматически сохраняем при редактировании карточки
   }
 
   function deleteCurrentCard(){
     if(currentModalCardEl){
       currentModalCardEl.remove();
       closeModal();
+      saveBoard(); // Автоматически сохраняем после удаления
     }
   }
 
@@ -697,6 +696,7 @@
     const col={id:id,title:'Новая колонка',cards:[]};
     defaultData.columns.push(col);
     renderBoard(defaultData);
+    saveBoard(); // Автоматически сохраняем после добавления колонки
   }
 
   function addCard(colEl){
@@ -705,6 +705,7 @@
     const card={id:'c'+Date.now(),order:'',responsible:'',status:'🔴',transport:'🔴',pi:'-',eta:'-',weight:'-',comment:'-',extra:'-',lastUpdated:''};
     col.cards.push(card);
     colEl.querySelector('.column-body').appendChild(renderCard(card));
+    saveBoard(); // Автоматически сохраняем после добавления карточки
   }
 
   function addCardToFirst(){
