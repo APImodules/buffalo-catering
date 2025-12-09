@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kanban KB LCC</title>
+  <title>Канбан Логистики</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap');
 
@@ -96,10 +96,6 @@
       cursor: grab;
     }
 
-    .column.dragging {
-      opacity: 0.5;
-    }
-
     .column-header {
       display: flex;
       align-items: center;
@@ -111,16 +107,6 @@
       font-weight: 600;
       font-size: 15px;
       color: #1c1c1e;
-    }
-
-    .column-title[contenteditable="true"] {
-      padding: 2px 4px;
-      border-radius: 6px;
-    }
-
-    .column-title:focus {
-      outline: 2px solid #007aff;
-      background: #ffffff;
     }
 
     .column-body {
@@ -139,6 +125,7 @@
       cursor: grab;
       transition: 0.2s;
       border-left: 4px solid #007aff;
+      position: relative;
     }
 
     .card.dragging {
@@ -198,6 +185,21 @@
     .card-updated.stale {
       color: #ff3b30;
       font-weight: 600;
+    }
+
+    .notification {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 12px;
+      height: 12px;
+      background: #ff3b30;
+      border-radius: 50%;
+      display: none;
+    }
+
+    .card.stale .notification {
+      display: block;
     }
 
     .toolbar-right {
@@ -302,7 +304,7 @@
 </head>
 <body>
 <header>
-  <h1>Kanban KB</h1>
+  <h1>Канбан Логистики</h1>
   <input id="search-input" type="text" placeholder="Поиск по карточкам..." />
   <button onclick="clearSearch()">✕</button>
   <button onclick="downloadSummary()">Сводка</button>
@@ -374,7 +376,6 @@
 
 <script>
   const STORAGE_KEY = 'kanban_kb_lcc_v1';
-  const DATA_FILE = 'data.json';
 
   function statusClass(status) {
     if (!status) return '';
@@ -391,18 +392,15 @@
     return `${pad(d.getDate())}/${pad(d.getMonth() + 1)} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
   }
 
-  function isBeforeToday(dateString) {
+  function isStale(dateString) {
     if (!dateString) return false;
-    const parts = dateString.split(' ');
-    const dayPart = parts[0];
-    if (!dayPart) return false;
-    const [dd, mm] = dayPart.split('/').map(Number);
+    const [dd, mm] = dateString.split(' ')[0].split('/').map(Number);
     if (!dd || !mm) return false;
 
     const now = new Date();
     const candidate = new Date(now.getFullYear(), mm - 1, dd);
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    return candidate.getTime() < today.getTime();
+    const yesterday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);
+    return candidate.getTime() <= yesterday.getTime();
   }
 
   function el(tag, attrs={}, ...children){
@@ -423,6 +421,9 @@
 
   function renderCard(card){
     const cardEl=el('div',{class:'card',draggable:true,dataset:{id:card.id}});
+    if (isStale(card.lastUpdated)) {
+      cardEl.classList.add('stale');
+    }
 
     const top=el('div',{class:'card-row'},
       el('span',{class:'card-label'},'Заказ: '),
@@ -434,7 +435,7 @@
       el('span', { class: 'card-updated' }, card.lastUpdated || '')
     );
     const updatedSpanInRow = updatedRow.querySelector('.card-updated');
-    if (card.lastUpdated && isBeforeToday(card.lastUpdated)) {
+    if (card.lastUpdated && isStale(card.lastUpdated)) {
       updatedSpanInRow.classList.add('stale');
     }
 
@@ -475,6 +476,9 @@
       el('span',{contenteditable:'true'},card.extra||'-')
     );
 
+    const notification = el('div', { class: 'notification' });
+    cardEl.appendChild(notification);
+
     cardEl.append(top, updatedRow, resp, statusRow, transportRow, pi, eta, weight, comment, extra);
 
     cardEl.addEventListener('dragstart',(e)=>{
@@ -483,7 +487,7 @@
     });
     cardEl.addEventListener('dragend',()=>{
       cardEl.classList.remove('dragging');
-      saveBoard(); // Автоматически сохраняем при перетаскивании
+      saveBoard();
     });
     cardEl.addEventListener('click',(e)=>{
       if(e.target.tagName==='BUTTON') return;
@@ -507,7 +511,7 @@
       const dragging=document.querySelector('.card.dragging');
       if(dragging) body.appendChild(dragging);
       body.classList.remove('drop-hover');
-      saveBoard(); // Автоматически сохраняем при перетаскивании карточки
+      saveBoard();
     });
 
     colEl.addEventListener('dragstart', (e) => {
@@ -517,7 +521,7 @@
 
     colEl.addEventListener('dragend', () => {
       colEl.classList.remove('dragging');
-      saveBoard(); // Автоматически сохраняем при перетаскивании колонки
+      saveBoard();
     });
 
     (column.cards||[]).forEach(c=>body.appendChild(renderCard(c)));
@@ -533,16 +537,9 @@
   }
 
   async function loadBoard(){
-    try {
-      const response = await fetch(DATA_FILE);
-      const data = await response.json();
-      renderBoard(data);
-    } catch (error) {
-      console.error('Не удалось загрузить данные:', error);
-      const stored = localStorage.getItem(STORAGE_KEY);
-      const data = stored ? JSON.parse(stored) : defaultData;
-      renderBoard(data);
-    }
+    const stored = localStorage.getItem(STORAGE_KEY);
+    const data = stored ? JSON.parse(stored) : defaultData;
+    renderBoard(data);
   }
 
   function saveBoard() {
@@ -583,7 +580,6 @@
     };
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    console.log('Данные автоматически сохранены в localStorage');
   }
 
   function resetToDefault(){
@@ -596,25 +592,24 @@
   const defaultData = {
     "columns":[
       {"id":"col-plan","title":"Планируем / Готовность / Не оплачено","cards":[
-        {"id":"c977","order":"977","responsible":"Рита / Саша / Исмаил","status":"🔴","transport":"🔴","pi":"-","eta":"-","weight":"-","comment":"Уточняем с тремя поставщиками по покупке через ТД, потом можно сборку","extra":"-"},
-        {"id":"c863_931","order":"863 + 931","responsible":"Юля / Ismail","status":"🔴","transport":"🔴","pi":"250912, 251031","eta":"09/12/25","weight":"11 524 кг / 27 м³","comment":"Вариант с 40HQ по прямому ЖД; после получения окончательных данных проверим возможность объединения с другими заказами","extra":"Максимальная загрузка 40HQ: 26 т брутто, 66 м³"},
-        {"id":"c920","order":"920","responsible":"Юля / Elsa","status":"🔴","transport":"🔴","pi":"251022","eta":"09/12/25","weight":"-","comment":"Груз ожидается к готовности 09/12; после этого проверим возможность объединения с 863 + 931","extra":"-"},
-        {"id":"c930_964_965","order":"930 + 964 + 965","responsible":"Юля / Elsa","status":"🔴","transport":"🔴","pi":"251028, 251126-25, 251126-2","eta":"-","weight":"-","comment":"Приоритетная загрузка PET paper foil, остальное — всё, что помещается; остаток товаров будет отправлен LCL. Ждём уточнения даты забора и затарки","extra":"-"},
-        {"id":"c949","order":"949","responsible":"Саша / Elsa","status":"🟡","transport":"🔴","pi":"-","eta":"09/12","weight":"-","comment":"На складе агента; ждём прибытия груза в Маньчжурию 12/12 для обновления финальных данных","extra":"Предварительно выход 09/12"}
+        {"id":"c977","order":"977","responsible":"Рита / Саша / Исмаил","status":"🔴","transport":"🔴","pi":"-","eta":"-","weight":"-","comment":"Уточняем с тремя поставщиками по покупке через ТД, потом можно сборку","extra":"-","lastUpdated":"09/12 16:53"},
+        {"id":"c863_931","order":"863 + 931","responsible":"Юля / Ismail","status":"🔴","transport":"🔴","pi":"250912, 251031","eta":"09/12/25","weight":"11 524 кг / 27 м³","comment":"Вариант с 40HQ по прямому ЖД; после получения окончательных данных проверим возможность объединения с другими заказами","extra":"Максимальная загрузка 40HQ: 26 т брутто, 66 м³","lastUpdated":"09/12 16:53"},
+        {"id":"c920","order":"920","responsible":"Юля / Elsa","status":"🔴","transport":"🔴","pi":"251022","eta":"09/12/25","weight":"-","comment":"Груз ожидается к готовности 09/12; после этого проверим возможность объединения с 863 + 931","extra":"-","lastUpdated":"09/12 16:53"},
+        {"id":"c930_964_965","order":"930 + 964 + 965","responsible":"Юля / Elsa","status":"🔴","transport":"🔴","pi":"251028, 251126-25, 251126-2","eta":"-","weight":"-","comment":"Приоритетная загрузка PET paper foil, остальное — всё, что помещается; остаток товаров будет отправлен LCL. Ждём уточнения даты забора и затарки","extra":"-","lastUpdated":"09/12 16:53"},
+        {"id":"c949","order":"949","responsible":"Саша / Elsa","status":"🟡","transport":"🔴","pi":"-","eta":"09/12","weight":"-","comment":"На складе агента; ждём прибытия груза в Маньчжурию 12/12 для обновления финальных данных","extra":"Предварительно выход 09/12","lastUpdated":"09/12 16:52"}
       ]},
-      {"id":"col-agent","title":"На складе агента / На выход","cards":[
-        {"id":"c883","order":"883","responsible":"Саша / Khasan","status":"🟡","transport":"🔴","pi":"-","eta":"09/12","weight":"-","comment":"Перемещён на другую станцию; ожидаем прибытия на выгрузку 03–10/01/26","extra":"-"}
-      ]},
-      {"id":"col-border","title":"До / На границе Китая","cards":[
-        {"id":"c946","order":"946","responsible":"Peter / Настя","status":"🟡","transport":"🔴","pi":"-","eta":"06/12","weight":"-","comment":"В пути к границе Китая; до границы ~812 км; ждём следующей точки движения","extra":"-"},
-        {"id":"c962","order":"962","responsible":"Юля / Lucky","status":"🟢","transport":"🔴","pi":"-","eta":"17–19/12","weight":"-","comment":"Location: Manzhouli, CN (in queue to leave China)","extra":"-"}
+      {"id":"col-border","title":"До границы / На выход","cards":[
+        {"id":"c946","order":"946","responsible":"Peter / Настя","status":"🟡","transport":"🔴","pi":"-","eta":"06/12","weight":"-","comment":"В пути к границе Китая; до границы ~812 км; ждём следующей точки движения","extra":"-","lastUpdated":"09/12 16:52"},
+        {"id":"c962","order":"962","responsible":"Юля / Lucky","status":"🟢","transport":"🔴","pi":"-","eta":"17–19/12","weight":"-","comment":"Location: Manzhouli, CN (in queue to leave China)","extra":"-","lastUpdated":"09/12 16:52"},
+        {"id":"c883","order":"883","responsible":"Саша / Khasan","status":"🟡","transport":"🔴","pi":"-","eta":"09/12","weight":"-","comment":"Перемещён на другую станцию; ожидаем прибытия на выгрузку 03–10/01/26","extra":"-","lastUpdated":"09/12 16:52"}
       ]},
       {"id":"col-customs","title":"Таможня / Выдача / Финализация","cards":[
-        {"id":"c924_932","order":"924 + 932","responsible":"Peter / Настя","status":"🟡","transport":"🔴","pi":"-","eta":"-","weight":"-","comment":"Доехал — 0 км до выгрузки; ждём проведения растаможки и выдачи","extra":"-"}
+        {"id":"c924_932","order":"924 + 932","responsible":"Peter / Настя","status":"🟡","transport":"🔴","pi":"-","eta":"-","weight":"-","comment":"Доехал — 0 км до выгрузки; ждём проведения растаможки и выдачи","extra":"-","lastUpdated":"09/12 16:51"}
       ]},
       {"id":"col-done","title":"Завершено","cards":[
-        {"id":"c884","order":"884","responsible":"Lotty / Саша","status":"✔️","transport":"🟢","pi":"-","eta":"-","weight":"-","comment":"-","extra":"-"},
-        {"id":"c919","order":"919","responsible":"Tess / Настя","status":"✔️","transport":"🟢","pi":"-","eta":"-","weight":"-","comment":"-","extra":"-"}
+        {"id":"c884","order":"884","responsible":"Lotty / Саша","status":"✔️","transport":"🟢","pi":"-","eta":"-","weight":"-","comment":"-","extra":"-","lastUpdated":"09/12 16:51"},
+        {"id":"c919","order":"919","responsible":"Tess / Настя","status":"✔️","transport":"🟢","pi":"-","eta":"-","weight":"-","comment":"-","extra":"-","lastUpdated":"09/12 16:51"},
+        {"id":"c890","order":"890","responsible":"Haya / Юля","status":"✔️","transport":"🟢","pi":"-","eta":"-","weight":"-","comment":"Завершено","extra":"-","lastUpdated":"09/12 16:51"}
       ]}
     ]
   };
@@ -674,20 +669,22 @@
       const ts = formatNowShort();
       updatedSpan.textContent = ts;
       updatedSpan.classList.remove('stale');
-      if (isBeforeToday(ts)) {
+      currentModalCardEl.classList.remove('stale');
+      if (isStale(ts)) {
         updatedSpan.classList.add('stale');
+        currentModalCardEl.classList.add('stale');
       }
     }
 
     closeModal();
-    saveBoard(); // Автоматически сохраняем при редактировании карточки
+    saveBoard();
   }
 
   function deleteCurrentCard(){
     if(currentModalCardEl){
       currentModalCardEl.remove();
       closeModal();
-      saveBoard(); // Автоматически сохраняем после удаления
+      saveBoard();
     }
   }
 
@@ -696,7 +693,7 @@
     const col={id:id,title:'Новая колонка',cards:[]};
     defaultData.columns.push(col);
     renderBoard(defaultData);
-    saveBoard(); // Автоматически сохраняем после добавления колонки
+    saveBoard();
   }
 
   function addCard(colEl){
@@ -705,7 +702,7 @@
     const card={id:'c'+Date.now(),order:'',responsible:'',status:'🔴',transport:'🔴',pi:'-',eta:'-',weight:'-',comment:'-',extra:'-',lastUpdated:''};
     col.cards.push(card);
     colEl.querySelector('.column-body').appendChild(renderCard(card));
-    saveBoard(); // Автоматически сохраняем после добавления карточки
+    saveBoard();
   }
 
   function addCardToFirst(){
@@ -788,32 +785,6 @@
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-  }
-
-  // Reorder columns
-  const board = document.getElementById('board');
-  board.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    const afterElement = getDragAfterElement(board, e.clientY);
-    const draggable = document.querySelector('.column.dragging');
-    if (afterElement == null) {
-      board.appendChild(draggable);
-    } else {
-      board.insertBefore(draggable, afterElement);
-    }
-  });
-
-  function getDragAfterElement(container, y) {
-    const draggableElements = [...container.querySelectorAll('.column:not(.dragging)')];
-    return draggableElements.reduce((closest, child) => {
-      const box = child.getBoundingClientRect();
-      const offset = y - box.top - box.height / 2;
-      if (offset < 0 && offset > closest.offset) {
-        return { offset: offset, element: child };
-      } else {
-        return closest;
-      }
-    }, { offset: Number.NEGATIVE_INFINITY }).element;
   }
 
   document.addEventListener('DOMContentLoaded',()=>{
