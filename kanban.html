@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Канбан Логистики</title>
+  <title>Канбан Логистики (09/12)</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap');
 
@@ -304,7 +304,7 @@
 </head>
 <body>
 <header>
-  <h1>Канбан Логистики</h1>
+  <h1>Канбан Логистики (09/12)</h1>
   <input id="search-input" type="text" placeholder="Поиск по карточкам..." />
   <button onclick="clearSearch()">✕</button>
   <button onclick="downloadSummary()">Сводка</button>
@@ -509,7 +509,25 @@
     body.addEventListener('drop',(e)=>{
       e.preventDefault();
       const dragging=document.querySelector('.card.dragging');
-      if(dragging) body.appendChild(dragging);
+      if(dragging) {
+        const fromColumn = dragging.closest('.column');
+        const fromId = fromColumn.dataset.id;
+        const toId = colEl.dataset.id;
+
+        // Если карточка из "Завершено" — не перетаскивать обратно
+        if (fromId === 'col-done' && toId !== 'col-done') return;
+
+        // Если карточка в "Завершено" — проставить дату завершения
+        if (toId === 'col-done' && fromId !== 'col-done') {
+          const updatedSpan = dragging.querySelector('.card-updated');
+          if (updatedSpan) {
+            updatedSpan.textContent = formatNowShort();
+            updatedSpan.classList.remove('stale');
+          }
+        }
+
+        body.appendChild(dragging);
+      }
       body.classList.remove('drop-hover');
       saveBoard();
     });
@@ -604,7 +622,7 @@
         {"id":"c883","order":"883","responsible":"Саша / Khasan","status":"🟡","transport":"🔴","pi":"-","eta":"09/12","weight":"-","comment":"Перемещён на другую станцию; ожидаем прибытия на выгрузку 03–10/01/26","extra":"-","lastUpdated":"09/12 16:52"}
       ]},
       {"id":"col-customs","title":"Таможня / Выдача / Финализация","cards":[
-        {"id":"c924_932","order":"924 + 932","responsible":"Peter / Настя","status":"🟡","transport":"🔴","pi":"-","eta":"-","weight":"-","comment":"Доехал — 0 км до выгрузки; ждём проведения растаможки и выдачи","extra":"-","lastUpdated":"09/12 16:51"}
+        {"id":"c924_932","order":"924 + 932","responsible":"Peter / Настя","status":"🟡","transport":"🔴","pi":"-","eta":"-","weight":"-","comment":"Оба груза можно начинать оформлять. Инструкции и документы приложены. Три дня бесплатно с сегодняшнего","extra":"-","lastUpdated":"09/12 16:51"}
       ]},
       {"id":"col-done","title":"Завершено","cards":[
         {"id":"c884","order":"884","responsible":"Lotty / Саша","status":"✔️","transport":"🟢","pi":"-","eta":"-","weight":"-","comment":"-","extra":"-","lastUpdated":"09/12 16:51"},
