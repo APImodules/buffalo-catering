@@ -1,1 +1,479 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Канбан Логистики (09/12)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f2f2f7;
+      color: #1c1c1e;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    header {
+      padding: 12px 16px;
+      background: #f7f7f7;
+      color: #1c1c1e;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+      font-size: 18px;
+      margin: 0 12px 0 0;
+      font-weight: 600;
+      color: #1c1c1e;
+    }
+
+    button {
+      padding: 6px 14px;
+      border-radius: 10px;
+      border: none;
+      background: #ffffff;
+      color: #007aff;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      font-size: 13px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    button:hover {
+      background: #f2f2f7;
+      color: #007aff;
+    }
+
+    #search-input {
+      flex: 1;
+      max-width: 260px;
+      padding: 6px 10px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      font-size: 13px;
+      background: #ffffff;
+      color: #1c1c1e;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    #board {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .column {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 12px;
+      min-width: 280px;
+      max-width: 320px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e5e5ea;
+      cursor: grab;
+    }
+
+    .column-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .column-title {
+      font-weight: 600;
+      font-size: 15px;
+      color: #1c1c1e;
+    }
+
+    .column-body {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 50px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 10px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+      font-size: 13px;
+      cursor: grab;
+      transition: 0.2s;
+      border-left: 4px solid #007aff;
+      position: relative;
+    }
+
+    .card.dragging {
+      opacity: 0.5;
+    }
+
+    .card-row {
+      margin-bottom: 4px;
+    }
+
+    .card-label {
+      font-weight: 600;
+      margin-right: 4px;
+      color: #3c3c43;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      margin-right: 4px;
+      cursor: pointer;
+    }
+
+    .tag-red {
+      background: #ff3b30;
+      color: #ffffff;
+    }
+
+    .tag-yellow {
+      background: #ffcc00;
+      color: #000000;
+    }
+
+    .tag-green {
+      background: #34c759;
+      color: #ffffff;
+    }
+
+    .tag-done {
+      background: #30d158;
+      color: #ffffff;
+    }
+
+    .small {
+      font-size: 12px;
+      color: #8e8e93;
+    }
+
+    .card-updated {
+      font-size: 11px;
+      color: #8e8e93;
+      font-style: italic;
+    }
+
+    .card-updated.stale {
+      color: #ff3b30;
+      font-weight: 600;
+    }
+
+    .notification {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 12px;
+      height: 12px;
+      background: #ff3b30;
+      border-radius: 50%;
+      display: none;
+    }
+
+    .card.stale .notification {
+      display: block;
+    }
+
+    .toolbar-right {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* iOS Toggle Switch */
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 52px;
+      height: 32px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #e5e5ea;
+      border-radius: 32px;
+      transition: 0.4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 24px;
+      width: 24px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      border-radius: 50%;
+      transition: 0.4s;
+    }
+
+    input:checked + .slider {
+      background-color: #34c759;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    .toggle-label {
+      margin-right: 8px;
+      font-size: 14px;
+      color: #1c1c1e;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        flex-wrap: wrap;
+      }
+      .toolbar-right {
+        margin-left: 0;
+      }
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+    }
+
+    .modal-backdrop.show {
+      display: flex;
+    }
+
+    .modal {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 20px;
+      width: min(480px, 95%);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      border: 1px solid #e5e5ea;
+    }
+
+    .modal h2 {
+      margin: 0 0 14px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1c1c1e;
+    }
+
+    .modal-row {
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 13px;
+    }
+
+    .modal-row label {
+      font-weight: 600;
+      color: #1c1c1e;
+    }
+
+    .modal-row input,
+    .modal-row select,
+    .modal-row textarea {
+      width: 100%;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      font-family: inherit;
+      font-size: 13px;
+      resize: vertical;
+      background: #ffffff;
+      color: #1c1c1e;
+    }
+
+    .modal-row input:focus,
+    .modal-row select:focus,
+    .modal-row textarea:focus {
+      outline: 2px solid #007aff;
+      border-color: #007aff;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .btn-secondary {
+      background: #f2f2f7;
+      color: #1c1c1e;
+      border: none;
+    }
+
+    .btn-danger {
+      background: #ff3b30;
+      color: #ffffff;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Канбан Логистики (09/12)</h1>
+  <input id="search-input" type="text" placeholder="Поиск по карточкам..." />
+  <button onclick="clearSearch()">✕</button>
+  <button onclick="downloadSummary()">Сводка</button>
+  <div class="toolbar-right">
+    <button onclick="addColumn()">+ Колонка</button>
+    <button onclick="addCardToFirst()">+ Карточка</button>
+    <button onclick="saveBoard()">💾 Сохранить</button>
+    <button onclick="loadBoard()">⟳ Загрузить</button>
+    <button onclick="resetToDefault()">↺ Сброс</button>
+  </div>
+</header>
+
+<!-- iOS-style Menu with Toggles -->
+<div class="menu">
+  <span class="toggle-label">Показать уведомления</span>
+  <label class="toggle-switch">
+    <input type="checkbox" id="show-notifications" checked>
+    <span class="slider"></span>
+  </label>
+  <span class="toggle-label">Темная тема</span>
+  <label class="toggle-switch">
+    <input type="checkbox" id="dark-mode">
+    <span class="slider"></span>
+  </label>
+</div>
+
+<div id="board"></div>
+
+<div id="modal-backdrop" class="modal-backdrop">
+  <div class="modal">
+    <h2>Карточка</h2>
+    <div class="modal-row">
+      <label>Заказ</label>
+      <input id="f-order" type="text">
+    </div>
+    <div class="modal-row">
+      <label>Ответственные</label>
+      <input id="f-responsible" type="text">
+    </div>
+    <div class="modal-row">
+      <label>Статус (с эмодзи)</label>
+      <select id="f-status">
+        <option value="🔴">🔴 Красный</option>
+        <option value="🟡">🟡 Желтый</option>
+        <option value="🟢">🟢 Зеленый</option>
+        <option value="✔️">✔️ Завершено</option>
+      </select>
+    </div>
+    <div class="modal-row">
+      <label>Оплата за транспорт</label>
+      <select id="f-transport">
+        <option value="🔴">🔴 Не оплачено</option>
+        <option value="🟢">🟢 Оплачено</option>
+      </select>
+    </div>
+    <div class="modal-row">
+      <label>PI</label>
+      <input id="f-pi" type="text">
+    </div>
+    <div class="modal-row">
+      <label>Дата готовности / ETD</label>
+      <input id="f-eta" type="text">
+    </div>
+    <div class="modal-row">
+      <label>Вес / Объём</label>
+      <input id="f-weight" type="text">
+    </div>
+    <div class="modal-row">
+      <label>Комментарий</label>
+      <textarea id="f-comment" rows="3"></textarea>
+    </div>
+    <div class="modal-row">
+      <label>Дополнительно</label>
+      <textarea id="f-extra" rows="2"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-danger" onclick="deleteCurrentCard()">Удалить</button>
+      <button class="btn-secondary" onclick="closeModal()">Отмена</button>
+      <button onclick="applyModal()">Сохранить</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Включите переключатели и функционал
+  document.getElementById('show-notifications').addEventListener('change', function() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      if (this.checked) {
+        card.classList.add('stale');
+      } else {
+        card.classList.remove('stale');
+      }
+    });
+  });
+
+  document.getElementById('dark-mode').addEventListener('change', function() {
+    if (this.checked) {
+      document.body.style.background = '#1c1c1e';
+      document.body.style.color = '#f2f2f7';
+    } else {
+      document.body.style.background = '#f2f2f7';
+      document.body.style.color = '#1c1c1e';
+    }
+  });
+
+  // Остальной JS (без изменений, можно вставить из предыдущего файла)
+  // ...
+
+</script>
+</body>
+</html>
 
