@@ -211,75 +211,11 @@
       flex-wrap: wrap;
     }
 
-    /* iOS Toggle Switch */
-    .toggle-switch {
-      position: relative;
-      display: inline-block;
-      width: 52px;
-      height: 32px;
-    }
-
-    .toggle-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #e5e5ea;
-      border-radius: 32px;
-      transition: 0.4s;
-    }
-
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 24px;
-      width: 24px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      border-radius: 50%;
-      transition: 0.4s;
-    }
-
-    input:checked + .slider {
-      background-color: #34c759;
-    }
-
-    input:checked + .slider:before {
-      transform: translateX(20px);
-    }
-
-    .toggle-label {
-      margin-right: 8px;
-      font-size: 14px;
-      color: #1c1c1e;
-    }
-
     .menu {
       display: flex;
       align-items: center;
       gap: 12px;
       padding: 8px 0;
-    }
-
-    .filter-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-
-    .filter-label {
-      font-size: 13px;
-      color: #8e8e93;
     }
 
     .btn-sm {
@@ -435,16 +371,6 @@
 </header>
 
 <div class="menu">
-  <span class="toggle-label">Показать уведомления</span>
-  <label class="toggle-switch">
-    <input type="checkbox" id="show-notifications" checked>
-    <span class="slider"></span>
-  </label>
-  <span class="toggle-label">Темная тема</span>
-  <label class="toggle-switch">
-    <input type="checkbox" id="dark-mode">
-    <span class="slider"></span>
-  </label>
   <button class="btn-sm" onclick="sortColumns()">Сортировать</button>
   <div class="tooltip">
     <button class="btn-sm">?</button>
@@ -452,7 +378,263 @@
   </div>
 </div>
 
-<div id="board"></div>
+<div id="board">
+  <!-- Планируем / Готовность / Не оплачено -->
+  <div class="column">
+    <div class="column-header">
+      <div class="column-title">Планируем / Готовность / Не оплачено</div>
+      <button onclick="addCard(this.closest('.column'))">+ Карточка</button>
+    </div>
+    <div class="column-body">
+      <div class="card">
+        <div class="card-row">
+          <span class="card-label">Заказ:</span>
+          <span>977</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Ответственные:</span>
+          <span>Рита / Саша / Исмаил</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Статус:</span>
+          <span class="tag tag-red">🔴</span>
+          <span class="tag">⏳</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Комментарий:</span>
+          <span>Уточняем с тремя поставщиками по покупке через ТД, потом можно сборку</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Посл. изм.:</span>
+          <span class="card-updated">09/12 16:53</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-row">
+          <span class="card-label">Заказ:</span>
+          <span>863 + 931</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Ответственные:</span>
+          <span>Юля / Ismail</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Статус:</span>
+          <span class="tag tag-red">🔴</span>
+          <span class="tag">⏳</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">PI:</span>
+          <span>250912, 251031</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Комментарий:</span>
+          <span>Вариант с 40HQ по прямому ЖД; после получения окончательных данных проверим возможность объединения с другими заказами</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Посл. изм.:</span>
+          <span class="card-updated">09/12 16:53</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-row">
+          <span class="card-label">Заказ:</span>
+          <span>920</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Ответственные:</span>
+          <span>Юля / Elsa</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Статус:</span>
+          <span class="tag tag-red">🔴</span>
+          <span class="tag">⏳</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">PI:</span>
+          <span>251022</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Комментарий:</span>
+          <span>Груз ожидается к готовности 09/12; после этого проверим возможность объединения с 863 + 931</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Посл. изм.:</span>
+          <span class="card-updated">09/12 16:53</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-row">
+          <span class="card-label">Заказ:</span>
+          <span>930 + 964 + 965</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Ответственные:</span>
+          <span>Юля / Elsa</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Статус:</span>
+          <span class="tag tag-red">🔴</span>
+          <span class="tag">⏳</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">PI:</span>
+          <span>251028, 251126-25, 251126-2</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Комментарий:</span>
+          <span>Приоритетная загрузка PET paper foil, остальное — всё, что помещается; остаток товаров будет отправлен LCL. Ждём уточнения даты забора и затарки</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Посл. изм.:</span>
+          <span class="card-updated">09/12 16:53</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-row">
+          <span class="card-label">Заказ:</span>
+          <span>949</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Ответственные:</span>
+          <span>Саша / Elsa</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Статус:</span>
+          <span class="tag tag-yellow">🟡</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Комментарий:</span>
+          <span>На складе агента; ждём прибытия груза в Маньчжурию 12/12 для обновления финальных данных</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Посл. изм.:</span>
+          <span class="card-updated">09/12 16:52</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- До границы / На выход -->
+  <div class="column">
+    <div class="column-header">
+      <div class="column-title">До границы / На выход</div>
+      <button onclick="addCard(this.closest('.column'))">+ Карточка</button>
+    </div>
+    <div class="column-body">
+      <div class="card">
+        <div class="card-row">
+          <span class="card-label">Заказ:</span>
+          <span>946</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Ответственные:</span>
+          <span>Peter / Настя</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Статус:</span>
+          <span class="tag tag-yellow">🟡</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Маршрут:</span>
+          <span>🚛 В пути к границе Китая (~812 км)</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Комментарий:</span>
+          <span>Ждём следующей точки движения</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Посл. изм.:</span>
+          <span class="card-updated">09/12 16:52</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-row">
+          <span class="card-label">Заказ:</span>
+          <span>962</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Ответственные:</span>
+          <span>Юля / Lucky</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Статус:</span>
+          <span class="tag tag-green">🟢</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Маршрут:</span>
+          <span>📍 Груз на границе Маньчжурии, CN (in queue to leave China)</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Посл. изм.:</span>
+          <span class="card-updated">09/12 16:52</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-row">
+          <span class="card-label">Заказ:</span>
+          <span>883</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Ответственные:</span>
+          <span>Саша / Khasan</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Статус:</span>
+          <span class="tag tag-yellow">🟡</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Маршрут:</span>
+          <span>🚛 Перемещён на другую станцию</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Комментарий:</span>
+          <span>Ожидаем прибытия на выгрузку 03–10/01/26</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Посл. изм.:</span>
+          <span class="card-updated">09/12 16:52</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Таможня / Выдача / Финализация -->
+  <div class="column">
+    <div class="column-header">
+      <div class="column-title">Таможня / Выдача / Финализация</div>
+      <button onclick="addCard(this.closest('.column'))">+ Карточка</button>
+    </div>
+    <div class="column-body">
+      <div class="card">
+        <div class="card-row">
+          <span class="card-label">Заказ:</span>
+          <span>924 + 932</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Ответственные:</span>
+          <span>Peter / Настя</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Статус:</span>
+          <span class="tag tag-yellow">🟡</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Маршрут:</span>
+          <span>📍 Оба груза можно начинать оформлять</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Комментарий:</span>
+          <span>Инструкции и документы приложены. Три дня бесплатно с сегодняшнего</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Посл. изм.:</span>
+          <span class="card-updated">09/12 16:51</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div id="modal-backdrop" class="modal-backdrop">
   <div class="modal">
@@ -510,18 +692,40 @@
 </div>
 
 <script>
-  // Все функции сохранены и работают как в предыдущем файле
-  // Добавлены новые: сортировка, фильтры, подсказки, автосохранение
-
   function sortColumns() {
     const board = document.getElementById('board');
     const columns = Array.from(board.querySelectorAll('.column'));
     columns.sort((a, b) => a.querySelector('.column-title').textContent.localeCompare(b.querySelector('.column-title').textContent));
     columns.forEach(col => board.appendChild(col));
-    saveBoard();
   }
 
-  // Остальной JS (можно вставить из предыдущего файла)
+  function addCard(column) {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-row">
+        <span class="card-label">Заказ:</span>
+        <span>Новый</span>
+      </div>
+      <div class="card-row">
+        <span class="card-label">Ответственные:</span>
+        <span>—</span>
+      </div>
+      <div class="card-row">
+        <span class="card-label">Статус:</span>
+        <span class="tag tag-red">🔴</span>
+      </div>
+      <div class="card-row">
+        <span class="card-label">Комментарий:</span>
+        <span>—</span>
+      </div>
+      <div class="card-row">
+        <span class="card-label">Посл. изм.:</span>
+        <span class="card-updated">${new Date().toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
+      </div>
+    `;
+    column.querySelector('.column-body').appendChild(card);
+  }
 </script>
 </body>
 </html>
