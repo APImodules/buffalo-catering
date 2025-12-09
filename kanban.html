@@ -1,731 +1,588 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Канбан Логистики (09/12)</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap');
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #f2f2f7;
-      color: #1c1c1e;
-      font-size: 14px;
-      line-height: 1.4;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    header {
-      padding: 12px 16px;
-      background: #ffffff;
-      color: #1c1c1e;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    header h1 {
-      font-size: 18px;
-      margin: 0 12px 0 0;
-      font-weight: 600;
-      color: #1c1c1e;
-    }
-
-    button {
-      padding: 6px 14px;
-      border-radius: 10px;
-      border: none;
-      background: #ffffff;
-      color: #007aff;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-      font-size: 13px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      font-family: inherit;
-    }
-
-    button:hover {
-      background: #f2f2f7;
-      color: #007aff;
-    }
-
-    #search-input {
-      flex: 1;
-      max-width: 260px;
-      padding: 6px 10px;
-      border-radius: 10px;
-      border: 1px solid #d1d5db;
-      font-size: 13px;
-      background: #ffffff;
-      color: #1c1c1e;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-
-    #board {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 16px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .column {
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 12px;
-      min-width: 280px;
-      max-width: 320px;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
-      border: 1px solid #e5e5ea;
-      cursor: grab;
-    }
-
-    .column-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-
-    .column-title {
-      font-weight: 600;
-      font-size: 15px;
-      color: #1c1c1e;
-    }
-
-    .column-body {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      min-height: 50px;
-    }
-
-    .card {
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 10px;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
-      font-size: 13px;
-      cursor: grab;
-      transition: 0.2s;
-      border-left: 4px solid #007aff;
-      position: relative;
-    }
-
-    .card.dragging {
-      opacity: 0.5;
-    }
-
-    .card-row {
-      margin-bottom: 4px;
-    }
-
-    .card-label {
-      font-weight: 600;
-      margin-right: 4px;
-      color: #3c3c43;
-    }
-
-    .tag {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 12px;
-      font-size: 12px;
-      margin-right: 4px;
-      cursor: pointer;
-    }
-
-    .tag-red {
-      background: #ff3b30;
-      color: #ffffff;
-    }
-
-    .tag-yellow {
-      background: #ffcc00;
-      color: #000000;
-    }
-
-    .tag-green {
-      background: #34c759;
-      color: #ffffff;
-    }
-
-    .tag-done {
-      background: #30d158;
-      color: #ffffff;
-    }
-
-    .small {
-      font-size: 12px;
-      color: #8e8e93;
-    }
-
-    .card-updated {
-      font-size: 11px;
-      color: #8e8e93;
-      font-style: italic;
-    }
-
-    .card-updated.stale {
-      color: #ff3b30;
-      font-weight: 600;
-    }
-
-    .notification {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      width: 12px;
-      height: 12px;
-      background: #ff3b30;
-      border-radius: 50%;
-      display: none;
-    }
-
-    .card.stale .notification {
-      display: block;
-    }
-
-    .toolbar-right {
-      margin-left: auto;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .menu {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 8px 0;
-    }
-
-    .btn-sm {
-      padding: 4px 8px;
-      font-size: 12px;
-      border-radius: 6px;
-    }
-
-    .tooltip {
-      position: relative;
-      display: inline-block;
-      cursor: help;
-    }
-
-    .tooltip .tooltiptext {
-      visibility: hidden;
-      width: 120px;
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      border-radius: 6px;
-      padding: 5px;
-      position: absolute;
-      z-index: 1;
-      bottom: 125%;
-      left: 50%;
-      margin-left: -60px;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .tooltip:hover .tooltiptext {
-      visibility: visible;
-      opacity: 1;
-    }
-
-    @media (max-width: 900px) {
-      header {
-        flex-wrap: wrap;
-      }
-      .toolbar-right {
-        margin-left: 0;
-      }
-    }
-
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.35);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 50;
-    }
-
-    .modal-backdrop.show {
-      display: flex;
-    }
-
-    .modal {
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 20px;
-      width: min(480px, 95%);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-      border: 1px solid #e5e5ea;
-    }
-
-    .modal h2 {
-      margin: 0 0 14px;
-      font-size: 18px;
-      font-weight: 600;
-      color: #1c1c1e;
-    }
-
-    .modal-row {
-      margin-bottom: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      font-size: 13px;
-    }
-
-    .modal-row label {
-      font-weight: 600;
-      color: #1c1c1e;
-    }
-
-    .modal-row input,
-    .modal-row select,
-    .modal-row textarea {
-      width: 100%;
-      padding: 8px 12px;
-      border-radius: 10px;
-      border: 1px solid #d1d5db;
-      font-family: inherit;
-      font-size: 13px;
-      resize: vertical;
-      background: #ffffff;
-      color: #1c1c1e;
-    }
-
-    .modal-row input:focus,
-    .modal-row select:focus,
-    .modal-row textarea:focus {
-      outline: 2px solid #007aff;
-      border-color: #007aff;
-    }
-
-    .modal-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .btn-secondary {
-      background: #f2f2f7;
-      color: #1c1c1e;
-      border: none;
-    }
-
-    .btn-danger {
-      background: #ff3b30;
-      color: #ffffff;
-      border: none;
-    }
-
-    .btn-save {
-      background: #34c759;
-      color: #ffffff;
-      border: none;
-    }
-
-    .btn-save:hover {
-      background: #2ca449;
-    }
-  </style>
+<meta charset="UTF-8" />
+<title>Kanban KB LCC</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'Inter', system-ui, sans-serif; background:#f3f4f6; }
+header {
+padding: 12px 20px;
+background:#b91c1c;
+color:#fff;
+display:flex;
+align-items:center;
+gap:12px;
+position:sticky;
+top:0;
+z-index:10;
+box-shadow:0 2px 6px rgba(0,0,0,0.15);
+}
+header h1 { font-size:20px; margin:0 16px 0 0; font-weight:600; }
+button {
+padding:6px 14px;
+border-radius:6px;
+border:none;
+background:#f3f4f6;
+color:#111827;
+font-weight:500;
+cursor:pointer;
+transition: 0.2s;
+font-size:13px;
+}
+button:hover { background:#e5e7eb; }
+#search-input {
+flex:1;
+max-width:260px;
+padding:4px 8px;
+border-radius:6px;
+border:1px solid #d1d5db;
+font-size:13px;
+}
+#board {
+display:flex;
+align-items:flex-start;
+gap:14px;
+padding:16px;
+overflow-x:auto;
+}
+.column {
+background:#f9fafb;
+border-radius:8px;
+padding:12px;
+min-width:280px;
+max-width:320px;
+display:flex;
+flex-direction:column;
+box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+.column-header {
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:10px;
+}
+.column-title {
+font-weight:700;
+font-size:14px;
+color:#111827;
+}
+.column-title[contenteditable="true"] {
+padding:2px 4px;
+border-radius:4px;
+}
+.column-title:focus {
+outline:2px solid #b91c1c;
+background:#fff;
+}
+.column-body {
+display:flex;
+flex-direction:column;
+gap:8px;
+min-height:50px;
+}
+.card {
+background:#fff;
+border-radius:8px;
+padding:8px;
+box-shadow:0 2px 4px rgba(0,0,0,0.12);
+font-size:13px;
+cursor:grab;
+transition:0.2s;
+border-left:4px solid #b91c1c;
+}
+.card.dragging { opacity:0.5; }
+.card-row { margin-bottom:4px; }
+.card-label { font-weight:600; margin-right:4px; color:#374151; }
+.tag {
+display:inline-block;
+padding:2px 6px;
+border-radius:12px;
+font-size:12px;
+margin-right:4px;
+cursor:pointer;
+}
+.tag-red { background:#fecaca; color:#991b1b; }
+.tag-yellow { background:#fef3c7; color:#78350f; }
+.tag-green { background:#bbf7d0; color:#14532d; }
+.tag-done { background:#d1fae5; color:#065f46; }
+.small { font-size:12px; color:#4b5563; }
+.card-updated {
+font-size:11px;
+color:#4b5563;
+font-style:italic;
+}
+.card-updated.stale {
+color:#b91c1c;
+font-weight:600;
+}
+.toolbar-right { margin-left:auto; display:flex; gap:8px; flex-wrap:wrap; }
+@media (max-width:900px){
+header{flex-wrap:wrap;}
+.toolbar-right{margin-left:0;}
+}
+.modal-backdrop {
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.35);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:50;
+}
+.modal-backdrop.show { display:flex; }
+.modal {
+background:#fff;
+border-radius:8px;
+padding:20px;
+width:min(480px, 95%);
+box-shadow:0 10px 25px rgba(0,0,0,0.25);
+}
+.modal h2 { margin:0 0 14px; font-size:18px; font-weight:600; color:#111827; }
+.modal-row { margin-bottom:10px; display:flex; flex-direction:column; gap:4px; font-size:13px; }
+.modal-row label { font-weight:600; color:#111827; }
+.modal-row input,
+.modal-row select,
+.modal-row textarea {
+width:100%;
+padding:6px 10px;
+border-radius:6px;
+border:1px solid #d1d5db;
+font-family:inherit;
+font-size:13px;
+resize:vertical;
+}
+.modal-row input:focus,
+.modal-row select:focus,
+.modal-row textarea:focus {
+outline:2px solid #b91c1c;
+border-color:#b91c1c;
+}
+.modal-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:12px; }
+.btn-secondary { background:#f3f4f6; color:#111827; border:none; }
+.btn-danger { background:#b91c1c; color:#fff; border:none; }
+</style>
 </head>
 <body>
 <header>
-  <h1>Канбан Логистики (09/12)</h1>
-  <input id="search-input" type="text" placeholder="Поиск по карточкам..." />
-  <button onclick="clearSearch()">✕</button>
-  <button onclick="downloadSummary()">Сводка</button>
-  <div class="toolbar-right">
-    <button onclick="addColumn()">+ Колонка</button>
-    <button onclick="addCardToFirst()">+ Карточка</button>
-    <button class="btn-save" onclick="saveBoard()">Сохранить</button>
-    <button onclick="loadBoard()">Загрузить</button>
-    <button onclick="resetToDefault()">Сброс</button>
-  </div>
+<h1>Kanban KB</h1>
+<input id="search-input" type="text" placeholder="Поиск по карточкам..." />
+<button onclick="clearSearch()">✕</button>
+<button onclick="downloadSummary()">Сводка</button>
+<div class="toolbar-right">
+<button onclick="addColumn()">+ Колонка</button>
+<button onclick="addCardToFirst()">+ Карточка</button>
+<button onclick="saveBoard()">💾 Сохранить</button>
+<button onclick="loadBoard()">⟳ Загрузить</button>
+<button onclick="resetToDefault()">↺ Сброс</button>
+</div>
 </header>
-
-<div class="menu">
-  <button class="btn-sm" onclick="sortColumns()">Сортировать</button>
-  <div class="tooltip">
-    <button class="btn-sm">?</button>
-    <span class="tooltiptext">Фильтры, сортировка, подсказки</span>
-  </div>
-</div>
-
-<div id="board">
-  <!-- Планируем / Готовность / Не оплачено -->
-  <div class="column">
-    <div class="column-header">
-      <div class="column-title">Планируем / Готовность / Не оплачено</div>
-      <button onclick="addCard(this.closest('.column'))">+ Карточка</button>
-    </div>
-    <div class="column-body">
-      <div class="card">
-        <div class="card-row">
-          <span class="card-label">Заказ:</span>
-          <span>977</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Ответственные:</span>
-          <span>Рита / Саша / Исмаил</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Статус:</span>
-          <span class="tag tag-red">🔴</span>
-          <span class="tag">⏳</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Комментарий:</span>
-          <span>Уточняем с тремя поставщиками по покупке через ТД, потом можно сборку</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Посл. изм.:</span>
-          <span class="card-updated">09/12 16:53</span>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-row">
-          <span class="card-label">Заказ:</span>
-          <span>863 + 931</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Ответственные:</span>
-          <span>Юля / Ismail</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Статус:</span>
-          <span class="tag tag-red">🔴</span>
-          <span class="tag">⏳</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">PI:</span>
-          <span>250912, 251031</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Комментарий:</span>
-          <span>Вариант с 40HQ по прямому ЖД; после получения окончательных данных проверим возможность объединения с другими заказами</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Посл. изм.:</span>
-          <span class="card-updated">09/12 16:53</span>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-row">
-          <span class="card-label">Заказ:</span>
-          <span>920</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Ответственные:</span>
-          <span>Юля / Elsa</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Статус:</span>
-          <span class="tag tag-red">🔴</span>
-          <span class="tag">⏳</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">PI:</span>
-          <span>251022</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Комментарий:</span>
-          <span>Груз ожидается к готовности 09/12; после этого проверим возможность объединения с 863 + 931</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Посл. изм.:</span>
-          <span class="card-updated">09/12 16:53</span>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-row">
-          <span class="card-label">Заказ:</span>
-          <span>930 + 964 + 965</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Ответственные:</span>
-          <span>Юля / Elsa</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Статус:</span>
-          <span class="tag tag-red">🔴</span>
-          <span class="tag">⏳</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">PI:</span>
-          <span>251028, 251126-25, 251126-2</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Комментарий:</span>
-          <span>Приоритетная загрузка PET paper foil, остальное — всё, что помещается; остаток товаров будет отправлен LCL. Ждём уточнения даты забора и затарки</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Посл. изм.:</span>
-          <span class="card-updated">09/12 16:53</span>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-row">
-          <span class="card-label">Заказ:</span>
-          <span>949</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Ответственные:</span>
-          <span>Саша / Elsa</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Статус:</span>
-          <span class="tag tag-yellow">🟡</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Комментарий:</span>
-          <span>На складе агента; ждём прибытия груза в Маньчжурию 12/12 для обновления финальных данных</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Посл. изм.:</span>
-          <span class="card-updated">09/12 16:52</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- До границы / На выход -->
-  <div class="column">
-    <div class="column-header">
-      <div class="column-title">До границы / На выход</div>
-      <button onclick="addCard(this.closest('.column'))">+ Карточка</button>
-    </div>
-    <div class="column-body">
-      <div class="card">
-        <div class="card-row">
-          <span class="card-label">Заказ:</span>
-          <span>946</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Ответственные:</span>
-          <span>Peter / Настя</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Статус:</span>
-          <span class="tag tag-yellow">🟡</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Маршрут:</span>
-          <span>🚛 В пути к границе Китая (~812 км)</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Комментарий:</span>
-          <span>Ждём следующей точки движения</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Посл. изм.:</span>
-          <span class="card-updated">09/12 16:52</span>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-row">
-          <span class="card-label">Заказ:</span>
-          <span>962</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Ответственные:</span>
-          <span>Юля / Lucky</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Статус:</span>
-          <span class="tag tag-green">🟢</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Маршрут:</span>
-          <span>📍 Груз на границе Маньчжурии, CN (in queue to leave China)</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Посл. изм.:</span>
-          <span class="card-updated">09/12 16:52</span>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-row">
-          <span class="card-label">Заказ:</span>
-          <span>883</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Ответственные:</span>
-          <span>Саша / Khasan</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Статус:</span>
-          <span class="tag tag-yellow">🟡</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Маршрут:</span>
-          <span>🚛 Перемещён на другую станцию</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Комментарий:</span>
-          <span>Ожидаем прибытия на выгрузку 03–10/01/26</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Посл. изм.:</span>
-          <span class="card-updated">09/12 16:52</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Таможня / Выдача / Финализация -->
-  <div class="column">
-    <div class="column-header">
-      <div class="column-title">Таможня / Выдача / Финализация</div>
-      <button onclick="addCard(this.closest('.column'))">+ Карточка</button>
-    </div>
-    <div class="column-body">
-      <div class="card">
-        <div class="card-row">
-          <span class="card-label">Заказ:</span>
-          <span>924 + 932</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Ответственные:</span>
-          <span>Peter / Настя</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Статус:</span>
-          <span class="tag tag-yellow">🟡</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Маршрут:</span>
-          <span>📍 Оба груза можно начинать оформлять</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Комментарий:</span>
-          <span>Инструкции и документы приложены. Три дня бесплатно с сегодняшнего</span>
-        </div>
-        <div class="card-row">
-          <span class="card-label">Посл. изм.:</span>
-          <span class="card-updated">09/12 16:51</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+<div id="board"></div>
 <div id="modal-backdrop" class="modal-backdrop">
-  <div class="modal">
-    <h2>Карточка</h2>
-    <div class="modal-row">
-      <label>Заказ</label>
-      <input id="f-order" type="text">
-    </div>
-    <div class="modal-row">
-      <label>Ответственные</label>
-      <input id="f-responsible" type="text">
-    </div>
-    <div class="modal-row">
-      <label>Статус (с эмодзи)</label>
-      <select id="f-status">
-        <option value="🔴">🔴 Красный</option>
-        <option value="🟡">🟡 Желтый</option>
-        <option value="🟢">🟢 Зеленый</option>
-        <option value="✔️">✔️ Завершено</option>
-      </select>
-    </div>
-    <div class="modal-row">
-      <label>Оплата за транспорт</label>
-      <select id="f-transport">
-        <option value="🔴">🔴 Не оплачено</option>
-        <option value="🟢">🟢 Оплачено</option>
-      </select>
-    </div>
-    <div class="modal-row">
-      <label>PI</label>
-      <input id="f-pi" type="text">
-    </div>
-    <div class="modal-row">
-      <label>Дата готовности / ETD</label>
-      <input id="f-eta" type="text">
-    </div>
-    <div class="modal-row">
-      <label>Вес / Объём</label>
-      <input id="f-weight" type="text">
-    </div>
-    <div class="modal-row">
-      <label>Комментарий</label>
-      <textarea id="f-comment" rows="3"></textarea>
-    </div>
-    <div class="modal-row">
-      <label>Дополнительно</label>
-      <textarea id="f-extra" rows="2"></textarea>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-danger" onclick="deleteCurrentCard()">Удалить</button>
-      <button class="btn-secondary" onclick="closeModal()">Отмена</button>
-      <button onclick="applyModal()">Сохранить</button>
-    </div>
-  </div>
+<div class="modal">
+<h2>Карточка</h2>
+<div class="modal-row">
+<label>Заказ</label>
+<input id="f-order" type="text">
 </div>
-
+<div class="modal-row">
+<label>Ответственные</label>
+<input id="f-responsible" type="text">
+</div>
+<div class="modal-row">
+<label>Статус (с эмодзи)</label>
+<select id="f-status">
+<option value="🔴">🔴 Красный</option>
+<option value="🟡">🟡 Желтый</option>
+<option value="🟢">🟢 Зеленый</option>
+<option value="✔️">✔️ Завершено</option>
+</select>
+</div>
+<div class="modal-row">
+<label>Оплата за транспорт</label>
+<select id="f-transport">
+<option value="🔴">🔴 Не оплачено</option>
+<option value="🟢">🟢 Оплачено</option>
+</select>
+</div>
+<div class="modal-row">
+<label>PI</label>
+<input id="f-pi" type="text">
+</div>
+<div class="modal-row">
+<label>Дата готовности / ETA</label>
+<input id="f-eta" type="text">
+</div>
+<div class="modal-row">
+<label>Вес / Объём</label>
+<input id="f-weight" type="text">
+</div>
+<div class="modal-row">
+<label>Комментарий</label>
+<textarea id="f-comment" rows="3"></textarea>
+</div>
+<div class="modal-row">
+<label>Дополнительно</label>
+<textarea id="f-extra" rows="2"></textarea>
+</div>
+<div class="modal-actions">
+<button class="btn-danger" onclick="deleteCurrentCard()">Удалить</button>
+<button class="btn-secondary" onclick="closeModal()">Отмена</button>
+<button onclick="applyModal()">Сохранить</button>
+</div>
+</div>
+</div>
 <script>
-  function sortColumns() {
-    const board = document.getElementById('board');
-    const columns = Array.from(board.querySelectorAll('.column'));
-    columns.sort((a, b) => a.querySelector('.column-title').textContent.localeCompare(b.querySelector('.column-title').textContent));
-    columns.forEach(col => board.appendChild(col));
-  }
-
-  function addCard(column) {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `
-      <div class="card-row">
-        <span class="card-label">Заказ:</span>
-        <span>Новый</span>
-      </div>
-      <div class="card-row">
-        <span class="card-label">Ответственные:</span>
-        <span>—</span>
-      </div>
-      <div class="card-row">
-        <span class="card-label">Статус:</span>
-        <span class="tag tag-red">🔴</span>
-      </div>
-      <div class="card-row">
-        <span class="card-label">Комментарий:</span>
-        <span>—</span>
-      </div>
-      <div class="card-row">
-        <span class="card-label">Посл. изм.:</span>
-        <span class="card-updated">${new Date().toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
-      </div>
-    `;
-    column.querySelector('.column-body').appendChild(card);
-  }
+const STORAGE_KEY = 'kanban_kb_lcc_v1';
+function statusClass(status) {
+if (!status) return '';
+if (status.includes('✔️')) return 'tag-done';
+if (status.includes('🟢')) return 'tag-green';
+if (status.includes('🟡')) return 'tag-yellow';
+if (status.includes('🔴')) return 'tag-red';
+return '';
+}
+function formatNowShort() {
+const d = new Date();
+const pad = (n) => String(n).padStart(2, '0');
+return `${pad(d.getDate())}/${pad(d.getMonth() + 1)} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+function isBeforeToday(dateString) {
+if (!dateString) return false;
+const parts = dateString.split(' ');
+const dayPart = parts[0];
+if (!dayPart) return false;
+const [dd, mm] = dayPart.split('/').map(Number);
+if (!dd || !mm) return false;
+const now = new Date();
+const candidate = new Date(now.getFullYear(), mm - 1, dd);
+const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+return candidate.getTime() < today.getTime();
+}
+function el(tag, attrs={}, ...children){
+const node=document.createElement(tag);
+Object.entries(attrs).forEach(([k,v])=>{
+if(k==='class') node.className=v;
+else if(k==='dataset') Object.assign(node.dataset,v);
+else if(k==='contenteditable') node.setAttribute('contenteditable',v);
+else if(k==='onclick') node.onclick=v;
+else node[k]=v;
+});
+for(const ch of children){
+if(typeof ch==='string') node.appendChild(document.createTextNode(ch));
+else if(ch) node.appendChild(ch);
+}
+return node;
+}
+function renderCard(card){
+const cardEl=el('div',{class:'card',draggable:true,dataset:{id:card.id}});
+const top=el('div',{class:'card-row'},
+el('span',{class:'card-label'},'Заказ: '),
+el('span',{contenteditable:'true'},card.order||'')
+);
+const updatedRow = el('div', { class: 'card-row small' },
+el('span', { class: 'card-label' }, 'Посл. изм.: '),
+el('span', { class: 'card-updated' }, card.lastUpdated || '')
+);
+const updatedSpanInRow = updatedRow.querySelector('.card-updated');
+if (card.lastUpdated && isBeforeToday(card.lastUpdated)) {
+updatedSpanInRow.classList.add('stale');
+}
+const resp=el('div',{class:'card-row small'},
+el('span',{class:'card-label'},'Ответственные: '),
+el('span',{contenteditable:'true'},card.responsible||'')
+);
+const statusRow=el('div',{class:'card-row small'});
+const tag=el('span',{class:'tag '+statusClass(card.status)},card.status||'');
+tag.setAttribute('contenteditable','true');
+statusRow.appendChild(el('span',{class:'card-label'},'Статус: '));
+statusRow.appendChild(tag);
+const transportRow=el('div',{class:'card-row small'},
+el('span',{class:'card-label'},'Оплата: '),
+el('span',{contenteditable:'true'},card.transport||'🔴')
+);
+const pi=el('div',{class:'card-row small'},
+el('span',{class:'card-label'},'PI: '),
+el('span',{contenteditable:'true'},card.pi||'-')
+);
+const eta=el('div',{class:'card-row small'},
+el('span',{class:'card-label'},'Готовн./ETA: '),
+el('span',{contenteditable:'true'},card.eta||'-')
+);
+const weight=el('div',{class:'card-row small'},
+el('span',{class:'card-label'},'Вес/Объём: '),
+el('span',{contenteditable:'true'},card.weight||'-')
+);
+const comment=el('div',{class:'card-row small'},
+el('span',{class:'card-label'},'Комментарий: '),
+el('span',{contenteditable:'true'},card.comment||'-')
+);
+const extra=el('div',{class:'card-row small'},
+el('span',{class:'card-label'},'Дополнительно: '),
+el('span',{contenteditable:'true'},card.extra||'-')
+);
+cardEl.append(top, updatedRow, resp, statusRow, transportRow, pi, eta, weight, comment, extra);
+cardEl.addEventListener('dragstart',(e)=>{
+cardEl.classList.add('dragging');
+e.dataTransfer.setData('text/plain','dragging');
+});
+cardEl.addEventListener('dragend',()=>{
+cardEl.classList.remove('dragging');
+});
+cardEl.addEventListener('click',(e)=>{
+if(e.target.tagName==='BUTTON') return;
+openModalForCard(cardEl);
+});
+return cardEl;
+}
+function renderColumn(column){
+const colEl=el('div',{class:'column',dataset:{id:column.id}});
+const title=el('div',{class:'column-title',contenteditable:'true'},column.title||'Новая колонка');
+const addBtn=el('button',{onclick:()=>addCard(colEl)},'+ Карточка');
+const header=el('div',{class:'column-header'},title,addBtn);
+const body=el('div',{class:'column-body'});
+body.addEventListener('dragover',(e)=>{e.preventDefault(); body.classList.add('drop-hover');});
+body.addEventListener('dragleave',()=>{body.classList.remove('drop-hover');});
+body.addEventListener('drop',(e)=>{
+e.preventDefault();
+const dragging=document.querySelector('.card.dragging');
+if(dragging) body.appendChild(dragging);
+body.classList.remove('drop-hover');
+});
+(column.cards||[]).forEach(c=>body.appendChild(renderCard(c)));
+colEl.append(header,body);
+return colEl;
+}
+function renderBoard(data){
+const board=document.getElementById('board');
+board.innerHTML='';
+data.columns.forEach(col=>board.appendChild(renderColumn(col)));
+applySearchFilter(); // чтобы фильтр не сбрасывался при перерисовке
+}
+const defaultData = JSON.parse(`{
+"columns":[
+{"id":"col-plan","title":"Планируем / Готовность / Не оплачено","cards":[
+{"id":"c977","order":"977","responsible":"Рита / Саша / Исмаил","status":"🔴","transport":"🔴","pi":"-","eta":"-","weight":"-","comment":"Уточняем с тремя поставщиками по покупке через ТД, потом можно сборку","extra":"-","lastUpdated":"09/12 16:53"},
+{"id":"c863_931","order":"863 + 931","responsible":"Юля / Ismail","status":"🔴","transport":"🔴","pi":"250912, 251031","eta":"09/12/25","weight":"11 524 кг / 27 м³","comment":"Вариант с 40HQ по прямому ЖД; после получения окончательных данных проверим возможность объединения с другими заказами","extra":"Максимальная загрузка 40HQ: 26 т брутто, 66 м³","lastUpdated":"09/12 16:53"},
+{"id":"c920","order":"920","responsible":"Юля / Elsa","status":"🔴","transport":"🔴","pi":"251022","eta":"09/12/25","weight":"-","comment":"Груз ожидается к готовности 09/12; после этого проверим возможность объединения с 863 + 931","extra":"-","lastUpdated":"09/12 16:53"},
+{"id":"c930_964_965","order":"930 + 964 + 965","responsible":"Юля / Elsa","status":"🔴","transport":"🔴","pi":"251028, 251126-25, 251126-2","eta":"-","weight":"-","comment":"Приоритетная загрузка PET paper foil, остальное — всё, что помещается; остаток товаров будет отправлен LCL. Ждём уточнения даты забора и затарки","extra":"-","lastUpdated":"09/12 16:53"},
+{"id":"c949","order":"949","responsible":"Саша / Elsa","status":"🟡","transport":"🔴","pi":"-","eta":"09/12","weight":"-","comment":"На складе агента; ждём прибытия груза в Маньчжурию 12/12 для обновления финальных данных","extra":"Предварительно выход 09/12","lastUpdated":"09/12 16:52"}
+]},
+{"id":"col-border","title":"До границы / На выход","cards":[
+{"id":"c946","order":"946","responsible":"Peter / Настя","status":"🟡","transport":"🔴","pi":"-","eta":"06/12","weight":"-","comment":"В пути к границе Китая (~812 км); ждём следующей точки движения","extra":"-","lastUpdated":"09/12 16:52"},
+{"id":"c962","order":"962","responsible":"Юля / Lucky","status":"🟢","transport":"🔴","pi":"-","eta":"17–19/12","weight":"-","comment":"Груз на границе Маньчжурии, CN (in queue to leave China)","extra":"-","lastUpdated":"09/12 16:52"},
+{"id":"c883","order":"883","responsible":"Саша / Khasan","status":"🟡","transport":"🔴","pi":"-","eta":"09/12","weight":"-","comment":"Перемещён на другую станцию; ожидаем прибытия на выгрузку 03–10/01/26","extra":"-","lastUpdated":"09/12 16:52"}
+]},
+{"id":"col-customs","title":"Таможня / Выдача / Финализация","cards":[
+{"id":"c924_932","order":"924 + 932","responsible":"Peter / Настя","status":"🟡","transport":"🔴","pi":"-","eta":"-","weight":"-","comment":"Оба груза можно начинать оформлять. Инструкции и документы приложены. Три дня бесплатно с сегодняшнего","extra":"-","lastUpdated":"09/12 16:51"}
+]}
+]
+}`);
+let currentModalCardEl = null;
+function openModalForCard(cardEl){
+currentModalCardEl=cardEl;
+const getField = (label) => {
+const row = Array.from(cardEl.querySelectorAll('.card-row'))
+.find(r=>r.querySelector('.card-label')?.textContent.startsWith(label));
+if(!row) return '';
+const s=row.querySelector('span[contenteditable="true"]') || row.querySelector('.tag') || row.querySelector('.card-updated');
+return s?s.textContent.trim():'';
+};
+document.getElementById('f-order').value=getField('Заказ');
+document.getElementById('f-responsible').value=getField('Ответственные');
+document.getElementById('f-status').value=getField('Статус');
+document.getElementById('f-transport').value=getField('Оплата')||'🔴';
+document.getElementById('f-pi').value=getField('PI');
+document.getElementById('f-eta').value=getField('Готовн./ETA');
+document.getElementById('f-weight').value=getField('Вес/Объём');
+document.getElementById('f-comment').value=getField('Комментарий');
+document.getElementById('f-extra').value=getField('Дополнительно');
+document.getElementById('modal-backdrop').classList.add('show');
+}
+function closeModal(){
+currentModalCardEl=null;
+document.getElementById('modal-backdrop').classList.remove('show');
+}
+function applyModal(){
+if(!currentModalCardEl) return;
+const setField=(label,value)=>{
+const row=Array.from(currentModalCardEl.querySelectorAll('.card-row'))
+.find(r=>r.querySelector('.card-label')?.textContent.startsWith(label));
+if(!row) return;
+const span=row.querySelector('span[contenteditable="true"]')||row.querySelector('.tag');
+if(!span) return;
+span.textContent=value;
+if(label==='Статус') span.className='tag '+statusClass(value);
+if(label==='Оплата') span.className='tag '+statusClass(value);
+};
+setField('Заказ',document.getElementById('f-order').value);
+setField('Ответственные',document.getElementById('f-responsible').value);
+setField('Статус',document.getElementById('f-status').value);
+setField('Оплата',document.getElementById('f-transport').value);
+setField('PI',document.getElementById('f-pi').value);
+setField('Готовн./ETA',document.getElementById('f-eta').value);
+setField('Вес/Объём',document.getElementById('f-weight').value);
+setField('Комментарий',document.getElementById('f-comment').value);
+setField('Дополнительно',document.getElementById('f-extra').value);
+const updatedSpan = currentModalCardEl.querySelector('.card-updated');
+if (updatedSpan) {
+const ts = formatNowShort();
+updatedSpan.textContent = ts;
+updatedSpan.classList.remove('stale');
+if (isBeforeToday(ts)) {
+updatedSpan.classList.add('stale');
+}
+}
+closeModal();
+}
+function deleteCurrentCard(){
+if(currentModalCardEl){
+currentModalCardEl.remove();
+closeModal();
+}
+}
+function addColumn(){
+const id='col-'+Date.now();
+const col={id:id,title:'Новая колонка',cards:[]};
+defaultData.columns.push(col);
+renderBoard(defaultData);
+}
+function addCard(colEl){
+const colId=colEl.dataset.id;
+const col=defaultData.columns.find(c=>c.id===colId);
+const card={id:'c'+Date.now(),order:'',responsible:'',status:'🔴',transport:'🔴',pi:'-',eta:'-',weight:'-',comment:'-',extra:'-',lastUpdated:''};
+col.cards.push(card);
+colEl.querySelector('.column-body').appendChild(renderCard(card));
+}
+function addCardToFirst(){
+if(defaultData.columns.length>0) addCard(document.querySelector('.column'));
+}
+function saveBoard() {
+const boardEl = document.getElementById('board');
+const colsEls = Array.from(boardEl.querySelectorAll('.column'));
+const data = {
+columns: colsEls.map(colEl => {
+const colId = colEl.dataset.id;
+const title = colEl.querySelector('.column-title').textContent.trim();
+const cardsEls = Array.from(colEl.querySelectorAll('.card'));
+const cards = cardsEls.map(cardEl => {
+const getField = (label) => {
+const row = Array.from(cardEl.querySelectorAll('.card-row'))
+.find(r => r.querySelector('.card-label')?.textContent.startsWith(label));
+if (!row) return '';
+const span = row.querySelector('span[contenteditable="true"]') || row.querySelector('.tag') || row.querySelector('.card-updated');
+return span ? span.textContent.trim() : '';
+};
+return {
+id: cardEl.dataset.id,
+order: getField('Заказ'),
+responsible: getField('Ответственные'),
+status: getField('Статус'),
+transport: getField('Оплата'),
+pi: getField('PI'),
+eta: getField('Готовн./ETA'),
+weight: getField('Вес/Объём'),
+comment: getField('Комментарий'),
+extra: getField('Дополнительно'),
+lastUpdated: getField('Посл. изм.')
+};
+});
+return { id: colId, title, cards };
+})
+};
+localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+alert('Сохранено');
+}
+function loadBoard(){
+const stored = localStorage.getItem(STORAGE_KEY);
+const data = stored ? JSON.parse(stored) : defaultData;
+renderBoard(data);
+}
+function resetToDefault(){
+if(confirm('Сбросить к исходным данным?')){
+renderBoard(defaultData);
+localStorage.removeItem(STORAGE_KEY);
+}
+}
+function applySearchFilter() {
+const input = document.getElementById('search-input');
+const q = (input ? input.value : '').trim().toLowerCase();
+const cards = document.querySelectorAll('.card');
+cards.forEach(card => {
+if (!q) {
+card.style.display = '';
+return;
+}
+const text = card.innerText.toLowerCase();
+if (text.includes(q)) {
+card.style.display = '';
+} else {
+card.style.display = 'none';
+}
+});
+}
+function clearSearch() {
+const input = document.getElementById('search-input');
+if (!input) return;
+input.value = '';
+applySearchFilter();
+}
+function downloadSummary() {
+const input = document.getElementById('search-input');
+const query = (input ? input.value : '').trim();
+const cards = Array.from(document.querySelectorAll('.card'))
+.filter(c => c.style.display !== 'none');
+if (cards.length === 0) {
+alert('Нет карточек для сводки (проверьте фильтр).');
+return;
+}
+const lines = [];
+if (query) {
+lines.push(\`Сводка по запросу: "\${query}"\`);
+} else {
+lines.push('Сводка по всем карточкам');
+}
+lines.push('');
+cards.forEach(card => {
+const getField = (label) => {
+const row = Array.from(card.querySelectorAll('.card-row'))
+.find(r => r.querySelector('.card-label')?.textContent.startsWith(label));
+if (!row) return '';
+const span = row.querySelector('span[contenteditable="true"]') || row.querySelector('.tag') || row.querySelector('.card-updated');
+return span ? span.textContent.trim() : '';
+};
+const order = getField('Заказ');
+const resp = getField('Ответственные');
+const comment = getField('Комментарий');
+const lastUpd = getField('Посл. изм.');
+lines.push(\`Заказ: \${order}\`);
+lines.push(\`Ответственные: \${resp}\`);
+lines.push(\`Комментарий: \${comment}\`);
+lines.push(\`Последнее обновление: \${lastUpd}\`);
+lines.push('');
+});
+const text = lines.join('\n');
+const blob = new Blob([text], {type: 'text/plain'});
+const url = URL.createObjectURL(blob);
+const a = document.createElement('a');
+a.href = url;
+const fileName = query ? \`svodka_\${query}.txt\` : 'svodka_kanban.txt';
+a.download = fileName;
+document.body.appendChild(a);
+a.click();
+document.body.removeChild(a);
+URL.revokeObjectURL(url);
+}
+document.addEventListener('DOMContentLoaded',()=>{
+loadBoard();
+const input = document.getElementById('search-input');
+if (input) {
+input.addEventListener('input', applySearchFilter);
+}
+});
+document.getElementById('modal-backdrop').addEventListener('click', e=>{
+if(e.target.id==='modal-backdrop') closeModal();
+});
 </script>
 </body>
 </html>
