@@ -248,12 +248,12 @@ const pad = (n) => String(n).padStart(2, '0');
 return `${pad(d.getDate())}/${pad(d.getMonth() + 1)} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
 }
 function isBeforeToday(dateString) {
-if (!dateString) return false;
+if (!dateString) return true;
 const parts = dateString.split(' ');
 const dayPart = parts[0];
-if (!dayPart) return false;
+if (!dayPart) return true;
 const [dd, mm] = dayPart.split('/').map(Number);
-if (!dd || !mm) return false;
+if (!dd || !mm) return true;
 const now = new Date();
 const candidate = new Date(now.getFullYear(), mm - 1, dd);
 const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -276,16 +276,20 @@ return node;
 }
 function renderCard(card){
 const cardEl=el('div',{class:'card',draggable:true,dataset:{id:card.id}});
+// Автообновление даты при открытии
+if (!card.lastUpdated || isBeforeToday(card.lastUpdated)) {
+card.lastUpdated = formatNowShort();
+}
 const top=el('div',{class:'card-row'},
 el('span',{class:'card-label'},'Заказ: '),
 el('span',{contenteditable:'true'},card.order||'')
 );
 const updatedRow = el('div', { class: 'card-row small' },
 el('span', { class: 'card-label' }, 'Посл. изм.: '),
-el('span', { class: 'card-updated' }, card.lastUpdated || '')
+el('span', { class: 'card-updated' }, card.lastUpdated)
 );
 const updatedSpanInRow = updatedRow.querySelector('.card-updated');
-if (card.lastUpdated && isBeforeToday(card.lastUpdated)) {
+if (isBeforeToday(card.lastUpdated)) {
 updatedSpanInRow.classList.add('stale');
 }
 const resp=el('div',{class:'card-row small'},
@@ -357,24 +361,24 @@ function renderBoard(data){
 const board=document.getElementById('board');
 board.innerHTML='';
 data.columns.forEach(col=>board.appendChild(renderColumn(col)));
-applySearchFilter(); // чтобы фильтр не сбрасывался при перерисовке
+applySearchFilter();
 }
 const defaultData = JSON.parse(`{
 "columns":[
 {"id":"col-plan","title":"Планируем / Готовность / Не оплачено","cards":[
-{"id":"c977","order":"977","responsible":"Рита / Саша / Исмаил","status":"🔴","transport":"🔴","pi":"-","eta":"-","weight":"-","comment":"Уточняем с тремя поставщиками по покупке через ТД, потом можно сборку","extra":"-","lastUpdated":"09/12 16:53"},
-{"id":"c863_931","order":"863 + 931","responsible":"Юля / Ismail","status":"🔴","transport":"🔴","pi":"250912, 251031","eta":"09/12/25","weight":"11 524 кг / 27 м³","comment":"Вариант с 40HQ по прямому ЖД; после получения окончательных данных проверим возможность объединения с другими заказами","extra":"Максимальная загрузка 40HQ: 26 т брутто, 66 м³","lastUpdated":"09/12 16:53"},
-{"id":"c920","order":"920","responsible":"Юля / Elsa","status":"🔴","transport":"🔴","pi":"251022","eta":"09/12/25","weight":"-","comment":"Груз ожидается к готовности 09/12; после этого проверим возможность объединения с 863 + 931","extra":"-","lastUpdated":"09/12 16:53"},
-{"id":"c930_964_965","order":"930 + 964 + 965","responsible":"Юля / Elsa","status":"🔴","transport":"🔴","pi":"251028, 251126-25, 251126-2","eta":"-","weight":"-","comment":"Приоритетная загрузка PET paper foil, остальное — всё, что помещается; остаток товаров будет отправлен LCL. Ждём уточнения даты забора и затарки","extra":"-","lastUpdated":"09/12 16:53"},
-{"id":"c949","order":"949","responsible":"Саша / Elsa","status":"🟡","transport":"🔴","pi":"-","eta":"09/12","weight":"-","comment":"На складе агента; ждём прибытия груза в Маньчжурию 12/12 для обновления финальных данных","extra":"Предварительно выход 09/12","lastUpdated":"09/12 16:52"}
+{"id":"c977","order":"977","responsible":"Рита / Саша / Исмаил","status":"🔴","transport":"🔴","pi":"-","eta":"-","weight":"-","comment":"Уточняем с тремя поставщиками по покупке через ТД, потом можно сборку","extra":"-"},
+{"id":"c863_931","order":"863 + 931","responsible":"Юля / Ismail","status":"🔴","transport":"🔴","pi":"250912, 251031","eta":"09/12/25","weight":"11 524 кг / 27 м³","comment":"Вариант с 40HQ по прямому ЖД; после получения окончательных данных проверим возможность объединения с другими заказами","extra":"Максимальная загрузка 40HQ: 26 т брутто, 66 м³"},
+{"id":"c920","order":"920","responsible":"Юля / Elsa","status":"🔴","transport":"🔴","pi":"251022","eta":"09/12/25","weight":"-","comment":"Груз ожидается к готовности 09/12; после этого проверим возможность объединения с 863 + 931","extra":"-"},
+{"id":"c930_964_965","order":"930 + 964 + 965","responsible":"Юля / Elsa","status":"🔴","transport":"🔴","pi":"251028, 251126-25, 251126-2","eta":"-","weight":"-","comment":"Приоритетная загрузка PET paper foil, остальное — всё, что помещается; остаток товаров будет отправлен LCL. Ждём уточнения даты забора и затарки","extra":"-"},
+{"id":"c949","order":"949","responsible":"Саша / Elsa","status":"🟡","transport":"🔴","pi":"-","eta":"09/12","weight":"-","comment":"На складе агента; ждём прибытия груза в Маньчжурию 12/12 для обновления финальных данных","extra":"Предварительно выход 09/12"}
 ]},
 {"id":"col-border","title":"До границы / На выход","cards":[
-{"id":"c946","order":"946","responsible":"Peter / Настя","status":"🟡","transport":"🔴","pi":"-","eta":"06/12","weight":"-","comment":"В пути к границе Китая (~812 км); ждём следующей точки движения","extra":"-","lastUpdated":"09/12 16:52"},
-{"id":"c962","order":"962","responsible":"Юля / Lucky","status":"🟢","transport":"🔴","pi":"-","eta":"17–19/12","weight":"-","comment":"Груз на границе Маньчжурии, CN (in queue to leave China)","extra":"-","lastUpdated":"09/12 16:52"},
-{"id":"c883","order":"883","responsible":"Саша / Khasan","status":"🟡","transport":"🔴","pi":"-","eta":"09/12","weight":"-","comment":"Перемещён на другую станцию; ожидаем прибытия на выгрузку 03–10/01/26","extra":"-","lastUpdated":"09/12 16:52"}
+{"id":"c946","order":"946","responsible":"Peter / Настя","status":"🟡","transport":"🔴","pi":"-","eta":"06/12","weight":"-","comment":"В пути к границе Китая (~812 км); ждём следующей точки движения","extra":"-"},
+{"id":"c962","order":"962","responsible":"Юля / Lucky","status":"🟢","transport":"🔴","pi":"-","eta":"17–19/12","weight":"-","comment":"Груз на границе Маньчжурии, CN (in queue to leave China)","extra":"-"},
+{"id":"c883","order":"883","responsible":"Саша / Khasan","status":"🟡","transport":"🔴","pi":"-","eta":"09/12","weight":"-","comment":"Перемещён на другую станцию; ожидаем прибытия на выгрузку 03–10/01/26","extra":"-"}
 ]},
 {"id":"col-customs","title":"Таможня / Выдача / Финализация","cards":[
-{"id":"c924_932","order":"924 + 932","responsible":"Peter / Настя","status":"🟡","transport":"🔴","pi":"-","eta":"-","weight":"-","comment":"Оба груза можно начинать оформлять. Инструкции и документы приложены. Три дня бесплатно с сегодняшнего","extra":"-","lastUpdated":"09/12 16:51"}
+{"id":"c924_932","order":"924 + 932","responsible":"Peter / Настя","status":"🟡","transport":"🔴","pi":"-","eta":"-","weight":"-","comment":"Оба груза можно начинать оформлять. Инструкции и документы приложены. Три дня бесплатно с сегодняшнего","extra":"-"}
 ]}
 ]
 }`);
@@ -538,7 +542,7 @@ return;
 }
 const lines = [];
 if (query) {
-lines.push(\`Сводка по запросу: "\${query}"\`);
+lines.push(`Сводка по запросу: "${query}"`);
 } else {
 lines.push('Сводка по всем карточкам');
 }
@@ -555,10 +559,10 @@ const order = getField('Заказ');
 const resp = getField('Ответственные');
 const comment = getField('Комментарий');
 const lastUpd = getField('Посл. изм.');
-lines.push(\`Заказ: \${order}\`);
-lines.push(\`Ответственные: \${resp}\`);
-lines.push(\`Комментарий: \${comment}\`);
-lines.push(\`Последнее обновление: \${lastUpd}\`);
+lines.push(`Заказ: ${order}`);
+lines.push(`Ответственные: ${resp}`);
+lines.push(`Комментарий: ${comment}`);
+lines.push(`Последнее обновление: ${lastUpd}`);
 lines.push('');
 });
 const text = lines.join('\n');
@@ -566,7 +570,7 @@ const blob = new Blob([text], {type: 'text/plain'});
 const url = URL.createObjectURL(blob);
 const a = document.createElement('a');
 a.href = url;
-const fileName = query ? \`svodka_\${query}.txt\` : 'svodka_kanban.txt';
+const fileName = query ? `svodka_${query}.txt` : 'svodka_kanban.txt';
 a.download = fileName;
 document.body.appendChild(a);
 a.click();
