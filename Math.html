@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Math Trainer 8th Grade</title>
+<style>
+body {
+    font-family: Arial;
+    background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+    color: white;
+    text-align: center;
+    padding: 40px;
+}
+.card {
+    background: #333;
+    padding: 30px;
+    border-radius: 15px;
+    width: 400px;
+    margin: auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+input {
+    padding: 10px;
+    font-size: 18px;
+    width: 100px;
+    margin-top: 15px;
+}
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #00c896;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+button:hover {
+    background: #00e6a8;
+}
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.popup-content {
+    background: #222;
+    padding: 25px;
+    border-radius: 15px;
+    width: 400px;
+}
+.close {
+    background: red;
+}
+</style>
+</head>
+<body>
+
+<h1>🔥 Math Training (Grade 8)</h1>
+
+<div class="card">
+    <h2>Solve:</h2>
+    <p>2x + 6 = 14</p>
+    <input id="answer" placeholder="Your answer">
+    <br>
+    <button onclick="check()">Check</button>
+</div>
+
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <h2 id="result"></h2>
+        <p id="solution"></p>
+        <button class="close" onclick="closePopup()">Close</button>
+    </div>
+</div>
+
+<script>
+function check() {
+    let ans = document.getElementById("answer").value;
+    let correct = 4;
+
+    let resultText = "";
+    let solutionText = "";
+
+    if (ans == correct) {
+        resultText = "🎉 Correct!";
+    } else {
+        resultText = "❌ Not quite!";
+    }
+
+    solutionText = `
+Step 1: 2x + 6 = 14  
+Step 2: subtract 6 → 2x = 8  
+Step 3: divide by 2 → x = 4  
+
+💡 Explanation:
+We isolate x step by step.
+First remove constant, then divide.
+    `;
+
+    document.getElementById("result").innerHTML = resultText;
+    document.getElementById("solution").innerHTML = solutionText;
+    document.getElementById("popup").style.display = "flex";
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+</script>
+
+</body>
+</html>
