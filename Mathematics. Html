@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Математика 8 класс | Итоговая тренировка</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #6a5acd, #4b0082);
+      color: #fff;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.4em;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+    .subtitle {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    .start-btn {
+      margin-top: 20px;
+      padding: 14px 32px;
+      background: #ffd700;
+      color: #333;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.3em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    .start-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Поп‑ап с примером */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: #fff;
+      color: #222;
+      width: 90%;
+      max-width: 640px;
+      padding: 30px;
+      border-radius: 20px;
+      position: relative;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    }
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.6em;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: #aaa;
+    }
+    .close-btn:hover {
+      color: #222;
+    }
+    .problem {
+      text-align: left;
+      margin-bottom: 20px;
+      padding: 10px;
+      background: #f8f9fa;
+      border-radius: 12px;
+    }
+    .problem b {
+      color: #4b0082;
+    }
+    .answer-group {
+      margin: 20px 0;
+      text-align: center;
+    }
+    input[type="text"] {
+      padding: 12px 16px;
+      font-size: 1.1em;
+      border: 2px solid #ddd;
+      border-radius: 12px;
+      width: 70%;
+      max-width: 300px;
+    }
+    .check-btn {
+      margin-left: 10px;
+      padding: 12px 24px;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1.1em;
+    }
+    .check-btn:hover {
+      background: #388e3c;
+    }
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+      min-height: 30px;
+    }
+    .solution {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      background: #f0f8ff;
+      border-radius: 12px;
+      border-left: 5px solid #4b0082;
+      text-align: left;
+      font-size: 0.95em;
+    }
+    .solution pre {
+      background: #f5f5f5;
+      padding: 12px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 10px 0;
+    }
+    .solution hr {
+      margin: 15px 0;
+      border: 0;
+      border-top: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔥 Математика 8 класс</h1>
+    <p class="subtitle">
+      Итоговая тренировочная контрольная за год<br/>
+      Апрель – план тренировки с примерами и подробными решениями
+    </p>
+    <button class="start-btn" onclick="openModal()">Попробовать пример с поп‑апом</button>
+  </div>
+
+  <!-- Поп‑ап с задачей -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">×</button>
+      <h2>Задача для тренировки</h2>
+
+      <div class="problem">
+        <b>Русский вопрос:</b><br/>
+        Упростите выражение:
+        \[
+           \frac{x^2 - 9}{x + 3},\quad x \ne -3
+        \]
+      </div>
+
+      <div class="problem">
+        <b>English question:</b><br/>
+        Simplify the expression:
+        \[
+           \frac{x^2 - 9}{x + 3},\quad x \ne -3
+        \]
+      </div>
+
+      <div class="answer-group">
+        <input type="text" id="userAnswer" placeholder="Ваш ответ (например: x - 3)" />
+        <button class="check-btn" onclick="checkAnswer()">Проверить</button>
+      </div>
+
+      <div class="result" id="result"></div>
+
+      <div class="solution" id="solution">
+        <h3>📚 Подробное решение (на русском):</h3>
+        <p>
+          В числителе стоит разность квадратов:
+          \[
+             x^2 - 9 = x^2 - 3^2 = (x - 3)(x + 3)
+          \]
+        </p>
+        <p>
+          Подставим это в дробь:
+          \[
+             \frac{x^2 - 9}{x + 3} = \frac{(x - 3)(x + 3)}{x + 3}
+          \]
+        </p>
+        <p>
+          При условии \(x \ne -3\) можно сократить \( (x + 3) \) в числителе и знаменателе:
+          \[
+             \frac{(x - 3)\cancel{(x + 3)}}{\cancel{x + 3}} = x - 3
+          \]
+        </p>
+        <p>Ответ: \(x - 3\).</p>
+
+        <hr/>
+
+        <h3>📚 Detailed solution (in English):</h3>
+        <p>
+          The numerator is a difference of squares:
+          \[
+             x^2 - 9 = x^2 - 3^2 = (x - 3)(x + 3)
+          \]
+        </p>
+        <p>
+          Substitute this into the fraction:
+          \[
+             \frac{x^2 - 9}{x + 3} = \frac{(x - 3)(x + 3)}{x + 3}
+          \]
+        </p>
+        <p>
+          Since \(x \ne -3\), we can cancel \((x + 3)\) in the numerator and denominator:
+          \[
+             \frac{(x - 3)\cancel{(x + 3)}}{\cancel{x + 3}} = x - 3
+          \]
+        </p>
+        <p>Final answer: \(x - 3\).</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal() {
+      document.getElementById("modal").style.display = "flex";
+      document.getElementById("result").textContent = "";
+      document.getElementById("solution").style.display = "none";
+      document.getElementById("userAnswer").value = "";
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+
+    function checkAnswer() {
+      const user = document
+        .getElementById("userAnswer")
+        .value
+        .trim()
+        .toLowerCase();
+
+      const resultEl = document.getElementById("result");
+      const solutionEl = document.getElementById("solution");
+
+      // приблизительные варианты правильного ответа
+      const correct = [
+        "x-3",
+        "x - 3",
+        "x−3",
+        "x − 3",
+        "(x-3)",
+        "(x - 3)",
+      ];
+
+      if (correct.some(s => user === s)) {
+        resultEl.innerHTML = '<span style="color:#4caf50;">🎉 ПРАВИЛЬНО! Молодец!</span>';
+        solutionEl.style.display = "block";
+      } else {
+        resultEl.innerHTML = '<span style="color:#ff5722;">❌ Неправильно. Попробуй ещё раз или открой решение.</span>';
+        solutionEl.style.display = "block";
+      }
+
+      // прокрутка к решению, если нужно
+      solutionEl.scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>
