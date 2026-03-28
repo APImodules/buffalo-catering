@@ -1,116 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Math Trainer 8th Grade</title>
-<style>
-body {
-    font-family: Arial;
-    background: linear-gradient(135deg, #1e1e2f, #2a2a40);
-    color: white;
-    text-align: center;
-    padding: 40px;
-}
-.card {
-    background: #333;
-    padding: 30px;
-    border-radius: 15px;
-    width: 400px;
-    margin: auto;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-}
-input {
-    padding: 10px;
-    font-size: 18px;
-    width: 100px;
-    margin-top: 15px;
-}
-button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background: #00c896;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-button:hover {
-    background: #00e6a8;
-}
-.popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
-    display: none;
-    justify-content: center;
-    align-items: center;
-}
-.popup-content {
-    background: #222;
-    padding: 25px;
-    border-radius: 15px;
-    width: 400px;
-}
-.close {
-    background: red;
-}
-</style>
-</head>
-<body>
-
-<h1>🔥 Math Training (Grade 8)</h1>
-
-<div class="card">
-    <h2>Solve:</h2>
-    <p>2x + 6 = 14</p>
-    <input id="answer" placeholder="Your answer">
-    <br>
-    <button onclick="check()">Check</button>
-</div>
-
-<div class="popup" id="popup">
-    <div class="popup-content">
-        <h2 id="result"></h2>
-        <p id="solution"></p>
-        <button class="close" onclick="closePopup()">Close</button>
-    </div>
-</div>
-
-<script>
-function check() {
-    let ans = document.getElementById("answer").value;
-    let correct = 4;
-
-    let resultText = "";
-    let solutionText = "";
-
-    if (ans == correct) {
-        resultText = "🎉 Correct!";
-    } else {
-        resultText = "❌ Not quite!";
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8th Grade Math Review</title>
+  <style>
+    :root{
+      --bg1:#0f172a;
+      --bg2:#111827;
+      --card:rgba(255,255,255,.08);
+      --card2:rgba(255,255,255,.12);
+      --text:#e5e7eb;
+      --muted:#cbd5e1;
+      --accent:#22d3ee;
+      --accent2:#a78bfa;
+      --good:#22c55e;
+      --bad:#fb7185;
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:Segoe UI,Arial,sans-serif}
+    body{
+      min-height:100vh;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(34,211,238,.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(167,139,250,.18), transparent 30%),
+        linear-gradient(135deg,var(--bg1),var(--bg2));
+      padding:24px;
+    }
+    .wrap{max-width:1100px;margin:0 auto}
+    .hero{
+      background:linear-gradient(135deg, rgba(34,211,238,.14), rgba(167,139,250,.14));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow);
+      border-radius:28px;
+      padding:34px;
+      overflow:hidden;
+      position:relative;
+    }
+    .hero:before{
+      content:"";
+      position:absolute; inset:-60px -40px auto auto;
+      width:220px; height:220px; border-radius:50%;
+      background:radial-gradient(circle, rgba(34,211,238,.28), transparent 70%);
+      filter:blur(6px);
+    }
+    h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;margin-bottom:14px}
+    .lead{color:var(--muted);font-size:1.05rem;max-width:780px;line-height:1.6}
+    .badge-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+    .badge{
+      padding:8px 12px;border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.1);
+      color:#f8fafc;font-size:.92rem
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:16px;
+      margin-top:22px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow);
+      border-radius:22px;
+      padding:20px;
+      backdrop-filter:blur(10px);
+      min-height:160px;
+    }
+    .card h3{font-size:1.08rem;margin-bottom:10px}
+    .card p{color:var(--muted);line-height:1.6;font-size:.98rem}
+    .toolbar{
+      display:flex;flex-wrap:wrap;gap:12px;margin-top:22px
+    }
+    .btn{
+      border:none;cursor:pointer;
+      padding:14px 18px;border-radius:14px;
+      color:#08111f;font-weight:700;font-size:1rem;
+      background:linear-gradient(135deg,var(--accent),#67e8f9);
+      box-shadow:0 10px 25px rgba(34,211,238,.25);
+      transition:.2s transform,.2s opacity;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn.secondary{
+      background:linear-gradient(135deg,var(--accent2),#ddd6fe);
+      box-shadow:0 10px 25px rgba(167,139,250,.2);
     }
 
-    solutionText = `
-Step 1: 2x + 6 = 14  
-Step 2: subtract 6 → 2x = 8  
-Step 3: divide by 2 → x = 4  
+    .modal{
+      display:none;
+      position:fixed; inset:0;
+      background:rgba(2,6,23,.82);
+      align-items:center; justify-content:center;
+      padding:18px; z-index:1000;
+    }
+    .modal.open{display:flex}
+    .modal-box{
+      width:min(760px,100%);
+      max-height:92vh;
+      overflow:auto;
+      background:rgba(15,23,42,.96);
+      border:1px solid rgba(255,255,255,.13);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:24px;
+      position:relative;
+    }
+    .close{
+      position:absolute; top:14px; right:14px;
+      width:40px; height:40px; border-radius:12px;
+      border:none; cursor:pointer;
+      background:rgba(255,255,255,.08);
+      color:var(--text); font-size:22px;
+    }
+    .task-title{font-size:1.4rem;margin-bottom:12px}
+    .task{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:18px;
+      padding:18px;
+      margin-top:14px;
+    }
+    .task .label{color:#93c5fd;font-size:.92rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+    .task p{line-height:1.7;color:#e2e8f0}
+    .answer{
+      display:flex;gap:10px;flex-wrap:wrap;margin-top:16px
+    }
+    input{
+      flex:1; min-width:220px;
+      padding:13px 14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.15);
+      background:rgba(255,255,255,.08);
+      color:var(--text);
+      outline:none;
+      font-size:1rem;
+    }
+    input::placeholder{color:#94a3b8}
+    .check{
+      padding:13px 18px;border:none;border-radius:12px;
+      background:linear-gradient(135deg,#34d399,#86efac);
+      color:#052e16;font-weight:800;cursor:pointer;
+    }
+    .status{margin-top:12px;font-size:1.02rem;font-weight:700;min-height:28px}
+    .solution{
+      display:none;
+      margin-top:18px;
+      padding:18px;
+      border-radius:18px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);
+      line-height:1.7;
+    }
+    .solution h4{margin-bottom:10px;color:#fde68a}
+    .solution ul{padding-left:20px}
+    .solution li{margin:6px 0}
+    .muted{color:var(--muted)}
+    @media (max-width:640px){
+      .hero,.modal-box{padding:18px}
+      .btn{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>8th Grade Math Review</h1>
+      <p class="lead">
+        A stylish end-of-year training page with 5 practice problems, instant checking, and detailed English explanations.
+        Perfect for final revision before the last school test.
+      </p>
+      <div class="badge-row">
+        <span class="badge">Algebra</span>
+        <span class="badge">Geometry</span>
+        <span class="badge">Squares</span>
+        <span class="badge">Percentages</span>
+        <span class="badge">Pythagorean theorem</span>
+      </div>
 
-💡 Explanation:
-We isolate x step by step.
-First remove constant, then divide.
-    `;
+      <div class="toolbar">
+        <button class="btn" onclick="openTask(1)">Open Problem 1</button>
+        <button class="btn secondary" onclick="openTask(2)">Open Problem 2</button>
+        <button class="btn" onclick="openTask(3)">Open Problem 3</button>
+        <button class="btn secondary" onclick="openTask(4)">Open Problem 4</button>
+        <button class="btn" onclick="openTask(5)">Open Problem 5</button>
+      </div>
+    </section>
 
-    document.getElementById("result").innerHTML = resultText;
-    document.getElementById("solution").innerHTML = solutionText;
-    document.getElementById("popup").style.display = "flex";
-}
+    <section class="grid">
+      <div class="card"><h3>Problem 1</h3><p>Factor and simplify a rational expression.</p></div>
+      <div class="card"><h3>Problem 2</h3><p>Find the square root of a perfect square.</p></div>
+      <div class="card"><h3>Problem 3</h3><p>Use exponent rules to simplify.</p></div>
+      <div class="card"><h3>Problem 4</h3><p>Solve a percentage word problem.</p></div>
+      <div class="card"><h3>Problem 5</h3><p>Apply the Pythagorean theorem.</p></div>
+    </section>
+  </div>
 
-function closePopup() {
-    document.getElementById("popup").style.display = "none";
-}
-</script>
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <button class="close" onclick="closeTask()">×</button>
+      <div class="task-title" id="taskTitle">Problem</div>
+      <div class="task" id="taskBox"></div>
 
+      <div class="answer">
+        <input id="answer" type="text" placeholder="Type your answer here..." />
+        <button class="check" onclick="checkAnswer()">Check</button>
+      </div>
+
+      <div class="status" id="status"></div>
+
+      <div class="solution" id="solution"></div>
+    </div>
+  </div>
+
+  <script>
+    const tasks = {
+      1: {
+        title: "Problem 1: Simplify a rational expression",
+        question: `
+          <div class="label">English question</div>
+          <p>Simplify the expression:</p>
+          <p><b>(x² - 9) / (x + 3)</b>, where <b>x ≠ -3</b></p>
+        `,
+        answers: ["x - 3","x-3","(x - 3)","(x-3)"],
+        solution: `
+          <h4>Explanation</h4>
+          <ul>
+            <li>x² - 9 is a difference of squares.</li>
+            <li>So, x² - 9 = (x - 3)(x + 3).</li>
+            <li>Then the fraction becomes ((x - 3)(x + 3)) / (x + 3).</li>
+            <li>Since x ≠ -3, we can cancel (x + 3).</li>
+          </ul>
+          <p><b>Final answer:</b> x - 3</p>
+        `
+      },
+      2: {
+        title: "Problem 2: Square root",
+        question: `
+          <div class="label">English question</div>
+          <p>Find the square root of <b>144</b>.</p>
+        `,
+        answers: ["12"],
+        solution: `
+          <h4>Explanation</h4>
+          <ul>
+            <li>The square root of a number is the value that multiplies by itself to give the original number.</li>
+            <li>12 × 12 = 144.</li>
+          </ul>
+          <p><b>Final answer:</b> 12</p>
+        `
+      },
+      3: {
+        title: "Problem 3: Exponent rules",
+        question: `
+          <div class="label">English question</div>
+          <p>Simplify: <b>2³ · 2⁴</b></p>
+        `,
+        answers: ["2^7","128","2⁷"],
+        solution: `
+          <h4>Explanation</h4>
+          <ul>
+            <li>When multiplying powers with the same base, add the exponents.</li>
+            <li>2³ · 2⁴ = 2^(3+4) = 2⁷.</li>
+            <li>2⁷ = 128.</li>
+          </ul>
+          <p><b>Final answer:</b> 128 or 2⁷</p>
+        `
+      },
+      4: {
+        title: "Problem 4: Percentages",
+        question: `
+          <div class="label">English question</div>
+          <p>A jacket costs <b>$80</b>. It is discounted by <b>25%</b>. What is the sale price?</p>
+        `,
+        answers: ["60","$60","60 dollars"],
+        solution: `
+          <h4>Explanation</h4>
+          <ul>
+            <li>25% of 80 is 0.25 × 80 = 20.</li>
+            <li>Subtract the discount: 80 - 20 = 60.</li>
+          </ul>
+          <p><b>Final answer:</b> $60</p>
+        `
+      },
+      5: {
+        title: "Problem 5: Pythagorean theorem",
+        question: `
+          <div class="label">English question</div>
+          <p>In a right triangle, the legs are <b>6 cm</b> and <b>8 cm</b>. Find the hypotenuse.</p>
+        `,
+        answers: ["10","10 cm","10cm"],
+        solution: `
+          <h4>Explanation</h4>
+          <ul>
+            <li>Use the Pythagorean theorem: a² + b² = c².</li>
+            <li>6² + 8² = 36 + 64 = 100.</li>
+            <li>c = √100 = 10.</li>
+          </ul>
+          <p><b>Final answer:</b> 10 cm</p>
+        `
+      }
+    };
+
+    let current = 1;
+
+    function openTask(id){
+      current = id;
+      const t = tasks[id];
+      document.getElementById("taskTitle").textContent = t.title;
+      document.getElementById("taskBox").innerHTML = t.question;
+      document.getElementById("answer").value = "";
+      document.getElementById("status").textContent = "";
+      document.getElementById("solution").style.display = "none";
+      document.getElementById("solution").innerHTML = t.solution;
+      document.getElementById("modal").classList.add("open");
+    }
+
+    function closeTask(){
+      document.getElementById("modal").classList.remove("open");
+    }
+
+    function checkAnswer(){
+      const user = document.getElementById("answer").value.trim().toLowerCase();
+      const ok = tasks[current].answers.some(a => a.toLowerCase() === user);
+      const status = document.getElementById("status");
+      const solution = document.getElementById("solution");
+      if(ok){
+        status.innerHTML = '<span style="color:var(--good)">Correct! Great job.</span>';
+      }else{
+        status.innerHTML = '<span style="color:var(--bad)">Not quite. Open the solution and review the steps.</span>';
+      }
+      solution.style.display = "block";
+    }
+
+    document.getElementById("modal").addEventListener("click", (e) => {
+      if(e.target.id === "modal") closeTask();
+    });
+  </script>
 </body>
 </html>
