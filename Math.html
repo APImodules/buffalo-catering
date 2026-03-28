@@ -1,383 +1,355 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Математика 8 класс | Тренажёр</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8th Grade Math: 10 Topics · 3 Levels</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
+    :root{
+      --bg1:#0f172a;
+      --bg2:#111827;
+      --card:rgba(255,255,255,.08);
+      --card2:rgba(255,255,255,.12);
+      --text:#e5e7eb;
+      --muted:#cbd5e1;
+      --accent:#22d3ee;
+      --accent2:#a78bfa;
+      --good:#22c55e;
+      --bad:#fb7185;
+      --shadow:0 20px 60px rgba(0,0,0,.35);
     }
-    body {
-      background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-      color: #eee;
-      min-height: 100vh;
-      padding: 20px;
+    *{box-sizing:border-box;margin:0;padding:0;font-family:Segoe UI,Arial,sans-serif}
+    body{
+      min-height:100vh;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(34,211,238,.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(167,139,250,.18), transparent 30%),
+        linear-gradient(135deg,var(--bg1),var(--bg2));
+      padding:24px;
     }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 30px 20px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    .wrap{max-width:1100px;margin:0 auto}
+    .hero{
+      background:linear-gradient(135deg, rgba(34,211,238,.14), rgba(167,139,250,.14));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow);
+      border-radius:28px;
+      padding:30px;
+      overflow:hidden;
+      position:relative;
     }
-    h1 {
-      font-size: 2.6em;
-      margin-bottom: 12px;
-      text-align: center;
-      color: #ffd700;
-      text-shadow: 0 2px 8px #000;
+    .hero:before{
+      content:"";
+      position:absolute; inset:-60px -40px auto auto;
+      width:220px; height:220px; border-radius:50%;
+      background:radial-gradient(circle, rgba(34,211,238,.28), transparent 70%);
+      filter:blur(6px);
     }
-    .subtitle {
-      font-size: 1.2em;
-      text-align: center;
-      margin-bottom: 25px;
-      opacity: 0.8;
+    h1{font-size:clamp(1.8rem,5vw,3.2rem);line-height:1.1;margin-bottom:12px}
+    .lead{color:var(--muted);font-size:1.05rem;max-width:780px;line-height:1.6}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:16px;
+      margin-top:22px;
     }
-    .text-block {
-      margin-bottom: 30px;
-      font-size: 1.1em;
-      line-height: 1.6;
+    .card{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow);
+      border-radius:22px;
+      padding:18px;
+      backdrop-filter:blur(10px);
+      min-height:80px;
+      cursor:pointer;
+      transition:.2s transform;
     }
-    .example-btn {
-      display: block;
-      margin: 15px auto;
-      padding: 12px 30px;
-      background: #40e0d0;
-      color: #222;
-      border: none;
-      border-radius: 50px;
-      font-size: 1.15em;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    .card:hover{transform:translateY(-3px)}
+    .card h3{font-size:1.08rem;margin-bottom:6px}
+    .card .levels{display:flex;gap:6px;margin-top:8px}
+    .level{
+      font-size:.83rem;padding:4px 6px;border-radius:8px;
+      color:#f8fafc;background:rgba(255,255,255,.12);
     }
-    .example-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-    }
+    .level.easy{background:rgba(34,197,94,.3)}
+    .level.medium{background:rgba(234,179,8,.3)}
+    .level.hard{background:rgba(239,68,68,.3)}
 
-    /* Поп‑ап */
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      padding: 20px;
+    .modal{
+      display:none;
+      position:fixed; inset:0;
+      background:rgba(2,6,23,.84);
+      align-items:center; justify-content:center;
+      padding:18px; z-index:1000;
     }
-    .modal-content {
-      background: #fff;
-      color: #222;
-      width: 90%;
-      max-width: 700px;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 30px;
-      border-radius: 18px;
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
-      position: relative;
+    .modal.open{display:flex}
+    .modal-box{
+      width:min(800px,100%);
+      max-height:92vh;
+      overflow:auto;
+      background:rgba(15,23,42,.98);
+      border:1px solid rgba(255,255,255,.13);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:24px;
+      position:relative;
     }
-    .close-btn {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      font-size: 1.8em;
-      border: none;
-      background: none;
-      cursor: pointer;
-      color: #999;
+    .close{
+      position:absolute; top:14px; right:14px;
+      width:40px; height:40px; border-radius:12px;
+      border:none; cursor:pointer;
+      background:rgba(255,255,255,.08);
+      color:var(--text); font-size:22px;
     }
-    .close-btn:hover {
-      color: #555;
+    .task-title{font-size:1.4rem;margin-bottom:12px}
+    .task{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:18px;
+      padding:18px;
+      margin-top:14px;
     }
-    .problem {
-      margin-bottom: 20px;
-      padding: 12px;
-      background: #f8f9fa;
-      border-radius: 12px;
-      border-left: 4px solid #40e0d0;
+    .task .label{color:#93c5fd;font-size:.92rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+    .task p{line-height:1.7;color:#e2e8f0}
+    .level-badge{
+      font-size:.9rem;padding:6px 10px;border-radius:8px;
+      color:#f8fafc;background:rgba(255,255,255,.2);
+      margin-bottom:12px;
     }
-    .problem b {
-      color: #222;
+    .level-badge.easy{background:rgba(34,197,94,.3)}
+    .level-badge.medium{background:rgba(234,179,8,.3)}
+    .level-badge.hard{background:rgba(239,68,68,.3)}
+    .answer{
+      display:flex;gap:10px;flex-wrap:wrap;margin-top:16px
     }
-    .answer-group {
-      margin: 20px 0;
-      text-align: center;
+    input{
+      flex:1; min-width:220px;
+      padding:13px 14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.15);
+      background:rgba(255,255,255,.08);
+      color:var(--text);
+      outline:none;
+      font-size:1rem;
     }
-    input[type="text"] {
-      padding: 12px 16px;
-      font-size: 1.1em;
-      border: 2px solid #ddd;
-      border-radius: 10px;
-      width: 70%;
-      max-width: 320px;
+    input::placeholder{color:#94a3b8}
+    .check{
+      padding:13px 18px;border:none;border-radius:12px;
+      background:linear-gradient(135deg,#34d399,#86efac);
+      color:#052e16;font-weight:800;cursor:pointer;
     }
-    .check-btn {
-      margin-left: 10px;
-      padding: 12px 24px;
-      background: #4caf50;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1.1em;
-      transition: background 0.2s ease;
+    .status{margin-top:12px;font-size:1.02rem;font-weight:700;min-height:28px}
+    .solution{
+      display:none;
+      margin-top:18px;
+      padding:18px;
+      border-radius:18px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);
+      line-height:1.7;
     }
-    .check-btn:hover {
-      background: #388e3c;
-    }
-    .result {
-      margin-top: 15px;
-      font-size: 1.1em;
-    }
-    .solution {
-      margin-top: 20px;
-      padding: 18px;
-      background: #f0f8ff;
-      border-radius: 12px;
-      border-left: 5px solid #4b0082;
-      font-size: 0.95em;
-      line-height: 1.6;
-    }
-    .solution pre {
-      background: #f5f5f5;
-      padding: 12px;
-      border-radius: 8px;
-      overflow-x: auto;
-      margin: 10px 0;
-      font-size: 1em;
-    }
-    .solution hr {
-      margin: 15px 0;
-      border: 0;
-      border-top: 1px solid #ccc;
+    .solution h4{margin-bottom:10px;color:#fde68a}
+    .solution ul{padding-left:20px}
+    .solution li{margin:6px 0}
+    .muted{color:var(--muted)}
+    @media (max-width:640px){
+      .hero,.modal-box{padding:18px}
+      .card{padding:14px}
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🔷 Математика 8 класс</h1>
-    <p class="subtitle">
-      Итоговая тренировка за год · Поп‑ап‑тренажёр с подробными решениями
-    </p>
-
-    <div class="text-block">
-      <p>
-        Это мини‑сайт‑тренажёр для 8‑го класса. Нажми кнопку с примером — открывается поп‑ап, решаешь задачу, вводишь ответ, нажимаешь «Проверить» и видишь подробное решение на русском и английском.
+  <div class="wrap">
+    <section class="hero">
+      <h1>8th Grade Math</h1>
+      <p class="lead">
+        10 key topics from the end‑of‑year program, each with 3 difficulty levels (Easy, Medium, Hard).
+        Train problem‑solving skills and prepare for the final exam.
       </p>
-    </div>
 
-    <button class="example-btn" onclick="openModal('1')">Пример 1: дроби и сокращение</button>
-    <button class="example-btn" onclick="openModal('2')">Пример 2: теорема Пифагора</button>
+      <div class="grid">
+        <div class="card" onclick="showTopic('1')">
+          <h3>1. Algebraic Expressions</h3>
+          <p>Simplifying terms, brackets, and fractions.</p>
+          <div class="levels">
+            <span class="level easy">Easy</span>
+            <span class="level medium">Medium</span>
+            <span class="level hard">Hard</span>
+          </div>
+        </div>
+        <div class="card" onclick="showTopic('2')">
+          <h3>2. Linear Equations</h3>
+          <p>Single‑variable equations.</p>
+          <div class="levels">
+            <span class="level easy">Easy</span>
+            <span class="level medium">Medium</span>
+            <span class="level hard">Hard</span>
+          </div>
+        </div>
+        <div class="card" onclick="showTopic('3')">
+          <h3>3. Linear Inequalities</h3>
+          <p>Solve and graph simple inequalities.</p>
+          <div class="levels">
+            <span class="level easy">Easy</span>
+            <span class="level medium">Medium</span>
+            <span class="level hard">Hard</span>
+          </div>
+        </div>
+        <div class="card" onclick="showTopic('4')">
+          <h3>4. Systems of Equations</h3>
+          <p>Pairs of equations in two variables.</p>
+          <div class="levels">
+            <span class="level easy">Easy</span>
+            <span class="level medium">Medium</span>
+            <span class="level hard">Hard</span>
+          </div>
+        </div>
+        <div class="card" onclick="showTopic('5')">
+          <h3>5. Exponents & Powers</h3>
+          <p>Rules of exponents.</p>
+          <div class="levels">
+            <span class="level easy">Easy</span>
+            <span class="level medium">Medium</span>
+            <span class="level hard">Hard</span>
+          </div>
+        </div>
+        <div class="card" onclick="showTopic('6')">
+          <h3>6. Square Roots</h3>
+          <p>Simplify and estimate square roots.</p>
+          <div class="levels">
+            <span class="level easy">Easy</span>
+            <span class="level medium">Medium</span>
+            <span class="level hard">Hard</span>
+          </div>
+        </div>
+        <div class="card" onclick="showTopic('7')">
+          <h3>7. Percentages</h3>
+          <p>Word problems with percentages.</p>
+          <div class="levels">
+            <span class="level easy">Easy</span>
+            <span class="level medium">Medium</span>
+            <span class="level hard">Hard</span>
+          </div>
+        </div>
+        <div class="card" onclick="showTopic('8')">
+          <h3>8. Pythagorean Theorem</h3>
+          <p>Right‑triangle geometry.</p>
+          <div class="levels">
+            <span class="level easy">Easy</span>
+            <span class="level medium">Medium</span>
+            <span class="level hard">Hard</span>
+          </div>
+        </div>
+        <div class="card" onclick="showTopic('9')">
+          <h3>9. Area & Perimeter</h3>
+          <p>Rectangles, triangles, and composite shapes.</p>
+          <div class="levels">
+            <span class="level easy">Easy</span>
+            <span class="level medium">Medium</span>
+            <span class="level hard">Hard</span>
+          </div>
+        </div>
+        <div class="card" onclick="showTopic('10')">
+          <h3>10. Simple Probability</h3>
+          <p>Fair coins, dice, and spinners.</p>
+          <div class="levels">
+            <span class="level easy">Easy</span>
+            <span class="level medium">Medium</span>
+            <span class="level hard">Hard</span>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <!-- Поп‑ап 1 -->
-  <div class="modal" id="modal-1">
-    <div class="modal-content">
-      <button class="close-btn" onclick="closeModal('1')">×</button>
-      <h2>Задача 1: упрощение выражения</h2>
-
-      <div class="problem">
-        <b>Русский вопрос:</b><br>
-        Упростите выражение:
-        \[
-          \frac{x^2 - 9}{x + 3},\quad x \ne -3
-        \]
+  <!-- Main modal -->
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <button class="close" onclick="closeTask()">×</button>
+      <div class="task-title" id="topicTitle">Topic</div>
+      <div id="easy-card" class="task" style="margin-top:12px;display:none">
+        <div class="level-badge easy">Easy</div>
+        <div id="easy-desc"></div>
+      </div>
+      <div id="medium-card" class="task" style="margin-top:12px;display:none">
+        <div class="level-badge medium">Medium</div>
+        <div id="medium-desc"></div>
+      </div>
+      <div id="hard-card" class="task" style="margin-top:12px;display:none">
+        <div class="level-badge hard">Hard</div>
+        <div id="hard-desc"></div>
       </div>
 
-      <div class="problem">
-        <b>English question:</b><br>
-        Simplify the expression:
-        \[
-          \frac{x^2 - 9}{x + 3},\quad x \ne -3
-        \]
+      <div class="answer" style="margin-top:18px">
+        <input id="answer" type="text" placeholder="Type your answer here..." />
+        <button class="check" onclick="checkAnswer()">Check</button>
       </div>
 
-      <div class="answer-group">
-        <input type="text" id="userAnswer1" placeholder="Ваш ответ (например: x - 3)" />
-        <button class="check-btn" onclick="checkAnswer('1')">Проверить</button>
-      </div>
+      <div class="status" id="status"></div>
 
-      <div class="result" id="result-1"></div>
-
-      <div class="solution" id="solution-1">
-        <h3>📚 Подробное решение (на русском):</h3>
-        <p>
-          В числителе стоит разность квадратов:
-          \[
-            x^2 - 9 = x^2 - 3^2 = (x - 3)(x + 3)
-          \]
-        </p>
-        <p>
-          Подставим это в дробь:
-          \[
-            \frac{x^2 - 9}{x + 3} = \frac{(x - 3)(x + 3)}{x + 3}
-          \]
-        </p>
-        <p>
-          При условии \(x \ne -3\) можно сократить \(x + 3\) в числителе и знаменателе:
-          \[
-            \frac{(x - 3)\cancel{(x + 3)}}{\cancel{x + 3}} = x - 3
-          \]
-        </p>
-        <p>Ответ: <b>\(x - 3\)</b>.</p>
-
-        <hr>
-
-        <h3>📚 Detailed solution (in English):</h3>
-        <p>
-          The numerator is a difference of squares:
-          \[
-            x^2 - 9 = x^2 - 3^2 = (x - 3)(x + 3)
-          \]
-        </p>
-        <p>
-          Substitute this into the fraction:
-          \[
-            \frac{x^2 - 9}{x + 3} = \frac{(x - 3)(x + 3)}{x + 3}
-          \]
-        </p>
-        <p>
-          Since \(x \ne -3\), we can cancel \((x + 3)\) in the numerator and denominator:
-          \[
-            \frac{(x - 3)\cancel{(x + 3)}}{\cancel{x + 3}} = x - 3
-          \]
-        </p>
-        <p>Final answer: <b>\(x - 3\)</b>.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Поп‑ап 2 -->
-  <div class="modal" id="modal-2">
-    <div class="modal-content">
-      <button class="close-btn" onclick="closeModal('2')">×</button>
-      <h2>Задача 2: теорема Пифагора</h2>
-
-      <div class="problem">
-        <b>Русский вопрос:</b><br>
-        В прямоугольном треугольнике катеты равны 6 см и 8 см. Найдите гипотенузу.
-      </div>
-
-      <div class="problem">
-        <b>English question:</b><br>
-        In a right triangle, the legs are 6 cm and 8 cm. Find the hypotenuse.
-      </div>
-
-      <div class="answer-group">
-        <input type="text" id="userAnswer2" placeholder="Ваш ответ (например: 10)" />
-        <button class="check-btn" onclick="checkAnswer('2')">Проверить</button>
-      </div>
-
-      <div class="result" id="result-2"></div>
-
-      <div class="solution" id="solution-2">
-        <h3>📚 Подробное решение (на русском):</h3>
-        <p>
-          По теореме Пифагора:
-          \[
-            c^2 = a^2 + b^2
-          \]
-          где \(a = 6\), \(b = 8\).
-        </p>
-        <p>
-          Подставим:
-          \[
-            c^2 = 6^2 + 8^2 = 36 + 64 = 100
-          \]
-        </p>
-        <p>
-          Тогда:
-          \[
-            c = \sqrt{100} = 10
-          \]
-        </p>
-        <p>Ответ: гипотенуза равна <b>10 см</b>.</p>
-
-        <hr>
-
-        <h3>📚 Detailed solution (in English):</h3>
-        <p>
-          By the Pythagorean theorem:
-          \[
-            c^2 = a^2 + b^2
-          \]
-          with \(a = 6\), \(b = 8\).
-        </p>
-        <p>
-          Substitute:
-          \[
-            c^2 = 6^2 + 8^2 = 36 + 64 = 100
-          \]
-        </p>
-        <p>
-          Then:
-          \[
-            c = \sqrt{100} = 10
-          \]
-        </p>
-        <p>Answer: the hypotenuse is <b>10 cm</b>.</p>
-      </div>
+      <div class="solution" id="solution"></div>
     </div>
   </div>
 
   <script>
-    function openModal(id) {
-      document.getElementById("modal-"+id).style.display = "flex";
-      const result = document.getElementById("result-"+id);
-      const solution = document.getElementById("solution-"+id);
-      const input = document.getElementById("userAnswer"+id);
-      result.innerHTML = "";
-      solution.style.display = "none";
-      input.value = "";
-    }
-
-    function closeModal(id) {
-      document.getElementById("modal-"+id).style.display = "none";
-    }
-
-    function checkAnswer(id) {
-      const user = document
-        .getElementById("userAnswer"+id)
-        .value
-        .trim()
-        .toLowerCase();
-
-      const result = document.getElementById("result-"+id);
-      const solution = document.getElementById("solution-"+id);
-
-      let correct = [];
-      if (id === "1") {
-        correct = ["x-3", "x - 3", "x−3", "x − 3", "(x-3)", "(x - 3)"];
-      } else if (id === "2") {
-        correct = ["10", "10.0", "10см", "10 см"];
-      }
-
-      if (correct.some(s => user === s)) {
-        result.innerHTML = `
-          <span style="color:#4caf50;">
-            🎉 ПРАВИЛЬНО! Молодец!
-          </span>`;
-        solution.style.display = "block";
-      } else {
-        result.innerHTML = `
-          <span style="color:#ff5722;">
-            ❌ Неправильно. Попробуй ещё раз или открой решение.
-          </span>`;
-        solution.style.display = "block";
-      }
-    }
-  </script>
-</body>
-</html>
+    const topics = {
+      '1': {
+        name: "1. Algebraic Expressions",
+        easy: {
+          text: `
+            <div class="label">Easy</div>
+            <p>Simplify:<br><b>3x + 2x - x</b></p>
+          `,
+          correct: ["4x", "4x"],
+          solution: `
+            <h4>Explanation</h4>
+            <p>
+              Combine like terms.
+              <br>3x + 2x − x = (3 + 2 − 1)x = 4x.
+            </p>
+            <p><b>Answer: 4x</b></p>
+          `
+        },
+        medium: {
+          text: `
+            <div class="label">Medium</div>
+            <p>Simplify:<br><b>2(x + 3) + 4(x - 1)</b></p>
+          `,
+          correct: ["6x+2", "6x + 2"],
+          solution: `
+            <h4>Explanation</h4>
+            <ul>
+              <li>Open brackets: 2x + 6 + 4x − 4.</li>
+              <li>Combine like terms: (2x + 4x) + (6 − 4) = 6x + 2.</li>
+            </ul>
+            <p><b>Answer: 6x + 2</b></p>
+          `
+        },
+        hard: {
+          text: `
+            <div class="label">Hard</div>
+            <p>Simplify:<br><b>(x² - 4) / (x + 2)</b>, where <b>x ≠ -2</b></p>
+          `,
+          correct: ["x-2", "x - 2"],
+          solution: `
+            <h4>Explanation</h4>
+            <ul>
+              <li>Numerator is difference of squares: x² − 4 = (x − 2)(x + 2).</li>
+              <li>Fraction becomes ((x − 2)(x + 2)) / (x + 2).</li>
+              <li>Cancel (x + 2) (since x ≠ −2): x − 2.</li>
+            </ul>
+            <p><b>Answer: x − 2</b></p>
+          `
+        }
+      },
+      '2': {
+        name: "2. Linear Equations",
+        easy: {
+          text: `
+            <div class="label">Easy</div>
+            <p>Solve for x:<br><b>2x + 5 = 13</b></p>
+          `,
+          correct: ["4"],
+          solution: `
+            <h4>Explanation</h4>
+            <p>2x = 13 − 5 = 
